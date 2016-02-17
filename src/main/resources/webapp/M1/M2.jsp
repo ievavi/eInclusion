@@ -19,36 +19,44 @@
 	<%
 		//EditDatabase e = new EditDatabase();
 	%>
-	<%
-		M2Table m2Table = new M2Table();
-		m2Table.readDBfiltered("M2", "Green");
-		ArrayList<ArrayList<String>> list = M1Table.list;
-		request.setAttribute("list", list);
-	%>
 
 	<h1>Evaluation of ability to learn and knowledge sharing</h1>
 	Name your file:
 	<br />
 	<!--  Execute java script as action -->
-	<form action="index.jsp" method="post" enctype="multipart/form-data">
+	<form action="M2.jsp" method="post" enctype="multipart/form-data">
 		<input type="text" name="Students" size="30" /> <br /> <input
 			type="submit" value="Export to xls" />
 	</form>
 	<p>Filter</p>
-	<form action="index.jsp" method="post">
+	<form action="M2.jsp" method="post">
 		<select>
-			<option value="item1">item1</option>
-			<option value="item2">item2</option>
+			<option value="All">All</option>
+			<option value="Nr">Nr</option>
+			<option value="Phone">Phone</option>
+			<option value="Topic">Topic</option>
+			<option value="Name">Name</option>
+			<option value="Motivation">Motivation</option>
+			<option value="Learning ability">Learning ability</option>
+			<option value="E-materials">E-materials</option>
+			<option value="E-environment">E-environment</option>
+			<option value="Instructor">Instructor</option>
+			<option value="Submit date">Submit date</option>
+			<option value="M2">M2</option>
 			<%
 				//Java code to parse through possible categories
 			%>
 		</select> <input type="submit" value="Apply" />
 	</form>
-	
+	<%
+		M2Table m2Table = new M2Table();
+		m2Table.readDBfiltered("M2", "Green");
+		ArrayList<ArrayList<String>> list = M2Table.list;
+		request.setAttribute("list", list);
+	%>
 
 	<table class="CSSTableGenerator">
 		<tr>
-			<th>Nr</th>
 			<th>Phone</th>
 			<th>Topic</th>
 			<th>Name</th>
@@ -73,8 +81,6 @@
 				<td><c:out value="${item.get(7)}" /></td>
 				<td><c:out value="${item.get(8)}" /></td>
 				<td><c:out value="${item.get(9)}" /></td>
-				<td><c:out value="${item.get(10)}" /></td>
-				<td><c:out value="${item.get(11)}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
