@@ -54,6 +54,7 @@ public class M1Table extends JPanel implements ActionListener, KeyListener {
 	static final String PASS = "";							// password for database
     static final String DB_TABLE_NAME = "STUDENT";			// database name
     public static ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();	// list for student data with COLUMNS
+    public static TreeSet<String> ts;
 	static final String[] COLUMNS = {"PHONE","TOPIC","NAME","SWL","DS","SAL","ELM","IWS","ELE","PU","SUBMITDATE","M1"};
 	static File path;					// file path for exported file
 	
@@ -474,7 +475,7 @@ public class M1Table extends JPanel implements ActionListener, KeyListener {
 	 * 	Generates items for comboBox_2 by adding unique values selected column (selected item in comboBox_1)
 	 */
 	public void comboBox2Generate() {
-		TreeSet<String> ts = new TreeSet<>( Collections.reverseOrder() );
+		ts = new TreeSet<>( Collections.reverseOrder() );
 		String colVal = null;
 		colVal = comboBox_1.getSelectedItem().toString();
 		colVal = getShortForColumn(colVal);
