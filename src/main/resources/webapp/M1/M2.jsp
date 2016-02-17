@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>General evaluation of student</title>
+<title>Evaluation of ability to learn and knowledge sharing</title>
 <link href="TableCSSCode.css" rel="stylesheet" type="text/css">
 <!--  <link rel="stylesheet" type="text/css" href="theme.css"> -->
 </head>
@@ -17,18 +17,16 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 	<%
-		//Einclusion.main(null);
-		///M1 m = new M1(); 
 		//EditDatabase e = new EditDatabase();
 	%>
 	<%
-		M1Table m1Table = new M1Table();
-		m1Table.readDBfiltered("M1", "Green");
+		M2Table m2Table = new M2Table();
+		m2Table.readDBfiltered("M2", "Green");
 		ArrayList<ArrayList<String>> list = M1Table.list;
 		request.setAttribute("list", list);
 	%>
 
-	<h1>General evaluation of student</h1>
+	<h1>Evaluation of ability to learn and knowledge sharing</h1>
 	Name your file:
 	<br />
 	<!--  Execute java script as action -->
@@ -38,13 +36,6 @@
 	</form>
 	<p>Filter</p>
 	<form action="index.jsp" method="post">
-	
-	<!-- <select multiple="multiple" name="prodSKUs">
-	    <c:forEach items="${list}" var="productSubCategoryList">
-	        <option value="${list}" ${not empty productSubCategoryMap[list] ? 'selected' : ''}>${list}</option>
-	    </c:forEach>
-	</select>
-		 -->
 		<select>
 			<option value="item1">item1</option>
 			<option value="item2">item2</option>
@@ -53,24 +44,21 @@
 			%>
 		</select> <input type="submit" value="Apply" />
 	</form>
-	<!--  <table style="width:100%"> -->
 	
 
 	<table class="CSSTableGenerator">
 		<tr>
+			<th>Nr</th>
 			<th>Phone</th>
 			<th>Topic</th>
 			<th>Name</th>
 			<th>Motivation</th>
-			<th>Digital skills</th>
 			<th>Learning ability</th>
 			<th>E-materials</th>
-			<th>Instructor</th>
 			<th>E-environment</th>
-			<th>Predicted usage</th>
+			<th>Instructor</th>
 			<th>Submit date</th>
-			<th>M1</th>
-
+			<th>M2</th>
 		</tr>
 		<c:forEach items="${list}" var="item">
 
