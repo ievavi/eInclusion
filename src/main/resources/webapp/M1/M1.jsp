@@ -7,8 +7,20 @@
 <title>General evaluation of student</title>
 <link href="TableCSSCode.css" rel="stylesheet" type="text/css">
 <!--  <link rel="stylesheet" type="text/css" href="theme.css"> -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">	
+</script>
 <script type="text/javascript" src="ddtf.js"></script>
+
+<!--  
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+-->
+<script src="src/jquery.table2excel.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery('.CSSTableGenerator').ddTableFilter();
+	});
+</script>
 </head>
 <body>
 
@@ -24,23 +36,17 @@
 		request.setAttribute("list", list);
 	%>
 
-	<script type="text/javascript">
-		jQuery(document).ready(function () {
-		  jQuery('.CSSTableGenerator').ddTableFilter();
-		});
-	</script>
-	
 	<table class="tg">
-	  <tr>
-	    <th class="tg-yw4l"><a href="index.jsp">Main Page</a></th>
-	    <th class="tg-yw4l"><a href="databaseEdit.jsp">DatabaseEdit</a></th>
-	    <th class="tg-yw4l"><a href="M1.jsp">M1</a></th>
-	    <th class="tg-yw4l"><a href="M2.jsp">M2</a></th>
-	    <th class="tg-yw4l"><a href="M3.jsp">M3</a></th>
-	    <th class="tg-yw4l"><a href="prediction.jsp">Prediction</a></th>
-	  </tr>
+		<tr>
+			<th class="tg-yw4l"><a href="index.jsp">Main Page</a></th>
+			<th class="tg-yw4l"><a href="databaseEdit.jsp">DatabaseEdit</a></th>
+			<th class="tg-yw4l"><a href="M1.jsp">M1</a></th>
+			<th class="tg-yw4l"><a href="M2.jsp">M2</a></th>
+			<th class="tg-yw4l"><a href="M3.jsp">M3</a></th>
+			<th class="tg-yw4l"><a href="prediction.jsp">Prediction</a></th>
+		</tr>
 	</table>
-	
+
 	<h1>General evaluation of student</h1>
 	Name your file:
 	<br />
@@ -49,6 +55,16 @@
 		<input type="text" name="Students" size="30" /> <br /> <input
 			type="submit" value="Export to xls" />
 	</form>
+	<button>Export</button>
+	<script type="text/javascript">
+		$("button").click(function() {
+			$(".CSSTableGenerator").table2excel({
+				exclude : ".noExl",
+				name : "Excel Document Name",
+				filename : "myFileName"
+			});
+		});
+	</script>
 
 	<table class="CSSTableGenerator">
 		<tr>
@@ -84,7 +100,5 @@
 			</tr>
 		</c:forEach>
 	</table>
-
-
 </body>
 </html>
