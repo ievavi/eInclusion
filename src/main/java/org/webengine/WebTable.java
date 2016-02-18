@@ -1,23 +1,22 @@
 package org.webengine;
 
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+
 //import org.apache.log4j.Logger;
 
 public abstract class WebTable {
-	// private static final Logger LOG = Logger.getLogger(M2Table.class); //
-	// Logger for M2Table
 	static final String JDBC_DRIVER = "org.h2.Driver"; // JDBC driver name
-	static final String DB_URL = "jdbc:h2:data/Student"; // databse URL
-															// (location of
-															// database)
+	 // databse URL (location of database)
+	static final String DB_URL = "jdbc:h2:data/Student";
 	static final String USER = "sa"; // username for database
 	static final String PASS = ""; // password for database
 	static final String DB_TABLE_NAME = "STUDENT"; // database for student data
-	static final String DB_REGRESSION_TABLE = "MODELMANAGER"; // database for
-																// function data
-																// // path to
-																// exported file
+	// database for function data path to exported file
+	static final String DB_REGRESSION_TABLE = "MODELMANAGER";
 
 	public abstract void readDBfiltered(String colName, String value);
+	public abstract ArrayList<String> returnLabels();
 
 	public String getShortForColumn(String colName) {
 		String shortCol = null;
@@ -70,7 +69,14 @@ public abstract class WebTable {
 		}
 		return shortCol;
 	}
-	// public String getRegressionModel(String course);
-	// public void prepareRegressionModels();
-
+	
+	public static double round(double value, int places) {
+		if (places < 0)
+			throw new IllegalArgumentException();
+		long factor = (long) Math.pow(10, places);
+		value = value * factor;
+		long tmp = Math.round(value);
+		return (double) tmp / factor;
+	}
+	// public void actionPerformed(ActionEvent e) - jaaskataas vai nav noderiigs datu izvilkshanai
 }
