@@ -3,48 +3,30 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>General evaluation of student</title>
-	<link href="TableCSSCode.css" rel="stylesheet" type="text/css">
-	<!--  <link rel="stylesheet" type="text/css" href="theme.css"> -->
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Evaluation of ability to learn and knowledge sharing</title>
+<link href="TableCSSCode.css" rel="stylesheet" type="text/css">
+<!--  <link rel="stylesheet" type="text/css" href="theme.css"> -->
 </head>
 <body>
-	
+
 	<%@ page import="org.webengine.*"%>
 	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
-	<%@ page import="java.util.*"%>
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 	<%
-		//Einclusion.main(null);
-		///M1 m = new M1(); 
 		//EditDatabase e = new EditDatabase();
 	%>
 	<%
-		
-		M1Table m1Table = new M1Table();
-		m1Table.readDBfiltered("All", "All");
-		//list for buttons
-		TreeSet<String> treeSet = M1Table.ts;
-		request.setAttribute("button", treeSet);
-		// list of all data
+		M2Table m2Table = new M2Table();
+		m2Table.readDBfiltered("M2", "Green");
 		ArrayList<ArrayList<String>> list = M1Table.list;
-	
-		
 		request.setAttribute("list", list);
-		
-// 		Set<String> map = new HashSet<String>();
-// 		for(ArrayList<String> aList : list ){
-// 			for (String elem : aList.get(1)){
-// 				System.out.println(elem);
-// 				map.add(elem);
-// 			}		
-// 		}
 	%>
 
-	<h1>General evaluation of student</h1>
+	<h1>Evaluation of ability to learn and knowledge sharing</h1>
 	Name your file:
 	<br />
 	<!--  Execute java script as action -->
@@ -54,13 +36,6 @@
 	</form>
 	<p>Filter</p>
 	<form action="index.jsp" method="post">
-	
-	 <select multiple="multiple" name="prodSKUs">
-	    <c:forEach items="${button}" var="productSubCategoryList">
-	        <option value="${button}" ${not empty productSubCategoryMap[button] ? 'selected' : ''}>${button}</option>
-	    </c:forEach>
-	</select>
-		 
 		<select>
 			<option value="item1">item1</option>
 			<option value="item2">item2</option>
@@ -69,28 +44,21 @@
 			%>
 		</select> <input type="submit" value="Apply" />
 	</form>
-<!-- 	 <table style="width:100%"> -->
 	
-	<script>
-	jQuery(document).ready(function () {
-		  jQuery('.CSSTableGenerator').ddTableFilter();
-		});
-	</script>
+
 	<table class="CSSTableGenerator">
 		<tr>
+			<th>Nr</th>
 			<th>Phone</th>
 			<th>Topic</th>
 			<th>Name</th>
 			<th>Motivation</th>
-			<th>Digital skills</th>
 			<th>Learning ability</th>
 			<th>E-materials</th>
-			<th>Instructor</th>
 			<th>E-environment</th>
-			<th>Predicted usage</th>
+			<th>Instructor</th>
 			<th>Submit date</th>
-			<th>M1</th>
-
+			<th>M2</th>
 		</tr>
 		<c:forEach items="${list}" var="item">
 
