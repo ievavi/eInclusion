@@ -9,7 +9,7 @@
 	<!--  <link rel="stylesheet" type="text/css" href="theme.css"> -->
 </head>
 <body>
-	
+	<%@ page import="org.einclusion.model.*"%>
 	<%@ page import="org.webengine.*"%>
 	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
@@ -19,16 +19,17 @@
 
 	<%
 		//Einclusion.main(null);
-		///M1 m = new M1(); 
-		//EditDatabase e = new EditDatabase();
-	%>
-	<%
-		
 		M1Table m1Table = new M1Table();
 		m1Table.readDBfiltered("All", "All");
 		//list for buttons
+
 		//TreeSet<String> treeSet = M1Table.ts;
 		//request.setAttribute("button", treeSet);
+
+		
+		TreeSet<String> treeSet = M1Table.ts;
+		request.setAttribute("button", treeSet);
+
 		// list of all data
 		ArrayList<ArrayList<String>> list = M1Table.list;
 	
@@ -43,73 +44,17 @@
 // 			}		
 // 		}
 	%>
-
-	<h1>General evaluation of student</h1>
-	Name your file:
-	<br />
-	<!--  Execute java script as action -->
-	<form action="index.jsp" method="post" enctype="multipart/form-data">
-		<input type="text" name="Students" size="30" /> <br /> <input
-			type="submit" value="Export to xls" />
-	</form>
-	<p>Filter</p>
-	<form action="index.jsp" method="post">
-	
-	 <select multiple="multiple" name="prodSKUs">
-	    <c:forEach items="${button}" var="productSubCategoryList">
-	        <option value="${button}" ${not empty productSubCategoryMap[button] ? 'selected' : ''}>${button}</option>
-	    </c:forEach>
-	</select>
-		 
-		<select>
-			<option value="item1">item1</option>
-			<option value="item2">item2</option>
-			<%
-				//Java code to parse through possible categories
-			%>
-		</select> <input type="submit" value="Apply" />
-	</form>
-<!-- 	 <table style="width:100%"> -->
-	
-	<script>
-	jQuery(document).ready(function () {
-		  jQuery('.CSSTableGenerator').ddTableFilter();
-		});
-	</script>
-	<table class="CSSTableGenerator">
+	<table class="tg">
 		<tr>
-			<th>Phone</th>
-			<th>Topic</th>
-			<th>Name</th>
-			<th>Motivation</th>
-			<th>Digital skills</th>
-			<th>Learning ability</th>
-			<th>E-materials</th>
-			<th>Instructor</th>
-			<th>E-environment</th>
-			<th>Predicted usage</th>
-			<th>Submit date</th>
-			<th>M1</th>
-
+			<th class="tg-yw4l"><a href="index.jsp">Main Page</a></th>
+			<th class="tg-yw4l"><a href="databaseEdit.jsp">DatabaseEdit</a></th>
+			<th class="tg-yw4l"><a href="M1.jsp">M1</a></th>
+			<th class="tg-yw4l"><a href="M2.jsp">M2</a></th>
+			<th class="tg-yw4l"><a href="M3.jsp">M3</a></th>
+			<th class="tg-yw4l"><a href="prediction.jsp">Prediction</a></th>
 		</tr>
-		<c:forEach items="${list}" var="item">
-
-			<tr>
-				<td id="Nr"><c:out value="${item.get(0)}" /></td>
-				<td><c:out value="${item.get(1)}" /></td>
-				<td><c:out value="${item.get(2)}" /></td>
-				<td><c:out value="${item.get(3)}" /></td>
-				<td><c:out value="${item.get(4)}" /></td>
-				<td><c:out value="${item.get(5)}" /></td>
-				<td><c:out value="${item.get(6)}" /></td>
-				<td><c:out value="${item.get(7)}" /></td>
-				<td><c:out value="${item.get(8)}" /></td>
-				<td><c:out value="${item.get(9)}" /></td>
-				<td><c:out value="${item.get(10)}" /></td>
-				<td><c:out value="${item.get(11)}" /></td>
-			</tr>
-		</c:forEach>
 	</table>
+	
 
 
 </body>

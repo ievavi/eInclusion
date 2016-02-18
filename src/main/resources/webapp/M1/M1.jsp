@@ -7,6 +7,8 @@
 <title>General evaluation of student</title>
 <link href="TableCSSCode.css" rel="stylesheet" type="text/css">
 <!--  <link rel="stylesheet" type="text/css" href="theme.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+<script type="text/javascript" src="ddtf.js"></script>
 </head>
 <body>
 
@@ -15,46 +17,38 @@
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-	<%
-		//Einclusion.main(null);
-		///M1 m = new M1(); 
-		//EditDatabase e = new EditDatabase();
-	%>
 	<%
 		M1Table m1Table = new M1Table();
-		m1Table.readDBfiltered("M1", "Green");
+		m1Table.readDBfiltered("All", "All");
 		ArrayList<ArrayList<String>> list = M1Table.list;
 		request.setAttribute("list", list);
 	%>
 
+	<script type="text/javascript">
+		jQuery(document).ready(function () {
+		  jQuery('.CSSTableGenerator').ddTableFilter();
+		});
+	</script>
+	
+	<table class="tg">
+	  <tr>
+	    <th class="tg-yw4l"><a href="index.jsp">Main Page</a></th>
+	    <th class="tg-yw4l"><a href="databaseEdit.jsp">DatabaseEdit</a></th>
+	    <th class="tg-yw4l"><a href="M1.jsp">M1</a></th>
+	    <th class="tg-yw4l"><a href="M2.jsp">M2</a></th>
+	    <th class="tg-yw4l"><a href="M3.jsp">M3</a></th>
+	    <th class="tg-yw4l"><a href="prediction.jsp">Prediction</a></th>
+	  </tr>
+	</table>
+	
 	<h1>General evaluation of student</h1>
 	Name your file:
 	<br />
 	<!--  Execute java script as action -->
-	<form action="index.jsp" method="post" enctype="multipart/form-data">
+	<form action="M1.jsp" method="post" enctype="multipart/form-data">
 		<input type="text" name="Students" size="30" /> <br /> <input
 			type="submit" value="Export to xls" />
 	</form>
-	<p>Filter</p>
-	<form action="index.jsp" method="post">
-	
-	<!-- <select multiple="multiple" name="prodSKUs">
-	    <c:forEach items="${list}" var="productSubCategoryList">
-	        <option value="${list}" ${not empty productSubCategoryMap[list] ? 'selected' : ''}>${list}</option>
-	    </c:forEach>
-	</select>
-		 -->
-		<select>
-			<option value="item1">item1</option>
-			<option value="item2">item2</option>
-			<%
-				//Java code to parse through possible categories
-			%>
-		</select> <input type="submit" value="Apply" />
-	</form>
-	<!--  <table style="width:100%"> -->
-	
 
 	<table class="CSSTableGenerator">
 		<tr>

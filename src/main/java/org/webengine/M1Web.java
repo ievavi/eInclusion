@@ -15,15 +15,10 @@ import org.einclusion.GUI.M1Table;
 
 public class M1Web extends WebTable {
 	private static final long serialVersionUID = 1001L;
-	private static final Logger LOG = Logger.getLogger(M1Table.class); // Logger
-																		// for
-																		// M1Table
-	public static ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>(); // list
-																							// for
-																							// student
-																							// data
-																							// with
-																							// COLUMNS
+	// Logger for M1Table
+	private static final Logger LOG = Logger.getLogger(M1Table.class);
+	// list for student data with COLUMNS
+	public static ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 	static final String[] COLUMNS = { "PHONE", "TOPIC", "NAME", "SWL", "DS", "SAL", "ELM", "IWS", "ELE", "PU",
 			"SUBMITDATE", "M1" };
 	static File path;
@@ -34,6 +29,14 @@ public class M1Web extends WebTable {
 		LOG.info("M1Table has been initialized");
 	}
 
+	/**
+	 * Reads specific filtered data from database.
+	 * 
+	 * @param colName
+	 *            - column name
+	 * @param value
+	 *            - row value in selected column
+	 */
 	public void readDBfiltered(String colName, String value) {
 
 		try {
@@ -109,10 +112,7 @@ public class M1Web extends WebTable {
 				if (row.size() > 0)
 					list.add(row);
 
-				// addTableLine(entries, phone, topic, name, swl, ds, sal, elm,
-				// iws, ele, pu, date, m1);
 			}
-			// System.out.println("Entries: "+entries);
 			LOG.info("Filter generated successfully");
 
 		} catch (SQLException sqle) { // Handle errors for JDBC
@@ -134,7 +134,7 @@ public class M1Web extends WebTable {
 		}
 	}
 
-	public ArrayList<String> labels() {
+	public ArrayList<String> returnLabels() {
 		ArrayList<String> labels = new ArrayList<>();
 		labels.add("Nr");
 		labels.add("Phone");
