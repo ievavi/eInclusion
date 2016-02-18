@@ -13,18 +13,13 @@
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
 
-
-
-
-	<p>Menu</p>
-
 	<table class="tg">
 		<tr>
 			<th class="tg-yw4l"><a href="index.jsp">Main Page</a></th>
 			<th class="tg-yw4l"><a href="databaseEdit.jsp">DatabaseEdit</a></th>
-			<th class="tg-yw4l"><a href="m1.jsp">M1</a></th>
-			<th class="tg-yw4l"><a href="m2.jsp">M2</a></th>
-			<th class="tg-yw4l"><a href="m3.jsp">M3</a></th>
+			<th class="tg-yw4l"><a href="M1.jsp">M1</a></th>
+			<th class="tg-yw4l"><a href="M2.jsp">M2</a></th>
+			<th class="tg-yw4l"><a href="M3.jsp">M3</a></th>
 			<th class="tg-yw4l"><a href="prediction.jsp">Prediction</a></th>
 		</tr>
 	</table>

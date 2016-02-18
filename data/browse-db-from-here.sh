@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar ~/.m2/repository/com/h2database/h2/1.3.176/h2-1.3.176.jar -url jdbc:h2:Student -user sa
+java -jar ~/.m2/repository/com/h2database/h2/1.3.176/h2-1.3.176.jar -url jdbc:h2:Student -user sa ;MVCC=TRUE
