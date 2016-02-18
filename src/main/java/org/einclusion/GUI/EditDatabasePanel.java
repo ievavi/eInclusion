@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
@@ -53,8 +54,6 @@ import org.einclusion.model.ModelManager;
 import org.einclusion.model.Prediction;
 import org.einclusion.model.PrepareData;
 
-import javax.swing.ScrollPaneConstants;
-
 /**
  *	Panel for importing, exporting and updating database using xlsx and csv files
  *	@author student
@@ -74,7 +73,7 @@ public class EditDatabasePanel extends JPanel implements ActionListener {
 	public static JTextArea log;						// textarea for log (what the application is doing)
 	static final Color colorForHighlight = new Color(0xff0033);	// highlight for error messages
 	static final String JDBC_DRIVER = "org.h2.Driver";		// JDBC driver name
-	static final String DB_URL = "jdbc:h2:data/Student";	// databse URL (location of database)
+	static final String DB_URL = "jdbc:h2:data/Student;MVCC=TRUE";	// databse URL (location of database)
 	static final String USER = "sa";						// username for database
 	static final String PASS = "";							// password for database
 	static final String DB_TABLE_NAME = "STUDENT";			// default table name

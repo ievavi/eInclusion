@@ -21,31 +21,38 @@ jQuery(document).ready(function () {
 
 </head>
 <body>
-	<p>Menu</p>
+	<table class="tg">
+	  <tr>
+	    <th class="tg-yw4l"><a href="index.jsp">Main Page</a></th>
+	    <th class="tg-yw4l"><a href="databaseEdit.jsp">DatabaseEdit</a></th>
+	    <th class="tg-yw4l"><a href="M1.jsp">M1</a></th>
+	    <th class="tg-yw4l"><a href="M2.jsp">M2</a></th>
+	    <th class="tg-yw4l"><a href="M3.jsp">M3</a></th>
+	    <th class="tg-yw4l"><a href="prediction.jsp">Prediction</a></th>
+	  </tr>
+	</table>
 
-<table class="tg">
-  <tr>
-    <th class="tg-yw4l"><a href="index.jsp">Main Page</a></th>
-    <th class="tg-yw4l"><a href="databaseEdit.jsp">DatabaseEdit</a></th>
-    <th class="tg-yw4l"><a href="m1.jsp">M1</a></th>
-    <th class="tg-yw4l"><a href="m2.jsp">M2</a></th>
-    <th class="tg-yw4l"><a href="m3.jsp">M3</a></th>
-    <th class="tg-yw4l"><a href="prediction.jsp">Prediction</a></th>
-  </tr>
-</table>
-<br />
-<br />
 	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	
-		<%
+	<%
+		//create an object to acces ReadDBFiltered method
+		
 		PredictionTable prediction = new PredictionTable();
-		prediction.readDBfiltered("Prediction", "Green");
-		ArrayList<ArrayList<String>> list = prediction.list;
+		prediction.readDBfiltered("All", "All");
+		ArrayList<ArrayList<String>> list = PredictionTable.list;
 		request.setAttribute("list", list);
 	%>
+		<h1>Prediction of student E-inclusion </h1>
+		
+		Name your file:
+
+		<form action="index.jsp" method="post" enctype="multipart/form-data">
+			<input type="text" name="Students" size="30" /> <br /> <input
+				type="submit" value="Export to xls" />
+		</form>
 		
 		<table id="form_filtr" class="CSSTableGenerator"><tbody>
 		<tr>
