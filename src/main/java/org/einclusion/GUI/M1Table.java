@@ -286,7 +286,7 @@ public class M1Table extends JPanel implements ActionListener, KeyListener {
 		tableModel.addColumn("E-environment");
 		tableModel.addColumn("Predicted usage");
 		tableModel.addColumn("Submit date");
-		tableModel.addColumn("M1");
+		tableModel.addColumn("M1");//
 		
 		table.setModel(tableModel);
 		
