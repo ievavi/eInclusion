@@ -52,8 +52,8 @@
 	<br />
 	<!--  Execute java script as action -->
 	<form action="M1.jsp" method="post" enctype="multipart/form-data">
-		<input type="text" name="Students" size="30" /> <br /> <input
-			type="submit" value="Export to xls" />
+		<input type="text" name="Students" size="30" /> <br /> 
+		<input type="submit" value="Export to xls" />
 	</form>
 	<script type="text/javascript">
 		$("form").submit(function() {
