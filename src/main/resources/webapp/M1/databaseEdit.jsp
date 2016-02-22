@@ -9,9 +9,6 @@
 </head>
 <body>
 	<%@ page import="org.webengine.*"%>
-	<%@ page import="org.einclusion.GUI.*"%>
-	<%@ page import="java.util.ArrayList"%>
-	<%@ page import="java.util.Iterator"%>
 
 	<table class="tg">
 		<tr>
@@ -26,12 +23,16 @@
 
 	<h2>Database Edit</h2>
 
+
+	Select a file to upload:
 	<br />
-	<form method="post" action="upload" enctype="multipart/form-data">
-		Select file to upload:
-		<input type="file" name="uploadedFile" id="uploadedFile"/><br/><br/>
-		<input type="submit" value="Upload" name="upload" id="upload"/>
-	</form>
+	    <form method="post" action="/fileupload" enctype="multipart/form-data">  
+        Choose file <input type="file" name="file">
+        <input type="submit" value="submit">
+
+    </form>
+	<br>
+	<br>
 
 </body>
 </html>

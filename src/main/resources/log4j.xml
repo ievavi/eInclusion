@@ -11,13 +11,18 @@
 	<logger name="org.einclusion">
 		<level value="error" />
 	</logger>
+	<logger name="org.webengine">
+		<level value="debug" />
+	</logger>
 	<logger name="javax.persistence">
 		<level value="fatal" />
 	</logger>
 	<logger name="org.hibernate">
-		<level value="fatal" />
-	</logger>	<root>
-		<level value="error" />
+
+		<level value="info" />
+	</logger>
+	<root>
+		<level value="info" />
 		<appender-ref ref="console" />
 	</root>
 

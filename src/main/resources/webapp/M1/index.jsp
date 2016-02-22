@@ -22,9 +22,14 @@
 		M1Table m1Table = new M1Table();
 		m1Table.readDBfiltered("All", "All");
 		//list for buttons
+
+		//TreeSet<String> treeSet = M1Table.ts;
+		//request.setAttribute("button", treeSet);
+
 		
 		TreeSet<String> treeSet = M1Table.ts;
 		request.setAttribute("button", treeSet);
+
 		// list of all data
 		ArrayList<ArrayList<String>> list = M1Table.list;
 	
