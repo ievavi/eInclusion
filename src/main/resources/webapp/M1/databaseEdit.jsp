@@ -26,22 +26,11 @@
 
 	<h2>Database Edit</h2>
 
-	<%
-		M1Table m1Table = new M1Table();
-		m1Table.readDBfiltered("All", "All");
-		ArrayList<ArrayList<String>> list = M1Table.list;
-		request.setAttribute("list", list);
-		System.out.println(list.get(0).get(0));
-	%>
-
-
-
-	Select a file to upload:
 	<br />
-	<form action="EditDatabase.jsp" method="post"
-		enctype="multipart/form-data">
-		<input type="file" name="file" size="50" /> <br /> <input
-			type="submit" value="Upload File" />
+	<form method="post" action="upload" enctype="multipart/form-data">
+		Select file to upload:
+		<input type="file" name="uploadedFile" id="uploadedFile"/><br/><br/>
+		<input type="submit" value="Upload" name="upload" id="upload"/>
 	</form>
 
 </body>

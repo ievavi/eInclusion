@@ -9,15 +9,15 @@
 		</layout>
 	</appender>
 	<logger name="org.einclusion">
-		<level value="info" />
+		<level value="error" />
 	</logger>
 	<logger name="javax.persistence">
-		<level value="info" />
+		<level value="fatal" />
 	</logger>
 	<logger name="org.hibernate">
-		<level value="info" />
+		<level value="fatal" />
 	</logger>	<root>
-		<level value="info" />
+		<level value="error" />
 		<appender-ref ref="console" />
 	</root>
 
