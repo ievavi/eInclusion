@@ -9,9 +9,6 @@
 </head>
 <body>
 	<%@ page import="org.webengine.*"%>
-	<%@ page import="org.einclusion.GUI.*"%>
-	<%@ page import="java.util.ArrayList"%>
-	<%@ page import="java.util.Iterator"%>
 
 	<table class="tg">
 		<tr>
@@ -26,23 +23,15 @@
 
 	<h2>Database Edit</h2>
 
-	<%
-		M1Table m1Table = new M1Table();
-		m1Table.readDBfiltered("All", "All");
-		ArrayList<ArrayList<String>> list = M1Table.list;
-		request.setAttribute("list", list);
-		System.out.println(list.get(0).get(0));
-	%>
-
-
-
 	Select a file to upload:
 	<br />
-	<form action="EditDatabase.jsp" method="post"
-		enctype="multipart/form-data">
-		<input type="file" name="file" size="50" /> <br /> <input
-			type="submit" value="Upload File" />
-	</form>
+	    <form method="post" action="/fileupload" enctype="multipart/form-data">  
+        Choose file <input type="file" name="file">
+        <input type="submit" value="submit">
+
+    </form>
+	<br>
+	<br>
 
 </body>
 </html>

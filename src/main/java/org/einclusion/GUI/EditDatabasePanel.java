@@ -82,7 +82,7 @@ public class EditDatabasePanel extends JPanel implements ActionListener {
 	public static TreeSet<String> treeSetTopics = new TreeSet<String>();
 	public static ArrayList<String> ous = new ArrayList<String>();	// list of OUs from database
 	static ArrayList<ArrayList<String>> deleteList = new ArrayList<ArrayList<String>>();	// list of students to be deleted from database
-
+	public static File FILE;
 	/**
 	 *	Constructor for initializing EditDatabasePanel
 	 */
@@ -710,6 +710,7 @@ public class EditDatabasePanel extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		if( e.getSource().equals(chooseFile) ){							// if choosefile button is pressed
 			fileChooser.setFileFilter(filterxlsx);						// sets .xlsx filter as default
 			fileChooser.setVisible(true);								// sets jfilechooser to visible
@@ -718,16 +719,16 @@ public class EditDatabasePanel extends JPanel implements ActionListener {
 				new Thread() { 											// creates a new thread so processes execute consecutively
 					public void run() {									// creates run method for thread
 						long start = System.nanoTime();					// gets System time in nanoseconds
-						final File file = fileChooser.getSelectedFile();		// gets selected files path
-						String extension = file.getName().substring(file.getName().indexOf("."), file.getName().length());	// gets file extension
+						  FILE = fileChooser.getSelectedFile();		// gets selected files path
+						String extension = FILE.getName().substring(FILE.getName().indexOf("."), FILE.getName().length());	// gets file extension
 						if( extension.equals(".xlsx") ){						// if file is .xlsx
-							log.setText("Selected file: "+file.getName()+"\n");
-							String fileName = file.getName();									// gets files name
+							log.setText("Selected file: " + FILE.getName()+"\n");
+							String fileName = FILE.getName();									// gets files name
 							fileName = fileName.substring(0, fileName.indexOf(".")) + ".csv";	// changes extension to .csv
 							File currentDirectory = new File(fileName);			// sets files location to current directory (directory project is in)
 
 							try{
-								xlsxToCsv(file, currentDirectory);				// converts .xlsx file to .csv file
+								xlsxToCsv(FILE, currentDirectory);				// converts .xlsx file to .csv file
 								openFile.setVisible(true);
 							}
 							catch( Exception ex ){
@@ -858,7 +859,7 @@ public class EditDatabasePanel extends JPanel implements ActionListener {
 						fileOut.flush();										// clears outputstream
 						fileOut.close();										// closes outputstream
 						log.append("Template file created: "+file.getPath()+"\n");
-						long end = System.nanoTime();							// gets system time
+						long end = System.nanoTime();							// gets sopenFileystem time
 						long elapsedTime = end - start;							// calculates execution time
 						double seconds = (double)elapsedTime / 1000000000.0; 	// converts nanoseconds to seconds
 						seconds = M2Table.round(seconds, 3);					// rounds seconds to 3 digits
