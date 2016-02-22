@@ -30,9 +30,9 @@
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%
-		M1Table m1Table = new M1Table();
+		WebTable m1Table = new M1Web();
 		m1Table.readDBfiltered("All", "All");
-		ArrayList<ArrayList<String>> list = M1Table.list;
+		ArrayList<ArrayList<String>> list = M1Web.list;
 		request.setAttribute("list", list);
 	%>
 
@@ -55,13 +55,13 @@
 		<input type="text" name="Students" size="30" /> <br /> <input
 			type="submit" value="Export to xls" />
 	</form>
-	<button>Export</button>
 	<script type="text/javascript">
-		$("button").click(function() {
+		$("form").submit(function() {
+			var n = $("input:first").val()
 			$(".CSSTableGenerator").table2excel({
 				exclude : ".noExl",
 				name : "Excel Document Name",
-				filename : "myFileName"
+				filename : n
 			});
 		});
 	</script>
