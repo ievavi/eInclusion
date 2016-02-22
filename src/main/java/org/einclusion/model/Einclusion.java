@@ -11,7 +11,7 @@ import org.einclusion.GUI.EditDatabasePanel;
  * 	@author student
  */
 public class Einclusion {
-
+	public static DBManager dbManager;
 	public static void main(String[] args) throws SQLException {
 		AppFrame gui = new AppFrame();
 		gui.setVisible(true);
@@ -19,11 +19,13 @@ public class Einclusion {
 		// Connects to database and gets topics after the gui has been loaded
 		Connection conn = null;									// connection with a database
 		Statement stmt = null;									// object used for executing sql statement
-		// Pool manager to handle concurrent connections 
-		// !!! ALL connections MUST use the connection pool
-		DBManager dbManager = new DBManager();
+		// Pool manager to handle concurrent connections (NOTE database still uses 1 connection
+		// but the poolmanager allows to run queries through it.
+		// !!! ALL queries MUST use the connection pool object.
+		Einclusion.dbManager = new DBManager();
 		conn = dbManager.cp.getConnection();
-		//Connection conn2 = DBManager.cp.getConnection();
+		//use database like this
+		//Einclusion.dbManager.cp.getConnection().prepareStatement("CREATE TABLE " + "asd " + " (PersonID int, LastName varchar(255))").execute();
 		EditDatabasePanel.getTopics(conn, stmt);
 		for( String topic : EditDatabasePanel.treeSetTopics ){
 			EditDatabasePanel.boxForTopics.addItem(topic);
