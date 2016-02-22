@@ -23,6 +23,7 @@
 
 	<h2>Database Edit</h2>
 
+<<<<<<< HEAD
 	Select a file to upload:
 	<br />
 	    <form method="post" action="/fileupload" enctype="multipart/form-data">  
@@ -32,6 +33,14 @@
     </form>
 	<br>
 	<br>
+=======
+	<br />
+	<form method="post" action="upload" enctype="multipart/form-data">
+		Select file to upload:
+		<input type="file" name="uploadedFile" id="uploadedFile"/><br/><br/>
+		<input type="submit" value="Upload" name="upload" id="upload"/>
+	</form>
+>>>>>>> 48e9cc1fa2fd589c0900e8060b198c837ee78145
 
 </body>
 </html>

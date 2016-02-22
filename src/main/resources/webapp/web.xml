@@ -8,5 +8,17 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
+<<<<<<< HEAD
   </welcome-file-list>  
+=======
+  </welcome-file-list>
+  <context-param> 
+    <description>Location to store uploaded file</description> 
+    <param-name>file-upload</param-name> 
+    <param-value>
+         /src/main/resources/webapp/M1
+     </param-value> 
+</context-param>
+  
+>>>>>>> 48e9cc1fa2fd589c0900e8060b198c837ee78145
 </web-app>
