@@ -34,7 +34,7 @@
 	<form method="get" action="${pageContext.request.contextPath}/fileupload" enctype="multipart/form-data">
 	<tr>
 	<td>
-		<input type="submit" name="button1" value="Open CSV fail" /> 
+		<input type="submit" name="button1" value="Open CSV file" /> 
 		</td>
 		</tr>
 			<tr>
@@ -45,23 +45,36 @@
 		<input type="submit" name="button3" value="Open Template" /> 
 		</td>
 		</tr>
-	</form>
-	
-	<form method="post" action="/fileupload" enctype="multipart/form-data">
-		Choose file <input type="file" name="file"> 
-		<input type="submit" value="submit">
-	</form>
-	
-			<tr>
+					<tr>
 	<td>
-		<input type="submit" name="button4" value="Update Database" /> 
-		</td>
-			<td>
-		<input type="submit" name="button5" value="Example" /> 
+		<input type="submit" name="button4" value="Example" /> 
 		</td>
 		</tr>
+				</td>
+		</tr>
+					<tr>
+	<td>
+		<input type="submit" name="button5" value="exportAllData" /> 
+		</td>
+		</tr>
+				</tr>
+					<tr>
+	<td>
+		<input type="submit" name="button6" value="openExported" /> 
+		</td>
+		</tr>
+	</form>
+
 	</td>
 	</tr>
+	
+	<tr><td>
+	<form method="post" action="/fileupload" enctype="multipart/form-data">
+		Choose file2 <input type="file" name="upload"> 
+		<input type="submit" value="submit">
+	</form>
+	</td></tr>
+	
 	</table>
 	
 

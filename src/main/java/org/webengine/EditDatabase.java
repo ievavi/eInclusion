@@ -939,7 +939,7 @@ public class EditDatabase {
 																													// extension
 				if (extension.equals(".xlsx")) { // if file is .xlsx
 					log.setText("Selected file: " + file.getName() + "\n");
-					System.out.println("filename" + file.getName());
+					System.out.println("filename " + file.getName());
 					String fileName = file.getName(); // gets files name
 					fileName = fileName.substring(0, fileName.indexOf(".")) + ".csv"; // changes
 																						// extension
@@ -1164,7 +1164,31 @@ public class EditDatabase {
 			File file2 = new File("Update_Database.xls"); 
 			openFile(file2); // opens file with its default program
 		}
-
+		if(str == "exampleFile"){			// if exampleFile button is pressed
+			File file2 = new File("data/example.xls");		// creates file path to example.xls file
+			openFile(file2);									// function that opens file with its default program
+		}
+		if( str == "exportAllData") {		// if exportAllData button is pressed
+			new Thread() { 				// creates a new thread so processes execute consecutively
+				public void run() {		// creates run method for thread
+					long start = System.nanoTime(); 	// gets system time
+					File pathToFile = new File("Exported.xls");
+					exportAllData(pathToFile, conn, stmt);
+					long end = System.nanoTime(); 			// gets system time
+					long elapsedTime = end - start; 		// gets elapsed time in nanoseconds
+					double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds to seconds
+					seconds = M2Table.round(seconds, 3);	// rounds to 3 digits
+					log.append("Execution time: "+seconds+" sec\n");
+				}
+			}.start();
+		}
+		if( str == "openExported") {		// if openExportd button is pressed
+			File file4 = new File("Exported.xls");		// creates new path to file
+			openFile(file4);							// opens file with its default programm
+		}
+	}
+	
+	public void actionPerformed2(final File file, String str) {
 		if (str == "updateDatabase") { // if updatedatabase button
 
 			new Thread() { // creates a new thread so processes execute
@@ -1657,231 +1681,12 @@ public class EditDatabase {
 			}.start(); // starts thread
 		}
 		if(str == "exampleFile"){			// if exampleFile button is pressed
-			File file2 = new File("data/example.xls"); // creates file path to example.xls file	
-			openFile(file2); // opens file with its default program
+			File file3 = new File("data/example.xls"); // creates file path to example.xls file	
+			openFile(file3); // opens file with its default program
 		}
 	}
 }
 
 
-// } else if( e.getSource().equals(eraseFromDatabase) ){
-// int confirm = JOptionPane.showConfirmDialog (null, "Are you sure you want to
-// delete entries from database?","Warning",JOptionPane.YES_NO_OPTION);
-// if(confirm == JOptionPane.YES_OPTION){
-// new Thread() { // creates a new thread so processes execute consecutively
-// public void run() { // creates run method for thread
-// try
-// {
-// long start = System.nanoTime(); // get system time
-// log.setText("");
-// Class.forName(JDBC_DRIVER); // initializes JDBC driver
-// log.append("Connecting to database... \n");
-// conn = DriverManager.getConnection(DB_URL, USER, PASS); // establsih
-// connection to database
-// conn.setAutoCommit(false); // sets autocommit to false
-// log.append("Connected to database successfully \n");
-//
-// if( boxForSpecifics.getSelectedIndex() == 0 &&
-// boxForTopics.getSelectedIndex() == 0 ){
-// String sql = "TRUNCATE TABLE STUDENT"; // make sql statement
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(sql);
-// sql = "ALTER TABLE STUDENT ALTER COLUMN ID RESTART WITH 1"; // make sql
-// statement
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(sql);
-// conn.commit();
-// sql = "TRUNCATE TABLE MODELMANAGER";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(sql);
-// conn.commit();
-// for( String topic : treeSetTopics ){ // adds topics to Jcombobox
-// boxForTopics.removeItem(topic);
-// }
-// treeSetTopics.clear();
-// log.append("All students have been deleted\n");
-// long end = System.nanoTime(); // gets system time
-// long elapsedTime = end - start; // gets elapsed time in nanoseconds
-// double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds
-// to seconds
-// seconds = M2Table.round(seconds, 3); // rounds to 3 digits
-// log.append("Execution time: "+seconds+" sec\n");
-// }
-// else if( boxForSpecifics.getSelectedIndex() == 0 ){
-//// System.out.println(" compasdasd count: " + boxForTopics.getItemCount());
-//// System.out.println(" comp count: " + boxForSpecifics.getItemCount());
-// for( ArrayList<String> data : deleteList ){
-// String name = data.get(0);
-// String phone = data.get(1);
-// String topic = data.get(2);
-// String sql = "DELETE FROM STUDENT WHERE PHONE='"+phone+"' AND
-// TOPIC='"+topic+"'";
-// stmt = conn.createStatement();
-// stmt.executeUpdate(sql);
-// conn.commit();
-// boxForSpecifics.removeItem(name);
-// if( boxForSpecifics.getItemCount() == 1 ){
-// sql = "DELETE FROM MODELMANAGER WHERE KEY LIKE '%"+topic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(sql);
-// conn.commit();
-// boxForTopics.removeItem(topic);
-// }
-// log.append("Name: "+name+" Topic: "+topic+" Phone: "+phone+" has been
-// deleted\n");
-// }
-// long end = System.nanoTime(); // gets system time
-// long elapsedTime = end - start; // gets elapsed time in nanoseconds
-// double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds
-// to seconds
-// seconds = M2Table.round(seconds, 3); // rounds to 3 digits
-// log.append("Execution time: "+seconds+" sec\n");
-// }
-// else{
-// int id = (boxForSpecifics.getSelectedIndex()-1);
-// String name = deleteList.get(id).get(0);
-// String phone = deleteList.get(id).get(1);
-// String topic = deleteList.get(id).get(2);
-// String sql = "DELETE FROM STUDENT WHERE PHONE='"+phone+"' AND
-// TOPIC='"+topic+"'";
-// stmt = conn.createStatement();
-// stmt.executeUpdate(sql);
-// conn.commit();
-// boxForSpecifics.removeItem(name);
-// if( boxForSpecifics.getItemCount() == 1 ){
-// sql = "DELETE FROM MODELMANAGER WHERE KEY LIKE '%"+topic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(sql);
-// conn.commit();
-// boxForTopics.removeItem(topic);
-// }
-// log.append("Name: "+name+" Topic: "+topic+" Phone: "+phone+" has been
-// deleted\n");
-// long end = System.nanoTime(); // gets system time
-// long elapsedTime = end - start; // gets elapsed time in nanoseconds
-// double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds
-// to seconds
-// seconds = M2Table.round(seconds, 3); // rounds to 3 digits
-// log.append("Execution time: "+seconds+" sec\n");
-// }
-// } catch ( ClassNotFoundException cnfe ){
-// LOG.error(cnfe.getMessage()+" "+cnfe.getCause());
-// cnfe.printStackTrace();
-// } catch ( SQLException sqle ){
-// LOG.error(sqle.getMessage()+" "+sqle.getCause());
-// sqle.printStackTrace();
-// } finally{
-// try{
-// if( conn != null ){
-// conn.close();
-// }
-// if( stmt != null ){
-// stmt.close();
-// }
-// } catch(SQLException sqle){
-// LOG.error(sqle.getMessage()+" "+sqle.getCause());
-// sqle.printStackTrace();
-// }
-// }
-// }
-// }.start();
-// } else {
-// try{
-// if( conn != null ){
-// conn.close();
-// }
-// if( stmt != null ){
-// stmt.close();
-// }
-// } catch(SQLException sqle){
-// LOG.error(sqle.getMessage()+" "+sqle.getCause());
-// sqle.printStackTrace();
-// }
-// }
-// }
-//
-// else if(e.getSource().equals(exampleFile)){ // if exampleFile button is
-// pressed
-// File file = new File("data/example.xls"); // creates file path to example.xls
-// file
-// openFile(file); // function that opens file with its default program
-// }
-// else if( e.getSource().equals(exportAllData) ){ // if exportAllData button is
-// pressed
-// new Thread() { // creates a new thread so processes execute consecutively
-// public void run() { // creates run method for thread
-// long start = System.nanoTime(); // gets system time
-// File pathToFile = new File("Exported.xls");
-// exportAllData(pathToFile, conn, stmt);
-// long end = System.nanoTime(); // gets system time
-// long elapsedTime = end - start; // gets elapsed time in nanoseconds
-// double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds
-// to seconds
-// seconds = M2Table.round(seconds, 3); // rounds to 3 digits
-// log.append("Execution time: "+seconds+" sec\n");
-// }
-// }.start();
-// }
-// else if( e.getSource().equals(openExported) ){ // if openExportd button is
-// pressed
-// File pathToFile = new File("Exported.xls"); // creates new path to file
-// openFile(pathToFile); // opens file with its default programm
-// }
-// else if( e.getSource().equals(boxForTopics) ){
-//
-// new Thread() { // creates a new thread so processes execute consecutively
-// public void run() { // creates run method for thread
-// if( !((String)boxForTopics.getSelectedItem()).equals("ALL") ){
-// boxForSpecifics.removeAllItems(); // removes all elements from JComboBox
-// boxForSpecifics.addItem("All"); // adds ALL to JComboBox
-// deleteList.removeAll(deleteList); // removes all elements from ArrayList
-// try
-// {
-// Class.forName(JDBC_DRIVER); // initializes JDBC driver
-// log.setText("");
-// log.append("Connecting to database... \n");
-// conn = DriverManager.getConnection(DB_URL, USER, PASS); // establsih
-// connection to database
-// conn.setAutoCommit(false); // sets autocommit to false
-// log.append("Connected to database successfully \n");
-// log.append("Reading from database...\n");
-// String sql = null;
-// ResultSet rs;
-// for( String treeTopic : treeSetTopics ){
-// if( ((String)boxForTopics.getSelectedItem()).equals(treeTopic) ){
-//
-// sql = "SELECT PHONE, TOPIC, NAME FROM STUDENT WHERE TOPIC='"+treeTopic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// rs = stmt.executeQuery(sql); // a table of data that is obtained by executing
-// a sql statement
-// conn.commit();
-// while( rs.next() ){
-// ArrayList<String> data = new ArrayList<String>(); // creates an arrayList of
-// strings
-// String name = rs.getString("NAME"); // gets name from database
-// String phone = rs.getString("PHONE"); // gets phone number from database
-// String topic = rs.getString("TOPIC"); // gets topic from database
-// boxForSpecifics.addItem(name); // adds name to boxForSpecifics
-//
-// data.add(name); // adds name to arrayList
-// data.add(phone); // adds phone to arrayList
-// data.add(topic); // adds topic to arrayList
-//
-// deleteList.add(data); // adds arrayList to arrayList
-// }
-// log.append("Finished reading!\n");
-// }
-// }
-// } catch ( ClassNotFoundException cnfe ){
-// LOG.error(cnfe.getMessage()+" "+cnfe.getCause());
-// cnfe.printStackTrace();
-// } catch ( SQLException sqle ){
-// LOG.error(sqle.getMessage()+" "+sqle.getCause());
-// sqle.printStackTrace();
-// }
-// }
-// }
-// }.start();
-// }
-// }
-// }
+
+
