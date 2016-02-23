@@ -75,7 +75,7 @@
 								class="hidden-tablet"> M2</span></a></li>
 						<li><a href="M3.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M3</span></a></li>
-						<li><a href="Prediciton.jsp"><i class="icon-table"></i><span
+						<li><a href="prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
 					</ul>
 				</div>
@@ -103,7 +103,7 @@
 					<div>
 						<div class="box-header" data-original-title></div>
 						<div class="box-content">
-							<form class="form-horizontal" action="M1t.jsp" method="post"
+							<form class="form-horizontal" action="M1.jsp" method="post"
 								enctype="multipart/form-data">
 								<fieldset>
 									<div class="control-group">

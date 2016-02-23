@@ -53,7 +53,7 @@ public class M2Table extends JPanel implements ActionListener, KeyListener {
 	
 	private static final Logger LOG = Logger.getLogger(M2Table.class);	// Logger for M2Table
 	static final String JDBC_DRIVER = "org.h2.Driver";		// JDBC driver name
-	static final String DB_URL = "jdbc:h2:data/Student;AUTO_SERVER=TRUE";	// databse URL (location of database)
+	static final String DB_URL = "jdbc:h2:data/Student";	// databse URL (location of database)
 	static final String USER = "sa";						// username for database
 	static final String PASS = "";							// password for database
     static final String DB_TABLE_NAME = "STUDENT";			// database for student data
