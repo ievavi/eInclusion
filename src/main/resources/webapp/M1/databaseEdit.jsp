@@ -23,6 +23,7 @@
 	<h2>Database Edit</h2>
 	<table class="upload">
 		<tr>
+<<<<<<< HEAD
 			<td>Select a file to upload: <br />
 				<form method="post" action="/fileupload"
 					enctype="multipart/form-data">
@@ -53,6 +54,60 @@
 		</tr>
 		</td>
 		</tr>
+=======
+		<td>
+	Select a file to upload:
+	<br />
+	<form method="post" action="/fileupload" enctype="multipart/form-data">
+		Choose file <input type="file" name="file"> 
+		<input type="submit" value="submit">
+	</form>
+ 
+	<form method="get" action="${pageContext.request.contextPath}/fileupload" enctype="multipart/form-data">
+	<tr>
+	<td>
+		<input type="submit" name="button1" value="Open CSV file" /> 
+		</td>
+		</tr>
+			<tr>
+	<td>
+		<input type="submit" name="button2" value="Create Template" /> 
+		</td>
+			<td>
+		<input type="submit" name="button3" value="Open Template" /> 
+		</td>
+		</tr>
+					<tr>
+	<td>
+		<input type="submit" name="button4" value="Example" /> 
+		</td>
+		</tr>
+				</td>
+		</tr>
+					<tr>
+	<td>
+		<input type="submit" name="button5" value="exportAllData" /> 
+		</td>
+		</tr>
+				</tr>
+					<tr>
+	<td>
+		<input type="submit" name="button6" value="openExported" /> 
+		</td>
+		</tr>
+	</form>
+
+	</td>
+	</tr>
+	
+	<tr><td>
+	<form method="post" action="/fileupload" enctype="multipart/form-data">
+		Choose file2 <input type="file" name="upload"> 
+		<input type="submit" value="submit">
+	</form>
+	</td></tr>
+	
+>>>>>>> 00e2e5f140cac857b9e1599f077d9f229daca9ef
 	</table>
 	<%@ page import="org.einclusion.GUI.EditDatabasePanel"%>
 	<%@ page import="java.util.TreeSet"%>
