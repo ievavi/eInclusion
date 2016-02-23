@@ -69,7 +69,7 @@ background-color:#cccccc;
 border:0px solid #000000;
 text-align:center;
 border-width:0px 0px 1px 1px;
-font-size:14px;
+font-size:10px;
 font-family:arial;
 font-weight:bold;
 color:#000000;
@@ -85,7 +85,7 @@ border-width:0px 0px 1px 0px;
 border-width:0px 0px 1px 1px;
 }
 
-.tg td{font-family:Arial, sans-serif;font-size:14px;border-style:solid;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:3px 5px;border-style:solid;border-width:1px;background-color: #c5c5c5;}
+.tg td{font-family:Arial, sans-serif;font-size:10px;border-style:solid;}
+.tg th{font-family:Arial, sans-serif;font-size:10px;font-weight:normal;padding:3px 5px;border-style:solid;border-width:1px;background-color: #c5c5c5;}
 .tg .tg-yw4l{vertical-align:top;}
 .tg th a{text-decoration: none;}

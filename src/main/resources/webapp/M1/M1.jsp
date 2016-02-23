@@ -3,27 +3,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+<!-- start: Meta -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>General evaluation of student</title>
 <link href="TableCSSCode.css" rel="stylesheet" type="text/css">
-<!--  <link rel="stylesheet" type="text/css" href="theme.css"> -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">	
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+	
 </script>
-<script type="text/javascript" src="ddtf.js"></script>
+<meta charset="utf-8">
+<meta name="description" content="Bootstrap Metro Dashboard">
+<meta name="author" content="Dennis Ji">
+<!-- end: Meta -->
 
-<!--  
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
--->
-<script src="src/jquery.table2excel.js"></script>
-<script type="text/javascript">
-	jQuery(document).ready(function() {
-		jQuery('.CSSTableGenerator').ddTableFilter();
-	});
-</script>
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- end: Mobile Specific -->
+
+<!-- start: CSS -->
+<link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+<link id="base-style" href="css/style.css" rel="stylesheet">
+<link id="base-style-responsive" href="css/style-responsive.css"
+	rel="stylesheet">
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
+	rel='stylesheet' type='text/css'>
+<!-- end: CSS -->
+
+
+<!-- start: Favicon -->
+<link rel="shortcut icon" href="img/favicon.ico">
+<!-- end: Favicon -->
 </head>
-<body>
 
+<body>
 	<%@ page import="org.webengine.*"%>
 	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
@@ -35,70 +50,171 @@
 		ArrayList<ArrayList<String>> list = M1Web.list;
 		request.setAttribute("list", list);
 	%>
+	<!-- start: Header -->
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div>
+				<a class="brand" href="Editdatabase.jsp"><span>Einclusion</span></a>
+			</div>
+		</div>
+	</div>
+	<!-- start: Header -->
 
-	<table class="tg">
-		<tr>
-			<th class="tg-yw4l"><a href="index.jsp">Main Page</a></th>
-			<th class="tg-yw4l"><a href="databaseEdit.jsp">DatabaseEdit</a></th>
-			<th class="tg-yw4l"><a href="M1.jsp">M1</a></th>
-			<th class="tg-yw4l"><a href="M2.jsp">M2</a></th>
-			<th class="tg-yw4l"><a href="M3.jsp">M3</a></th>
-			<th class="tg-yw4l"><a href="prediction.jsp">Prediction</a></th>
-		</tr>
-	</table>
+	<div>
+		<div>
 
-	<h1>General evaluation of student</h1>
-	Name your file:
-	<br />
-	<!--  Execute java script as action -->
-	<form action="M1.jsp" method="post" enctype="multipart/form-data">
-		<input type="text" name="Students" size="30" /> <br /> 
-		<input type="submit" value="Export to xls" />
-	</form>
-	<script type="text/javascript">
-		$("form").submit(function() {
-			var n = $("input:first").val()
-			$(".CSSTableGenerator").table2excel({
-				exclude : ".noExl",
-				name : "Excel Document Name",
-				filename : n
+			<!-- start: Main Menu -->
+			<div id="sidebar-left" class="span2">
+				<div class="nav-collapse sidebar-nav">
+					<ul class="nav nav-tabs nav-stacked main-menu">
+						<li><a href="Editdatabase.jsp"><i class="icon-edit"></i><span
+								class="hidden-tablet"> Edit database</span></a></li>
+						<li><a href="M1.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> M1</span></a></li>
+						<li><a href="M2.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> M2</span></a></li>
+						<li><a href="M3.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> M3</span></a></li>
+						<li><a href="Prediciton.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> Prediction</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- end: Main Menu -->
+
+			<noscript>
+				<div class="alert alert-block span10">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>
+						You need to have <a href="http://en.wikipedia.org/wiki/JavaScript"
+							target="_blank">JavaScript</a> enabled to use this site.
+					</p>
+				</div>
+			</noscript>
+
+			<div id="content" class="span10">
+				<ul class="breadcrumb">
+					<li><i class="icon-home"></i> <a href="index.html">Home</a> <i
+						class="icon-angle-right"></i></li>
+					<li><a href="#">M1</a></li>
+				</ul>
+				<div>
+					<h1>General evaluation of students</h1>
+					<div>
+						<div class="box-header" data-original-title></div>
+						<div class="box-content">
+							<form class="form-horizontal" action="M1t.jsp" method="post"
+								enctype="multipart/form-data">
+								<fieldset>
+									<div class="control-group">
+										<label class="control-label" for="focusedInput">Name
+											your file: </label>
+										<div class="controls">
+											<input name="Students" class="input-xlarge focused"
+												id="focusedInput" type="text">
+											<button type="submit" class="btn btn-primary">Export
+												to xls</button>
+										</div>
+									</div>
+
+								</fieldset>
+							</form>
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>Phone</th>
+										<th>Topic</th>
+										<th>Name</th>
+										<th>Motivation</th>
+										<th>Digital skills</th>
+										<th>Learning ability</th>
+										<th>E-materials</th>
+										<th>Instructor</th>
+										<th>E-environment</th>
+										<th>Predicted usage</th>
+										<th>Submit date</th>
+										<th>M1</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${list}" var="item">
+
+										<tr>
+											<td id="Nr"><c:out value="${item.get(0)}" /></td>
+											<td><c:out value="${item.get(1)}" /></td>
+											<td><c:out value="${item.get(2)}" /></td>
+											<td><c:out value="${item.get(3)}" /></td>
+											<td><c:out value="${item.get(4)}" /></td>
+											<td><c:out value="${item.get(5)}" /></td>
+											<td><c:out value="${item.get(6)}" /></td>
+											<td><c:out value="${item.get(7)}" /></td>
+											<td><c:out value="${item.get(8)}" /></td>
+											<td><c:out value="${item.get(9)}" /></td>
+											<td><c:out value="${item.get(10)}" /></td>
+											<td><c:out value="${item.get(11)}" /></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+
+		<div class="modal hide fade" id="myModal">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">Ã</button>
+				<h3>Settings</h3>
+			</div>
+			<div class="modal-body">
+				<p>Here settings can be configured...</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn" data-dismiss="modal">Close</a> <a href="#"
+					class="btn btn-primary">Save changes</a>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+
+		<footer>
+
+		<p>
+			<span style="text-align: left; float: left; display: none">&copy; 2013 <a
+				href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/"
+				alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
+
+		</p>
+
+		</footer>
+
+		<!-- start: JavaScript-->
+
+		<script src="js/jquery-1.9.1.min.js"></script>
+		<script src="js/jquery-migrate-1.0.0.min.js"></script>
+
+		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
+		<script src="src/jquery.table2excel.js"></script>
+		<script type="text/javascript">
+			$("form").submit(function() {
+				var n = $("input:first").val()
+				$(".table").table2excel({
+					exclude : ".noExl",
+					name : "Excel Document Name",
+					filename : n
+				});
 			});
-		});
-	</script>
-
-	<table class="CSSTableGenerator">
-		<tr>
-			<th>Phone</th>
-			<th>Topic</th>
-			<th>Name</th>
-			<th>Motivation</th>
-			<th>Digital skills</th>
-			<th>Learning ability</th>
-			<th>E-materials</th>
-			<th>Instructor</th>
-			<th>E-environment</th>
-			<th>Predicted usage</th>
-			<th>Submit date</th>
-			<th>M1</th>
-
-		</tr>
-		<c:forEach items="${list}" var="item">
-
-			<tr>
-				<td id="Nr"><c:out value="${item.get(0)}" /></td>
-				<td><c:out value="${item.get(1)}" /></td>
-				<td><c:out value="${item.get(2)}" /></td>
-				<td><c:out value="${item.get(3)}" /></td>
-				<td><c:out value="${item.get(4)}" /></td>
-				<td><c:out value="${item.get(5)}" /></td>
-				<td><c:out value="${item.get(6)}" /></td>
-				<td><c:out value="${item.get(7)}" /></td>
-				<td><c:out value="${item.get(8)}" /></td>
-				<td><c:out value="${item.get(9)}" /></td>
-				<td><c:out value="${item.get(10)}" /></td>
-				<td><c:out value="${item.get(11)}" /></td>
-			</tr>
-		</c:forEach>
-	</table>
+		</script>
+		<script type="text/javascript" src="ddtf.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function() {
+				jQuery('.table').ddTableFilter();
+			});
+		</script>
+		<!-- end: JavaScript-->
 </body>
 </html>
