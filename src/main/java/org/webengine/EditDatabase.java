@@ -956,7 +956,7 @@ public class EditDatabase {
 					try {
 						xlsxToCsv(file, currentDirectory); // converts .xlsx
 															// file to .csv file
-						
+
 						// openFile.setVisible(true);
 					} catch (Exception ex) {
 						LOG.error(ex.getMessage() + " " + ex.getCause());
@@ -1078,401 +1078,591 @@ public class EditDatabase {
 		if (str == "OpenFile") {
 			String fileName = file.getName();
 			fileName = fileName.substring(0, fileName.indexOf(".")) + ".csv";
-			File file2 = new File(fileName);			
+			File file2 = new File(fileName);
 			openFile(file2);
-	
+
+		}
+		if (str == "createTemplateXlsx") { // if createTemplateXlsx button is
+											// pressed
+			new Thread() {
+				public void run() {
+					try {
+						long start = System.nanoTime(); // gets system time
+						log.setText("Creating template file...\n");
+						@SuppressWarnings("resource")
+						HSSFWorkbook workBook = new HSSFWorkbook(); // create
+																	// Workbook
+																	// instance
+																	// for xlsx
+																	// file
+						HSSFSheet sheet = workBook.createSheet("detailed"); // creates
+																			// "detailed"
+																			// Sheet
+																			// for
+																			// xlsx
+																			// file
+						HSSFRow row = sheet.createRow(0); // creates a new row
+						Cell cell = row.createCell(0); // creates a new cell
+						cell.setCellValue("PHONE"); // sets cell value
+						cell = row.createCell(1); // creates a new cell
+						cell.setCellValue("TOPIC"); // sets cell value
+						cell = row.createCell(2); // creates a new cell
+						cell.setCellValue("OU"); // sets cell value
+
+						row = sheet.createRow(1);
+
+						cell = row.createCell(0);
+						cell.setCellValue("enter phone number");
+						cell = row.createCell(1);
+						cell.setCellValue("enter topic");
+						cell = row.createCell(2);
+						cell.setCellValue("enter value");
+
+						sheet.autoSizeColumn(0); // adjust width of the first
+													// column
+						sheet.autoSizeColumn(1); // adjust width of the second
+													// column
+						sheet.autoSizeColumn(2); // adjust width of the third
+													// column
+
+						File file = new File("Update_Database.xls"); // creates
+																		// a
+																		// file
+																		// path
+						FileOutputStream fileOut = new FileOutputStream(file); // creates
+																				// outputstream
+						workBook.write(fileOut); // writes to xlsx file
+						fileOut.flush(); // clears outputstream
+						fileOut.close(); // closes outputstream
+						log.append("Template file created: " + file.getPath() + "\n");
+						long end = System.nanoTime(); // gets sopenFileystem
+														// time
+						long elapsedTime = end - start; // calculates execution
+														// time
+						double seconds = (double) elapsedTime / 1000000000.0; // converts
+																				// nanoseconds
+																				// to
+																				// seconds
+						seconds = M2Table.round(seconds, 3); // rounds seconds
+																// to 3 digits
+						log.append("Execution time: " + seconds + " sec\n");
+						openTemplateXlsx.setVisible(true); // sets open template
+															// button to visible
+						LOG.info("File: " + file.getName() + " created successfully");
+					} catch (IOException ioe) {
+						LOG.error(ioe.getMessage() + ioe.getCause());
+						ioe.printStackTrace();
+						String errorText = "Exception while creating Update_Database.xls file";
+						log.append(errorText + "\n");
+						highlight(log, errorText);
+					}
+				}
+			}.start();
+		}
+		if (str == "openTemplateXlsx") { // if openTemplateXlsx button is
+											// pressed
+			File file2 = new File("Update_Database.xls"); 
+			openFile(file2); // opens file with its default program
+		}
+
+		if (str == "updateDatabase") { // if updatedatabase button
+
+			new Thread() { // creates a new thread so processes execute
+							// consecutively
+				public void run() { // creates run method for thread
+					String extension = file.getName().substring(file.getName().indexOf("."), file.getName().length());
+					System.out.println("extension12 "+ extension);
+					if (extension.equals(".xls")) { // if file extension is
+													// xlsx
+						log.setText("Selected file: " + file.getName() + "\n");
+						try {
+							long start = System.nanoTime(); // gets system
+															// time
+							if (treeSetTopics.isEmpty()) // if update
+															// database
+															// button is the
+															// 1st button
+															// pressed when
+															// opening
+															// programm
+								getTopics(conn, stmt); // writes topics to
+														// treeSet
+							// creates an arraylist of all rows, that
+							// contains arraylists of one row (like 2d
+							// array)
+							ArrayList<ArrayList<String>> excelData = new ArrayList<ArrayList<String>>();
+							readExcelFile(file, excelData); // reads
+															// excelfile and
+															// saves it to
+															// arraylist
+							Class.forName(JDBC_DRIVER); // initializes JDBC
+														// driver
+							log.append("Connecting to database...\n");
+							conn = DriverManager.getConnection(DB_URL, USER, PASS); // establsih
+																					// connection
+																					// to
+																					// database
+							conn.setAutoCommit(false); // sets autocommit to
+														// false
+							log.append("Connected to database successfully\n");
+							log.append("Updating database...\n");
+							StringBuilder sb = new StringBuilder(); // creates
+																	// a
+																	// stringbuilder
+																	// for
+																	// column
+																	// names
+							for (int i = 0; i < excelData.get(0).size(); i++) { // repeats
+																				// first
+																				// row
+																				// size
+																				// times
+								if (i == excelData.get(0).size() - 1) { // if
+																		// last
+																		// iteration
+									sb.append(excelData.get(0).get(i) + " "); // add
+																				// column
+																				// names
+																				// to
+																				// string
+																				// builder
+								} else { // if not last iteration
+									sb.append(excelData.get(0).get(i) + ", "); // add
+																				// column
+																				// names
+																				// to
+																				// string
+																				// builder
+								}
+							}
+							String columnNames = new String(sb); // make
+																	// string
+																	// with
+																	// stringbuilder
+																	// contents
+							String sql = "SELECT " + columnNames + "FROM " + DB_TABLE_NAME; // make
+																							// sql
+																							// statement
+
+							stmt = conn.createStatement(); // creates a new
+															// statement
+															// object
+							ResultSet rs = stmt.executeQuery(sql); // a
+																	// table
+																	// of
+																	// data
+																	// that
+																	// is
+																	// obtained
+																	// by
+																	// executing
+																	// a sql
+																	// statement
+							conn.commit(); // makes changes to database
+											// permanent
+							while (rs.next()) { // while table has contents
+								String number = rs.getString(excelData.get(0).get(0)); // columnname
+																						// (
+																						// excelData.get(0).get(i)
+																						// )
+								String topic = rs.getString(excelData.get(0).get(1)); // gets
+																						// topic
+																						// from
+																						// database
+								if (number != null && topic != null) { // if
+																		// number
+																		// is
+																		// initialized
+									for (int i = 0; i < excelData.size(); i++) { // amount
+																					// of
+																					// rows
+																					// times
+										if (number.equals(excelData.get(i).get(0))
+												&& topic.equals(excelData.get(i).get(1))) { // number
+																							// (
+																							// excelData.get(j).get(0)
+																							// )
+											for (int j = 2; j < excelData.get(0).size(); j++) { // (amount
+																								// of
+																								// columns
+																								// -
+																								// 1)
+																								// times
+												switch (excelData.get(0).get(j)) {
+												case "ELE":
+												case "ELM":
+												case "IWS":
+												case "SAL":
+												case "SWL":
+												case "KLAL":
+												case "KLBL":
+												case "DS":
+													if (Double.parseDouble(excelData.get(i).get(j)) >= 1
+															&& Double.parseDouble(excelData.get(i).get(j)) <= 5) {
+														// creates sql
+														// statement for
+														// inserting value
+														// into database
+														String statement = "UPDATE " + DB_TABLE_NAME + " SET "
+																+ excelData.get(0).get(j) + "='"
+																+ excelData.get(i).get(j) + "' WHERE PHONE='" + number
+																+ "' AND TOPIC ='" + topic + "'";
+														stmt = conn.createStatement(); // creates
+																						// a
+																						// new
+																						// statement
+																						// object
+														stmt.executeUpdate(statement); // executes
+																						// statement
+														conn.commit(); // commits
+																		// changes
+													} else {
+														log.append("At line:" + (i + 1) + ": [" + number + "] value: ["
+																+ excelData.get(i).get(j)
+																+ "] Not in interval [1-5]\n");
+													}
+													break;
+												case "M1":
+													log.append("At line:" + (i + 1) + ": [" + number + "] value: ["
+															+ excelData.get(i).get(j)
+															+ "] M1 shouldn't be changed it will be generated\n");
+													break;
+												case "M2":
+													log.append("At line:" + (i + 1) + ": [" + number + "] value: ["
+															+ excelData.get(i).get(j)
+															+ "] M2 shouldn't be changed it will be generated\n");
+													break;
+												case "M3":
+													log.append("At line:" + (i + 1) + ": [" + number + "] value: ["
+															+ excelData.get(i).get(j)
+															+ "] M3 shouldn't be changed it will be generated\n");
+													break;
+												case "PUOU":
+													log.append("At line:" + (i + 1) + ": [" + number + "] value: ["
+															+ excelData.get(i).get(j)
+															+ "] PUOU shouldn't be changed it will be generated\n");
+													break;
+												case "KFA":
+													log.append("At line:" + (i + 1) + ": [" + number + "] value: ["
+															+ excelData.get(i).get(j)
+															+ "] KFA shouldn't be changed it will be generated\n");
+													break;
+												case "NAME":
+													if (excelData.get(i).get(j).length() > 1) {
+														String statement = "UPDATE " + DB_TABLE_NAME + " SET "
+																+ excelData.get(0).get(j) + "='"
+																+ excelData.get(i).get(j) + "' WHERE PHONE='" + number
+																+ "' AND TOPIC ='" + topic + "'";
+														stmt = conn.createStatement(); // creates
+																						// a
+																						// new
+																						// statement
+																						// object
+														stmt.executeUpdate(statement); // executes
+																						// statement
+														conn.commit(); // commits
+																		// changes
+													} else
+														log.append("At line:" + (i + 1) + ": [" + number + "] value: ["
+																+ excelData.get(i).get(j)
+																+ "] Name needs to be atleast 2 characters long\n");
+													break;
+												case "PHONE":
+													if (excelData.get(i).get(j).matches("[0-9]+")) {
+														String statement = "UPDATE " + DB_TABLE_NAME + " SET "
+																+ excelData.get(0).get(j) + "='"
+																+ excelData.get(i).get(j) + "' WHERE PHONE='" + number
+																+ "' AND TOPIC ='" + topic + "'";
+														stmt = conn.createStatement(); // creates
+																						// a
+																						// new
+																						// statement
+																						// object
+														stmt.executeUpdate(statement); // executes
+																						// statement
+														conn.commit(); // commits
+																		// changes
+													} else
+														log.append("At line:" + (i + 1) + ": [" + number + "] value: ["
+																+ excelData.get(i).get(j)
+																+ "] Phone number can only contain digits\n");
+													break;
+												case "TOPIC":
+													boolean isTopic = false;
+													for (String validTopic : treeSetTopics) {
+														if (excelData.get(i).get(j).equals(validTopic)) {
+															isTopic = true;
+															break;
+														}
+													}
+													if (isTopic) {
+														String statement = "UPDATE " + DB_TABLE_NAME + " SET "
+																+ excelData.get(0).get(j) + "='"
+																+ excelData.get(i).get(j) + "' WHERE PHONE='" + number
+																+ "' AND TOPIC ='" + topic + "'";
+														stmt = conn.createStatement(); // creates
+																						// a
+																						// new
+																						// statement
+																						// object
+														stmt.executeUpdate(statement); // executes
+																						// statement
+														conn.commit(); // commits
+																		// changes
+													} else {
+														log.append("At line:" + (i + 1) + ": [" + number + "] value: ["
+																+ excelData.get(i).get(j) + "] Must be a TOPIC:\n");
+														int counter = 0;
+														for (String validTopic : treeSetTopics) {
+															if (counter == treeSetTopics.size())
+																log.append(validTopic + "]\n");
+															else if (counter == 0)
+																log.append("[" + validTopic + ", ");
+															else
+																log.append(validTopic + ", ");
+															counter++;
+														}
+													}
+													break;
+												case "SUBMITDATE":
+													log.append("At line:" + (i + 1) + ": [" + number + "] value: ["
+															+ excelData.get(i).get(j)
+															+ "] Submit date shouldn't be changed\n");
+													break;
+												case "OU":
+													if (Double.parseDouble(excelData.get(i).get(j)) >= 0
+															&& Double.parseDouble(excelData.get(i).get(j)) <= 2) {
+														// creates sql
+														// statement for
+														// inserting value
+														// into database
+														String statement = "UPDATE " + DB_TABLE_NAME + " SET "
+																+ excelData.get(0).get(j) + "='"
+																+ excelData.get(i).get(j) + "' WHERE PHONE='" + number
+																+ "' AND TOPIC ='" + topic + "'";
+														stmt = conn.createStatement(); // creates
+																						// a
+																						// new
+																						// statement
+																						// object
+														stmt.executeUpdate(statement); // executes
+																						// statement
+														conn.commit(); // commits
+																		// changes
+
+														statement = "SELECT PU FROM STUDENT WHERE PHONE='" + number
+																+ "' AND TOPIC='" + topic + "'";
+														stmt = conn.createStatement();
+														ResultSet rs1 = stmt.executeQuery(statement);
+														conn.commit();
+														while (rs1.next()) {
+															Double pu = rs1.getDouble("PU");
+															Double ou = Double.parseDouble(excelData.get(i).get(j));
+															statement = "UPDATE " + DB_TABLE_NAME + " SET PUOU='"
+																	+ (pu + ou) + "' WHERE PHONE='" + number
+																	+ "' AND TOPIC='" + topic + "'";
+															stmt = conn.createStatement(); // creates
+																							// a
+																							// new
+																							// statement
+																							// object
+															stmt.executeUpdate(statement); // executes
+																							// statement
+															conn.commit(); // commits
+																			// changes
+														}
+													}
+													break;
+												case "PU":
+													if (Double.parseDouble(excelData.get(i).get(j)) >= 1
+															&& Double.parseDouble(excelData.get(i).get(j)) <= 5) {
+														// creates sql
+														// statement for
+														// inserting value
+														// into database
+														String statement = "UPDATE " + DB_TABLE_NAME + " SET "
+																+ excelData.get(0).get(j) + "='"
+																+ excelData.get(i).get(j) + "' WHERE PHONE='" + number
+																+ "' AND TOPIC ='" + topic + "'";
+														stmt = conn.createStatement(); // creates
+																						// a
+																						// new
+																						// statement
+																						// object
+														stmt.executeUpdate(statement); // executes
+																						// statement
+														conn.commit(); // commits
+																		// changes
+
+														statement = "SELECT OU FROM STUDENT WHERE PHONE='" + number
+																+ "' AND TOPIC='" + topic + "'";
+														stmt = conn.createStatement();
+														ResultSet rs1 = stmt.executeQuery(statement);
+														conn.commit();
+														while (rs1.next()) {
+															Double ou = rs1.getDouble("OU");
+															Double pu = Double.parseDouble(excelData.get(i).get(j));
+															statement = "UPDATE " + DB_TABLE_NAME + " SET PUOU='"
+																	+ (ou + pu) + "' WHERE PHONE='" + number
+																	+ "' AND TOPIC='" + topic + "'";
+															stmt = conn.createStatement(); // creates
+																							// a
+																							// new
+																							// statement
+																							// object
+															stmt.executeUpdate(statement); // executes
+																							// statement
+															conn.commit(); // commits
+																			// changes
+														}
+													}
+													break;
+												}
+											} // closes for statement (
+												// amount of columns - 1 )
+												// times
+										} // closes if statment ( number
+											// equals )
+									} // closes for statement ( amount of
+										// row ) times
+								} // closes if statement ( number is not
+									// null )
+							} // closes while statement ( table has contents
+								// )
+
+							try {
+								ModelManager.initModelManager(PERSISTENCE_SET); // loads
+																				// a
+																				// persistence
+																				// set
+																				// (connects
+																				// to
+																				// h2
+																				// database)
+
+								log.append("Generating models...\n");
+								LOG.info(
+										"\n\n///////////////////////////////////\tM1-Clusters\t////////////////////////////////////\n");
+								for (String topic : treeSetTopics) { // generates
+																		// M1
+																		// model
+																		// for
+																		// all
+																		// topics
+									try {
+										M1.getCluster(topic, "M1-clusters-" + topic, "M1-centroids-" + topic);
+									} catch (Throwable t) {
+										LOG.error(t.getMessage() + " " + t.getCause());
+										t.printStackTrace();
+									}
+								}
+								LOG.info(
+										"\n\n////////////////////////////////////\tM2-Regression\t////////////////////////////////////\n");
+								for (String topic : treeSetTopics) { // generates
+																		// M2
+																		// model
+																		// for
+																		// all
+																		// topics
+									try {
+										M2.getRegression(topic, "M2-" + topic);
+									} catch (Throwable t) {
+										LOG.error(t.getMessage() + " " + t.getCause());
+										t.printStackTrace();
+									}
+								}
+								LOG.info(
+										"\n\n////////////////////////////////////\tM3-Regression\t////////////////////////////////////\n");
+								for (String topic : treeSetTopics) { // generates
+																		// M3
+																		// model
+																		// for
+																		// all
+																		// topics
+									try {
+										M3.getRegression(topic, "M3-" + topic);
+									} catch (Throwable t) {
+										LOG.error(t.getMessage() + " " + t.getCause());
+										t.printStackTrace();
+									}
+								}
+								LOG.info(
+										"\n\n////////////////////////////////////\tPREDICTION\t////////////////////////////////////\n");
+								for (String topic : treeSetTopics) { // generates
+																		// Prediction
+																		// model
+																		// for
+																		// all
+																		// topics
+									try {
+										Prediction.getPrediction(topic);
+									} catch (Throwable t) {
+										LOG.error(t.getMessage() + " " + t.getCause());
+										t.printStackTrace();
+									}
+								}
+							} catch (Throwable t) {
+								LOG.error(t.getMessage() + " " + t.getCause());
+								t.printStackTrace();
+							} finally {
+								ModelManager.closeModelManager(); // closes
+																	// connection
+																	// to
+																	// database
+								log.append("Finished generating models\n");
+							}
+
+							log.append("Finished updating database\n");
+							long end = System.nanoTime(); // gets system
+															// time
+							long elapsedTime = end - start; // gets elapsed
+															// time in
+															// nanoseconds
+							double seconds = (double) elapsedTime / 1000000000.0; // converts
+																					// nanoseconds
+																					// to
+																					// seconds
+							seconds = M2Table.round(seconds, 3); // rounds
+																	// to 3
+																	// digits
+							log.append("Execution time: " + seconds + " sec\n");
+						} catch (SQLException sqle) { // Handle errors for
+														// JDBC
+							LOG.error(sqle.getMessage() + " " + sqle.getCause());
+							sqle.printStackTrace();
+						} catch (Exception e) { // Handle errors for
+												// Class.forName
+							LOG.error(e.getMessage() + " " + e.getCause());
+							e.printStackTrace();
+						} catch (Throwable t) {
+							LOG.error(t.getMessage() + " " + t.getCause());
+							t.printStackTrace();
+						} finally {
+							try {
+								if (stmt != null) {
+									stmt.close();
+								}
+								if (conn != null)
+									conn.close();
+							} catch (SQLException sqle) {
+								LOG.error(sqle.getMessage() + " " + sqle.getCause());
+								sqle.printStackTrace();
+							}
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Invalid file type", "Warning !",
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+				}
+			}.start(); // starts thread
+		}
+		if(str == "exampleFile"){			// if exampleFile button is pressed
+			File file2 = new File("data/example.xls"); // creates file path to example.xls file	
+			openFile(file2); // opens file with its default program
 		}
 	}
-	
-	
-	
 }
-// else if( e.getSource().equals(createTemplateXlsx) ){ // if createTemplateXlsx
-// button is pressed
-// new Thread(){
-// public void run(){
-// try
-// {
-// long start = System.nanoTime(); // gets system time
-// log.setText("Creating template file...\n");
-// @SuppressWarnings("resource")
-// HSSFWorkbook workBook = new HSSFWorkbook(); // create Workbook instance for
-// xlsx file
-// HSSFSheet sheet = workBook.createSheet("detailed"); // creates "detailed"
-// Sheet for xlsx file
-// HSSFRow row = sheet.createRow(0); // creates a new row
-// Cell cell = row.createCell(0); // creates a new cell
-// cell.setCellValue("PHONE"); // sets cell value
-// cell = row.createCell(1); // creates a new cell
-// cell.setCellValue("TOPIC"); // sets cell value
-// cell = row.createCell(2); // creates a new cell
-// cell.setCellValue("OU"); // sets cell value
-//
-// row = sheet.createRow(1);
-//
-// cell = row.createCell(0);
-// cell.setCellValue("enter phone number");
-// cell = row.createCell(1);
-// cell.setCellValue("enter topic");
-// cell = row.createCell(2);
-// cell.setCellValue("enter value");
-//
-// sheet.autoSizeColumn(0); //adjust width of the first column
-// sheet.autoSizeColumn(1); //adjust width of the second column
-// sheet.autoSizeColumn(2); //adjust width of the third column
-//
-// File file = new File("Update_Database.xls"); // creates a file path
-// FileOutputStream fileOut = new FileOutputStream(file); // creates
-// outputstream
-// workBook.write(fileOut); // writes to xlsx file
-// fileOut.flush(); // clears outputstream
-// fileOut.close(); // closes outputstream
-// log.append("Template file created: "+file.getPath()+"\n");
-// long end = System.nanoTime(); // gets sopenFileystem time
-// long elapsedTime = end - start; // calculates execution time
-// double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds
-// to seconds
-// seconds = M2Table.round(seconds, 3); // rounds seconds to 3 digits
-// log.append("Execution time: "+seconds+" sec\n");
-// openTemplateXlsx.setVisible(true); // sets open template button to visible
-// LOG.info("File: "+file.getName()+" created successfully");
-// }
-// catch( IOException ioe){
-// LOG.error(ioe.getMessage()+ioe.getCause());
-// ioe.printStackTrace();
-// String errorText = "Exception while creating Update_Database.xls file";
-// log.append(errorText+"\n");
-// highlight(log, errorText);
-// }
-// }
-// }.start();
-// }
-// else if( e.getSource().equals(openTemplateXlsx) ){ // if openTemplateXlsx
-// button is pressed
-// File file = new File("Update_Database.xls"); // creates a new file path
-// openFile(file); // opens file with its default program
-// }
-// else if( e.getSource().equals(updateDatabase) ){ // if updatedatabase button
-// is pressed
-// fileChooser.setFileFilter(filterxls); // sets .xls filter as default
-// fileChooser.setVisible(true); // set jfilechooser to visible
-// int status = fileChooser.showDialog(null, "Choose File"); // gets state of
-// jfilechooser
-// if( status == JFileChooser.APPROVE_OPTION ){ // if open is pressed in
-// jfilechooser
-// final File file = fileChooser.getSelectedFile(); // gets selected files path
-// new Thread() { // creates a new thread so processes execute consecutively
-// public void run() { // creates run method for thread
-// String extension = file.getName().substring(file.getName().indexOf("."),
-// file.getName().length());
-//
-// if( extension.equals(".xls") ){ // if file extension is xlsx
-// log.setText("Selected file: "+file.getName()+"\n");
-// try {
-// long start = System.nanoTime(); // gets system time
-// if( treeSetTopics.isEmpty() ) // if update database button is the 1st button
-// pressed when opening programm
-// getTopics(conn, stmt); // writes topics to treeSet
-// // creates an arraylist of all rows, that contains arraylists of one row
-// (like 2d array)
-// ArrayList<ArrayList<String>> excelData = new ArrayList<ArrayList<String>>();
-// readExcelFile(file, excelData); // reads excelfile and saves it to arraylist
-// Class.forName(JDBC_DRIVER); // initializes JDBC driver
-// log.append("Connecting to database...\n");
-// conn = DriverManager.getConnection(DB_URL, USER, PASS); // establsih
-// connection to database
-// conn.setAutoCommit(false); // sets autocommit to false
-// log.append("Connected to database successfully\n");
-// log.append("Updating database...\n");
-// StringBuilder sb = new StringBuilder(); // creates a stringbuilder for column
-// names
-// for(int i = 0; i < excelData.get(0).size(); i++){ // repeats first row size
-// times
-// if( i == excelData.get(0).size()-1){ // if last iteration
-// sb.append(excelData.get(0).get(i)+" "); // add column names to string builder
-// }
-// else{ // if not last iteration
-// sb.append(excelData.get(0).get(i)+", "); // add column names to string
-// builder
-// }
-// }
-// String columnNames = new String(sb); // make string with stringbuilder
-// contents
-// String sql = "SELECT "+ columnNames +"FROM "+DB_TABLE_NAME; // make sql
-// statement
-//
-// stmt = conn.createStatement(); // creates a new statement object
-// ResultSet rs = stmt.executeQuery(sql); // a table of data that is obtained by
-// executing a sql statement
-// conn.commit(); // makes changes to database permanent
-// while( rs.next() ){ // while table has contents
-// String number = rs.getString(excelData.get(0).get(0)); // columnname (
-// excelData.get(0).get(i) )
-// String topic = rs.getString(excelData.get(0).get(1)); // gets topic from
-// database
-// if(number != null && topic != null){ // if number is initialized
-// for(int i = 0; i < excelData.size(); i++){ // amount of rows times
-// if( number.equals(excelData.get(i).get(0)) &&
-// topic.equals(excelData.get(i).get(1)) ){ // number ( excelData.get(j).get(0)
-// )
-// for(int j = 2; j < excelData.get(0).size(); j++ ){ // (amount of columns - 1)
-// times
-// switch(excelData.get(0).get(j)){
-// case "ELE": case "ELM": case "IWS": case "SAL": case "SWL": case "KLAL": case
-// "KLBL": case "DS":
-// if( Double.parseDouble(excelData.get(i).get(j)) >= 1 &&
-// Double.parseDouble(excelData.get(i).get(j)) <= 5 ){
-// // creates sql statement for inserting value into database
-// String statement = "UPDATE "+DB_TABLE_NAME+" SET "+excelData.get(0).get(j)+
-// "='"+excelData.get(i).get(j)+"' WHERE PHONE='"+number+"' AND TOPIC
-// ='"+topic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(statement); // executes statement
-// conn.commit(); // commits changes
-// }
-// else{
-// log.append("At line:"+(i+1)+": ["+number+"] value:
-// ["+excelData.get(i).get(j)+"] Not in interval [1-5]\n");
-// }
-// break;
-// case "M1":
-// log.append("At line:"+(i+1)+": ["+number+"] value:
-// ["+excelData.get(i).get(j)+"] M1 shouldn't be changed it will be
-// generated\n");
-// break;
-// case "M2":
-// log.append("At line:"+(i+1)+": ["+number+"] value:
-// ["+excelData.get(i).get(j)+"] M2 shouldn't be changed it will be
-// generated\n");
-// break;
-// case "M3":
-// log.append("At line:"+(i+1)+": ["+number+"] value:
-// ["+excelData.get(i).get(j)+"] M3 shouldn't be changed it will be
-// generated\n");
-// break;
-// case "PUOU":
-// log.append("At line:"+(i+1)+": ["+number+"] value:
-// ["+excelData.get(i).get(j)+"] PUOU shouldn't be changed it will be
-// generated\n");
-// break;
-// case "KFA":
-// log.append("At line:"+(i+1)+": ["+number+"] value:
-// ["+excelData.get(i).get(j)+"] KFA shouldn't be changed it will be
-// generated\n");
-// break;
-// case "NAME":
-// if( excelData.get(i).get(j).length() > 1 ){
-// String statement = "UPDATE "+DB_TABLE_NAME+" SET "+excelData.get(0).get(j)+
-// "='"+excelData.get(i).get(j)+"' WHERE PHONE='"+number+"' AND TOPIC
-// ='"+topic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(statement); // executes statement
-// conn.commit(); // commits changes
-// }
-// else
-// log.append("At line:"+(i+1)+": ["+number+"] value:
-// ["+excelData.get(i).get(j)+"] Name needs to be atleast 2 characters long\n");
-// break;
-// case "PHONE":
-// if( excelData.get(i).get(j).matches("[0-9]+") ){
-// String statement = "UPDATE "+DB_TABLE_NAME+" SET "+excelData.get(0).get(j)+
-// "='"+excelData.get(i).get(j)+"' WHERE PHONE='"+number+"' AND TOPIC
-// ='"+topic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(statement); // executes statement
-// conn.commit(); // commits changes
-// }
-// else
-// log.append("At line:"+(i+1)+": ["+number+"] value:
-// ["+excelData.get(i).get(j)+"] Phone number can only contain digits\n");
-// break;
-// case "TOPIC":
-// boolean isTopic = false;
-// for( String validTopic : treeSetTopics ){
-// if( excelData.get(i).get(j).equals(validTopic) ){
-// isTopic = true;
-// break;
-// }
-// }
-// if( isTopic ){
-// String statement = "UPDATE "+DB_TABLE_NAME+" SET "+excelData.get(0).get(j)+
-// "='"+excelData.get(i).get(j)+"' WHERE PHONE='"+number+"' AND TOPIC
-// ='"+topic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(statement); // executes statement
-// conn.commit(); // commits changes
-// }
-// else{
-// log.append("At line:"+(i+1)+": ["+number+"] value:
-// ["+excelData.get(i).get(j)+"] Must be a TOPIC:\n");
-// int counter = 0;
-// for( String validTopic : treeSetTopics ){
-// if( counter == treeSetTopics.size() )
-// log.append(validTopic+"]\n");
-// else if( counter == 0 )
-// log.append("["+validTopic+", ");
-// else
-// log.append(validTopic+", ");
-// counter++;
-// }
-// }
-// break;
-// case "SUBMITDATE":
-// log.append("At line:"+(i+1)+": ["+number+"] value:
-// ["+excelData.get(i).get(j)+"] Submit date shouldn't be changed\n");
-// break;
-// case "OU":
-// if( Double.parseDouble(excelData.get(i).get(j)) >= 0 &&
-// Double.parseDouble(excelData.get(i).get(j)) <= 2 ){
-// // creates sql statement for inserting value into database
-// String statement = "UPDATE "+DB_TABLE_NAME+" SET "+excelData.get(0).get(j)+
-// "='"+excelData.get(i).get(j)+"' WHERE PHONE='"+number+"' AND TOPIC
-// ='"+topic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(statement); // executes statement
-// conn.commit(); // commits changes
-//
-// statement = "SELECT PU FROM STUDENT WHERE PHONE='"+number+"' AND
-// TOPIC='"+topic+"'";
-// stmt = conn.createStatement();
-// ResultSet rs1 = stmt.executeQuery(statement);
-// conn.commit();
-// while(rs1.next()){
-// Double pu = rs1.getDouble("PU");
-// Double ou = Double.parseDouble(excelData.get(i).get(j));
-// statement = "UPDATE "+DB_TABLE_NAME+" SET PUOU='"+(pu+ou)+"' WHERE
-// PHONE='"+number+"' AND TOPIC='"+topic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(statement); // executes statement
-// conn.commit(); // commits changes
-// }
-// }
-// break;
-// case "PU":
-// if( Double.parseDouble(excelData.get(i).get(j)) >= 1 &&
-// Double.parseDouble(excelData.get(i).get(j)) <= 5 ){
-// // creates sql statement for inserting value into database
-// String statement = "UPDATE "+DB_TABLE_NAME+" SET "+excelData.get(0).get(j)+
-// "='"+excelData.get(i).get(j)+"' WHERE PHONE='"+number+"' AND TOPIC
-// ='"+topic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(statement); // executes statement
-// conn.commit(); // commits changes
-//
-// statement = "SELECT OU FROM STUDENT WHERE PHONE='"+number+"' AND
-// TOPIC='"+topic+"'";
-// stmt = conn.createStatement();
-// ResultSet rs1 = stmt.executeQuery(statement);
-// conn.commit();
-// while(rs1.next()){
-// Double ou = rs1.getDouble("OU");
-// Double pu = Double.parseDouble(excelData.get(i).get(j));
-// statement = "UPDATE "+DB_TABLE_NAME+" SET PUOU='"+(ou+pu)+"' WHERE
-// PHONE='"+number+"' AND TOPIC='"+topic+"'";
-// stmt = conn.createStatement(); // creates a new statement object
-// stmt.executeUpdate(statement); // executes statement
-// conn.commit(); // commits changes
-// }
-// }
-// break;
-// }
-// }// closes for statement ( amount of columns - 1 ) times
-// }// closes if statment ( number equals )
-// }// closes for statement ( amount of row ) times
-// }// closes if statement ( number is not null )
-// }// closes while statement ( table has contents )
-//
-// try {
-// ModelManager.initModelManager(PERSISTENCE_SET); // loads a persistence set
-// (connects to h2 database)
-//
-// log.append("Generating models...\n");
-// LOG.info("\n\n///////////////////////////////////\tM1-Clusters\t////////////////////////////////////\n");
-// for( String topic : treeSetTopics ){ // generates M1 model for all topics
-// try{
-// M1.getCluster(topic, "M1-clusters-"+topic, "M1-centroids-"+topic);
-// } catch(Throwable t){
-// LOG.error(t.getMessage() + " " + t.getCause());
-// t.printStackTrace();
-// }
-// }
-// LOG.info("\n\n////////////////////////////////////\tM2-Regression\t////////////////////////////////////\n");
-// for( String topic : treeSetTopics ){ // generates M2 model for all topics
-// try{
-// M2.getRegression(topic, "M2-"+topic);
-// } catch(Throwable t){
-// LOG.error(t.getMessage() + " " + t.getCause());
-// t.printStackTrace();
-// }
-// }
-// LOG.info("\n\n////////////////////////////////////\tM3-Regression\t////////////////////////////////////\n");
-// for( String topic : treeSetTopics ){ // generates M3 model for all topics
-// try{
-// M3.getRegression(topic, "M3-"+topic);
-// } catch(Throwable t){
-// LOG.error(t.getMessage() + " " + t.getCause());
-// t.printStackTrace();
-// }
-// }
-// LOG.info("\n\n////////////////////////////////////\tPREDICTION\t////////////////////////////////////\n");
-// for( String topic : treeSetTopics ){ // generates Prediction model for all
-// topics
-// try{
-// Prediction.getPrediction(topic);
-// } catch(Throwable t){
-// LOG.error(t.getMessage() + " " + t.getCause());
-// t.printStackTrace();
-// }
-// }
-// } catch (Throwable t) {
-// LOG.error(t.getMessage() + " " + t.getCause());
-// t.printStackTrace();
-// }
-// finally {
-// ModelManager.closeModelManager(); // closes connection to database
-// log.append("Finished generating models\n");
-// }
-//
-// log.append("Finished updating database\n");
-// long end = System.nanoTime(); // gets system time
-// long elapsedTime = end - start; // gets elapsed time in nanoseconds
-// double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds
-// to seconds
-// seconds = M2Table.round(seconds, 3); // rounds to 3 digits
-// log.append("Execution time: "+seconds+" sec\n");
-// }catch (SQLException sqle) { //Handle errors for JDBC
-// LOG.error(sqle.getMessage()+" "+sqle.getCause());
-// sqle.printStackTrace();
-// } catch (Exception e) { //Handle errors for Class.forName
-// LOG.error(e.getMessage()+" "+e.getCause());
-// e.printStackTrace();
-// } catch (Throwable t) {
-// LOG.error(t.getMessage() + " " + t.getCause());
-// t.printStackTrace();
-// } finally {
-// try {
-// if(stmt!=null){
-// stmt.close();
-// }
-// if (conn!=null)
-// conn.close();
-// } catch (SQLException sqle) {
-// LOG.error(sqle.getMessage()+" "+sqle.getCause());
-// sqle.printStackTrace();
-// }
-// }
-// }
-// else{
-// JOptionPane.showMessageDialog( null, "Invalid file type", "Warning !",
-// JOptionPane.INFORMATION_MESSAGE );
-// }
-// }
-// }.start(); // starts thread
-// }
-// else if( status == JFileChooser.ERROR_OPTION ){
-// JOptionPane.showMessageDialog( null, "File chooser error", "Warning !",
-// JOptionPane.INFORMATION_MESSAGE );
-// }
+
 
 // } else if( e.getSource().equals(eraseFromDatabase) ){
 // int confirm = JOptionPane.showConfirmDialog (null, "Are you sure you want to

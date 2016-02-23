@@ -21,19 +21,49 @@
 	</table>
 
 	<h2>Database Edit</h2>
-
+	<table class="upload">
+		<tr>
+		<td>
 	Select a file to upload:
 	<br />
 	<form method="post" action="/fileupload" enctype="multipart/form-data">
 		Choose file <input type="file" name="file"> 
 		<input type="submit" value="submit">
 	</form>
-	<br />
-	<br />
  
 	<form method="get" action="${pageContext.request.contextPath}/fileupload" enctype="multipart/form-data">
-		<input type="submit" name="button1" value="Open" /> 
+	<tr>
+	<td>
+		<input type="submit" name="button1" value="Open CSV fail" /> 
+		</td>
+		</tr>
+			<tr>
+	<td>
+		<input type="submit" name="button2" value="Create Template" /> 
+		</td>
+			<td>
+		<input type="submit" name="button3" value="Open Template" /> 
+		</td>
+		</tr>
 	</form>
+	
+	<form method="post" action="/fileupload" enctype="multipart/form-data">
+		Choose file <input type="file" name="file"> 
+		<input type="submit" value="submit">
+	</form>
+	
+			<tr>
+	<td>
+		<input type="submit" name="button4" value="Update Database" /> 
+		</td>
+			<td>
+		<input type="submit" name="button5" value="Example" /> 
+		</td>
+		</tr>
+	</td>
+	</tr>
+	</table>
+	
 
 </body>
 </html>

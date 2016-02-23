@@ -18,6 +18,10 @@
 		<level value="info" />
 	</logger>
 	<logger name="org.hibernate">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 14e708084f2e131fd4e100975b1e2cf92d17ea28
 		<level value="info" />
 	</logger>
 	<root>
