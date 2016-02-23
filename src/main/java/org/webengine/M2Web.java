@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.einclusion.GUI.M2Table;
@@ -87,11 +88,11 @@ public class M2Web extends WebTable {
 				String name = rs.getString("NAME");
 				Date dateStamp = new Date(rs.getTimestamp("SUBMITDATE").getTime());
 				String date = dateStamp.toString();
-				String swl = rs.getString("SWL");
-				String sal = rs.getString("SAL");
-				String elm = rs.getString("ELM");
-				String ele = rs.getString("ELE");
-				String iws = rs.getString("IWS");
+				String swl = String.format(Locale.US, "%.2f", rs.getDouble("SWL"));
+				String sal = String.format(Locale.US, "%.2f", rs.getDouble("SAL"));
+				String elm = String.format(Locale.US, "%.2f", rs.getDouble("ELM"));
+				String ele = String.format(Locale.US, "%.2f", rs.getDouble("ELE"));
+				String iws = String.format(Locale.US, "%.2f", rs.getDouble("IWS"));
 				String m2 = rs.getString("M2");
 
 				ArrayList<String> row = new ArrayList<String>();

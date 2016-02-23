@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.einclusion.GUI.M1Table;
@@ -84,13 +85,13 @@ public class M1Web extends WebTable {
 				String phone = rs.getString("PHONE");
 				String topic = rs.getString("TOPIC");
 				String name = rs.getString("NAME");
-				String swl = rs.getString("SWL");
-				String ds = rs.getString("DS");
-				String sal = rs.getString("SAL");
-				String elm = rs.getString("ELM");
-				String iws = rs.getString("IWS");
-				String ele = rs.getString("ELE");
-				String pu = rs.getString("PU");
+				String swl = String.format(Locale.US, "%.2f", rs.getDouble("SWL"));
+				String ds = String.format(Locale.US, "%.2f", rs.getDouble("DS"));
+				String sal = String.format(Locale.US, "%.2f", rs.getDouble("SAL"));
+				String elm = String.format(Locale.US, "%.2f", rs.getDouble("ELM"));
+				String iws = String.format(Locale.US, "%.2f", rs.getDouble("IWS"));
+				String ele = String.format(Locale.US, "%.2f", rs.getDouble("ELE"));
+				String pu = String.format(Locale.US, "%.2f", rs.getDouble("PU"));
 				Date dateStamp = new Date(rs.getTimestamp("SUBMITDATE").getTime());
 				String date = dateStamp.toString();
 				String m1 = rs.getString("M1");

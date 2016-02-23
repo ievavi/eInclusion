@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.einclusion.GUI.M3Table;
@@ -70,10 +71,10 @@ public class M3Web extends WebTable {
             	String phone = rs.getString("PHONE");
             	String topic = rs.getString("TOPIC");
             	String name = rs.getString("NAME");
-            	String iws = rs.getString("IWS");
-            	String ele = rs.getString("ELE");
-            	String elm = rs.getString("ELM");
-            	String klbl = rs.getString("KLBL");
+            	String iws = String.format(Locale.US, "%.2f", rs.getDouble("IWS"));
+            	String ele = String.format(Locale.US, "%.2f", rs.getDouble("ELE"));
+            	String elm = String.format(Locale.US, "%.2f", rs.getDouble("ELM"));
+            	String klbl = String.format(Locale.US, "%.2f", rs.getDouble("KLBL"));
             	Date dateStamp = new Date(rs.getTimestamp("SUBMITDATE").getTime());
             	String date = dateStamp.toString();
             	String m3 = rs.getString("M3");
