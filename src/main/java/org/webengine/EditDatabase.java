@@ -47,13 +47,13 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.einclusion.GUI.M2Table;
 import org.einclusion.model.M1;
 import org.einclusion.model.M2;
 import org.einclusion.model.M3;
 import org.einclusion.model.ModelManager;
 import org.einclusion.model.Prediction;
 import org.einclusion.model.PrepareData;
-import org.einclusion.GUI.*;
 
 /**
  * Panel for importing, exporting and updating database using xlsx and csv files
@@ -956,7 +956,7 @@ public class EditDatabase {
 					try {
 						xlsxToCsv(file, currentDirectory); // converts .xlsx
 															// file to .csv file
-						
+
 						// openFile.setVisible(true);
 					} catch (Exception ex) {
 						LOG.error(ex.getMessage() + " " + ex.getCause());
@@ -1078,14 +1078,12 @@ public class EditDatabase {
 		if (str == "OpenFile") {
 			String fileName = file.getName();
 			fileName = fileName.substring(0, fileName.indexOf(".")) + ".csv";
-			File file2 = new File(fileName);			
+			File file2 = new File(fileName);
 			openFile(file2);
-	
+
 		}
 	}
-	
-	
-	
+
 }
 // else if( e.getSource().equals(createTemplateXlsx) ){ // if createTemplateXlsx
 // button is pressed
