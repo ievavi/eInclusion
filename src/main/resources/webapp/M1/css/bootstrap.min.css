@@ -252,53 +252,53 @@ a:hover, a:focus {
 	width: 940px
 }
 
-.span12 {
-	width: 940px
-}
+/* .span12 { */
+/* 	width: 940px */
+/* } */
 
-.span11 {
-	width: 860px
-}
+/* .span11 { */
+/* 	width: 860px */
+/* } */
 
-.span10 {
-	width: 780px
-}
+/* .span10 { */
+/* 	width: 780px */
+/* } */
 
-.span9 {
-	width: 700px
-}
+/* .span9 { */
+/* 	width: 700px */
+/* } */
 
-.span8 {
-	width: 620px
-}
+/* .span8 { */
+/* 	width: 620px */
+/* } */
 
-.span7 {
-	width: 540px
-}
+/* .span7 { */
+/* 	width: 540px */
+/* } */
 
-.span6 {
-	width: 460px
-}
+/* .span6 { */
+/* 	width: 460px */
+/* } */
 
-.span5 {
-	width: 380px
-}
+/* .span5 { */
+/* 	width: 380px */
+/* } */
 
-.span4 {
-	width: 300px
-}
+/* .span4 { */
+/* 	width: 300px */
+/* } */
 
-.span3 {
-	width: 220px
-}
+/* .span3 { */
+/* 	width: 220px */
+/* } */
 
-.span2 {
-	width: 140px
-}
+/* .span2 { */
+/* 	width: 140px */
+/* } */
 
-.span1 {
-	width: 60px
-}
+/* .span1 { */
+/* 	width: 60px */
+/* } */
 
 .offset12 {
 	margin-left: 980px
@@ -975,7 +975,7 @@ legend small {
 }
 
 label, input, button, select, textarea {
-	font-size: 10px;
+	font-size: 12px;
 	font-weight: normal;
 	line-height: 20px
 }
@@ -3691,9 +3691,9 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	line-height: 10px
 }
 
-.nav-tabs {
-	border-bottom: 1px solid #ddd
-}
+/* .nav-tabs { */
+/* 	border-bottom: 1px solid #ddd */
+/* } */
 
 .nav-tabs>li {
 	margin-bottom: -1px
@@ -4200,20 +4200,20 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	float: left
 }
 
-.navbar .nav>li>a {
-	float: none;
-	padding: 10px 15px 10px;
-	color: #777;
-	text-decoration: none;
-	text-shadow: 0 1px 0 #fff
-}
+/* .navbar .nav>li>a { */
+/* 	float: none; */
+/* 	padding: 10px 15px 10px; */
+/* 	color: #777; */
+/* 	text-decoration: none; */
+/* 	text-shadow: 0 1px 0 #fff */
+/* } */
 
 .navbar .nav .dropdown-toggle .caret {
 	margin-top: 8px
 }
 
 .navbar .nav>li>a:focus, .navbar .nav>li>a:hover {
-	color: #333;
+	color: #aaaaaa;
 	text-decoration: none;
 	background-color: transparent
 }

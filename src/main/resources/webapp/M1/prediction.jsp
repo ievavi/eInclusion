@@ -7,7 +7,6 @@
 <!-- start: Meta -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Prediction of student E-inclusion</title>
-<link href="TableCSSCode.css" rel="stylesheet" type="text/css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
 	
@@ -23,10 +22,7 @@
 
 <!-- start: CSS -->
 <link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
 <link id="base-style" href="css/style.css" rel="stylesheet">
-<link id="base-style-responsive" href="css/style-responsive.css"
-	rel="stylesheet">
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
@@ -54,20 +50,10 @@
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div>
-				<a class="brand" href="Editdatabase.jsp"><span>Einclusion</span></a>
-			</div>
-		</div>
-	</div>
-	<!-- start: Header -->
-
-	<div>
-		<div>
-
-			<!-- start: Main Menu -->
-			<div id="sidebar-left" class="span2">
+				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
 				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs nav-stacked main-menu">
-						<li><a href="Editdatabase.jsp"><i class="icon-edit"></i><span
+					<ul class="nav nav-tabs main-menu">
+						<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
 								class="hidden-tablet"> Edit database</span></a></li>
 						<li><a href="M1.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M1</span></a></li>
@@ -75,13 +61,17 @@
 								class="hidden-tablet"> M2</span></a></li>
 						<li><a href="M3.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M3</span></a></li>
-						<li><a href="Prediciton.jsp"><i class="icon-table"></i><span
+						<li><a href="prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
 					</ul>
 				</div>
 			</div>
-			<!-- end: Main Menu -->
+		</div>
+	</div>
+	<!-- start: Header -->
 
+	<div>
+		<div>
 			<noscript>
 				<div class="alert alert-block span10">
 					<h4 class="alert-heading">Warning!</h4>
@@ -94,9 +84,9 @@
 
 			<div id="content" class="span10">
 				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="index.html">Home</a> <i
+					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a> <i
 						class="icon-angle-right"></i></li>
-					<li><a href="#">M1</a></li>
+					<li><a href="#">Prediction</a></li>
 				</ul>
 				<div>
 					<h1>Prediction of student E-inclusion</h1>
