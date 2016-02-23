@@ -9,7 +9,6 @@
 </head>
 <body>
 	<%@ page import="org.webengine.*"%>
-
 	<table class="tg">
 		<tr>
 			<th class="tg-yw4l"><a href="index.jsp">Main Page</a></th>
@@ -23,24 +22,18 @@
 
 	<h2>Database Edit</h2>
 
-<<<<<<< HEAD
 	Select a file to upload:
 	<br />
-	    <form method="post" action="/fileupload" enctype="multipart/form-data">  
-        Choose file <input type="file" name="file">
-        <input type="submit" value="submit">
-
-    </form>
-	<br>
-	<br>
-=======
-	<br />
-	<form method="post" action="upload" enctype="multipart/form-data">
-		Select file to upload:
-		<input type="file" name="uploadedFile" id="uploadedFile"/><br/><br/>
-		<input type="submit" value="Upload" name="upload" id="upload"/>
+	<form method="post" action="/fileupload" enctype="multipart/form-data">
+		Choose file <input type="file" name="file"> 
+		<input type="submit" value="submit">
 	</form>
->>>>>>> 48e9cc1fa2fd589c0900e8060b198c837ee78145
+	<br />
+	<br />
+ 
+	<form method="get" action="${pageContext.request.contextPath}/fileupload" enctype="multipart/form-data">
+		<input type="submit" name="button1" value="Open" /> 
+	</form>
 
 </body>
 </html>

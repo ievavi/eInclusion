@@ -28,7 +28,7 @@ public class PrepareData {
 	public static void csv2db(File file) {
 		try
 		{
-			EditDatabasePanel.log.append("Reading from file: "+file.getName()+"\n");
+			//EditDatabasePanel.log.append("Reading from file: "+file.getName()+"\n");
 			Query q;
 			transaction.begin();	// starts the transaction
 			BufferedReader br = new BufferedReader(new FileReader(file));					// reads the file using buffered reader

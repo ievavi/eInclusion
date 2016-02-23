@@ -11,7 +11,7 @@ import org.einclusion.GUI.EditDatabasePanel;
  * 	@author student
  */
 public class Einclusion {
-
+	static DBManager dbManager;
 	public static void main(String[] args) throws SQLException {
 		AppFrame gui = new AppFrame();
 		gui.setVisible(true);

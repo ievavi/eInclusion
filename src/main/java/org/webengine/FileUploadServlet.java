@@ -1,9 +1,5 @@
 package org.webengine;
 
-import java.awt.Event;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -18,52 +14,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import javax.swing.JButton;
-import javax.swing.JPanel;
-
 import org.apache.log4j.Logger;
-import org.einclusion.model.ModelManager;
+import org.junit.rules.TemporaryFolder;
 
 @MultipartConfig
 @WebServlet("/fileupload")
 public class FileUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = -9164530828669301284L;
 	private static final Logger LOG = Logger.getLogger(FileUploadServlet.class);
-
+	private static File file;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//TODO rewrite all to use loggers
-		System.out.println("doPost() workdir:" + System.getProperty("user.dir"));
+		// TODO rewrite all to use loggers
+		// System.out.println("doPost() workdir:" +
+		// System.getProperty("user.dir"));
+		String str = null;
 		Part filePart = request.getPart("file");
 		String fileName = getFileName(filePart);
-		// System.out.println("filename " + fileName);
 		String fileLocation = ".";
 		InputStream inputStream = null;
 		OutputStream outputStream = null;
-		File file = new File(fileLocation + "/" + fileName);
-		System.out.println("File name: " + file.getAbsolutePath());
-		//EditDatabase edDB = new EditDatabase();
-		//edDB.actionPerformed(file);
-		
-		/*class StupidButton extends JPanel implements ActionListener{
-			Object eventSource;
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JButton chooseFile = new JButton("Choose a file");					// creates a new button for choosing file path
-				chooseFile.setFont(new Font("Arial", Font.BOLD, 12));		// sets button font
-				chooseFile.addActionListener(this);							// adds actionlistener to button
-				chooseFile.setToolTipText("Choose a valid .xlsx file");		// adds tooltip to button
-				chooseFile.setBounds(50, 10, 190, 30);						// set location and size of button
-				this.add(chooseFile);
-				eventSource = e.getSource();
-			}
-		}
-		StupidButton button = new StupidButton();
-		System.out.println("Button source: " + button.eventSource);
-		*/
-		org.einclusion.GUI.EditDatabasePanel edDB = new org.einclusion.GUI.EditDatabasePanel();
-		edDB.FILE = file;
-		edDB.actionPerformed(new ActionEvent(edDB, 0, "chooseFile"));
+		FileUploadServlet.file = new File(fileLocation + "/" + fileName);
+		EditDatabase edDB = new EditDatabase();
+		edDB.actionPerformed(FileUploadServlet.file, str);
 		try {
 			File outputFilePath = new File(fileName);
 			inputStream = filePart.getInputStream();
@@ -85,18 +58,26 @@ public class FileUploadServlet extends HttpServlet {
 			}
 
 		}
+		// response.setContentType("text/html;UTF-8");
+		// PrintWriter writer = response.getWriter();
+		// writer.write("File upload completed");
+		// writer.close();
+		response.sendRedirect("/M1/databaseEdit.jsp");
 
-		response.setContentType("text/html;UTF-8");
-		PrintWriter writer = response.getWriter();
-		writer.write("File upload completed");
-		writer.close();
+
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		LOG.debug("doGet() workdir:" + System.getProperty("user.dir"));
+		if (request.getParameter("button1") != null) {
+			 //File dummyFile = new File("dummy");
+			//System.out.println("Dummy file name: " + dummyFile.getName());
+			EditDatabase edDB = new EditDatabase();
+			edDB.actionPerformed(FileUploadServlet.file, "OpenFile");
+			System.out.println("test123");
+		}
 	}
-
+	
 	private String getFileName(Part part) {
 		for (String content : part.getHeader("content-disposition").split(";")) {
 			if (content.trim().startsWith("filename")) {
