@@ -1076,16 +1076,11 @@ public class EditDatabase {
 			}
 		}.start(); // starts thread
 		if (str == "OpenFile") {
-			String fileName = file.getName() + ".csv";
-			
-			
-			openFile(file);
-			//System.out.println("Our magic string: " + str);
-			//String fileName = file.getName();			// gets selected file name
-			//System.out.println(fileName);
-			//fileName = fileName.substring(0, fileName.indexOf(".")) + ".csv";	// changes files extension to .csv
-			//File file2 = new File(fileName);					// creates new path in projects directory
-			//openFile(file2);		
+			String fileName = file.getName();
+			fileName = fileName.substring(0, fileName.indexOf(".")) + ".csv";
+			File file2 = new File(fileName);			
+			openFile(file2);
+	
 		}
 	}
 	
