@@ -85,13 +85,7 @@
 										<form method="post" action="/fileupload"
 											enctype="multipart/form-data">
 											Choose file (create) <input type="file" name="file">
-											<input type="submit" value="submit">
-										</form>
-
-										<form method="post" action="/fileupload"
-											enctype="multipart/form-data">
-											Choose file (update) <input type="file" name="upload">
-											<input type="submit" value="submit">
+											<input type="submit" value="submit" name="uploadFile">
 										</form>
 
 										<form method="get"
@@ -117,14 +111,24 @@
 											prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 										<%
 											//public static String specificsParam;
+											TreeSet<String> topics = new TreeSet();
+// 											System.out.println("Breaking point");
 											EditDatabasePanel editPanel = new EditDatabasePanel();
-									
+											editPanel.treeSetTopics.clear();
+											topics.clear();
+											
 											editPanel.getTopics(editPanel.conn, editPanel.stmt);
-											TreeSet<String> topics = editPanel.treeSetTopics;
+											topics = editPanel.treeSetTopics;
+											topics.add("All");
 											System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"	+ topics.size());
 											for (String topic : topics)	System.out.println("topic #######################################" + topic);
 											request.setAttribute("topics", topics);
+											
+											//  TODO read header if (header != refresh) refresh the page
+											//	response.setIntHeader("Refresh", 0);
+											//response.setIntHeader("topic", 0);
 										%>
+										<h2> Delete from database </h2>
 										<form method="get" action="${pageContext.request.contextPath}/fileupload"
 											enctype="multipart/form-data">
 											<select name="topic">
@@ -133,7 +137,8 @@
 												</c:forEach>
 											</select>
 											 <input type="submit" name="deleteButton" value="Search names" />
-										</form></td>
+										</form>
+										</td>
 								</tr>
 
 							</table>

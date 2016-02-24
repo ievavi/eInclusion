@@ -83,7 +83,7 @@ public class EditDatabase {
 																// error
 																// messages
 	static final String JDBC_DRIVER = "org.h2.Driver"; // JDBC driver name
-	static final String DB_URL = "jdbc:h2:data/Student;MVCC=TRUE"; // databse
+	static final String DB_URL = "jdbc:h2:data/Student"; // databse
 																	// URL
 																	// (location
 																	// of
@@ -97,6 +97,8 @@ public class EditDatabase {
 	public static ArrayList<String> ous = new ArrayList<String>(); // list of
 																	// OUs from
 																	// database
+	public static String topicParameter;
+	public static String specificsParameter;
 	static ArrayList<ArrayList<String>> deleteList = new ArrayList<ArrayList<String>>(); // list
 																							// of
 																							// students
@@ -926,7 +928,10 @@ public class EditDatabase {
 	}
 
 	public void actionPerformed(final File file, String str) {
-
+		System.out.println("Debug actionPerformed ________");
+		System.out.println(str);
+	if (str == "uploadFile"){
+		
 		new Thread() { // creates a new thread so processes execute
 						// consecutively
 
@@ -974,18 +979,18 @@ public class EditDatabase {
 						log.append("Writing to database ...\n");
 						PrepareData.csv2db(currentDirectory); // reads data from
 																// .csv file
-						for (String topic : treeSetTopics) {
-							boxForTopics.removeItem(topic); // removes all
-															// boxForTopics
-															// items except for
-															// "ALL"
-						}
-						getTopics(conn, stmt); // writes topics from database to
-												// treeset
-						for (String topic : treeSetTopics) { // adds topics to
-																// Jcombobox
-							boxForTopics.addItem(topic);
-						}
+//						for (String topic : treeSetTopics) {
+//							boxForTopics.removeItem(topic); // removes all
+//															// boxForTopics
+//															// items except for
+//															// "ALL"
+//						}
+//						getTopics(conn, stmt); // writes topics from database to
+//												// treeset
+//						for (String topic : treeSetTopics) { // adds topics to
+//																// Jcombobox
+//							boxForTopics.addItem(topic);
+//						}
 						if (!(ous.isEmpty())) { // if there are ous in database
 												// calculate models
 							log.append("Generating models...\n");
@@ -1075,6 +1080,7 @@ public class EditDatabase {
 				}
 			}
 		}.start(); // starts thread
+	}
 		if (str == "OpenFile") {
 			String fileName = file.getName();
 			fileName = fileName.substring(0, fileName.indexOf(".")) + ".csv";
@@ -1693,8 +1699,10 @@ public class EditDatabase {
 														// example.xls file
 			openFile(file2); // opens file with its default program
 		}
-
-		else if (false) {
+		// str = "deleteFromDB"
+		if (str == "deleteFromDB") {
+			System.out.println("Hello from deleteFromDB");
+			LOG.debug("Hello from deleteFromDB");
 			int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete entries from database?",
 					"Warning", JOptionPane.YES_NO_OPTION);
 			if (confirm == JOptionPane.YES_OPTION) {
@@ -1716,55 +1724,57 @@ public class EditDatabase {
 														// false
 							log.append("Connected to database successfully \n");
 
-
-							if (boxForSpecifics.getSelectedIndex() == 0 && boxForTopics.getSelectedIndex() == 0) {
-								String sql = "TRUNCATE TABLE STUDENT"; // make
-																		// sql
-																		// statement
-								stmt = conn.createStatement(); // creates a new
-																// statement
-																// object
-								stmt.executeUpdate(sql);
-								sql = "ALTER TABLE STUDENT ALTER COLUMN ID RESTART WITH 1"; // make
-																							// sql
-																							// statement
-								stmt = conn.createStatement(); // creates a new
-																// statement
-																// object
-								stmt.executeUpdate(sql);
-								conn.commit();
-								sql = "TRUNCATE TABLE MODELMANAGER";
-								stmt = conn.createStatement(); // creates a new
-																// statement
-																// object
-								stmt.executeUpdate(sql);
-								conn.commit();
-								for (String topic : treeSetTopics) { // adds
-																		// topics
-																		// to
-																		// Jcombobox
-									boxForTopics.removeItem(topic);
-								}
-								treeSetTopics.clear();
-								log.append("All students have been deleted\n");
-								long end = System.nanoTime(); // gets system
-																// time
-								long elapsedTime = end - start; // gets elapsed
-																// time in
-																// nanoseconds
-								double seconds = (double) elapsedTime / 1000000000.0; // converts
-																						// nanoseconds
-																						// to
-																						// seconds
-								seconds = M2Table.round(seconds, 3); // rounds
-																		// to 3
-																		// digits
-								log.append("Execution time: " + seconds + " sec\n");
-							} else if (boxForSpecifics.getSelectedIndex() == 0) {
+							/************************************/
+//							if (topicParameter.equals("All")) {
+//								String sql = "TRUNCATE TABLE STUDENT"; // make
+//																		// sql
+//																		// statement
+//								stmt = conn.createStatement(); // creates a new
+//																// statement
+//																// object
+//								stmt.executeUpdate(sql);
+//								sql = "ALTER TABLE STUDENT ALTER COLUMN ID RESTART WITH 1"; // make
+//																							// sql
+//																							// statement
+//								stmt = conn.createStatement(); // creates a new
+//																// statement
+//																// object
+//								stmt.executeUpdate(sql);
+//								conn.commit();
+//								sql = "TRUNCATE TABLE MODELMANAGER";
+//								stmt = conn.createStatement(); // creates a new
+//																// statement
+//																// object
+//								stmt.executeUpdate(sql);
+//								conn.commit();
+////								for (String topic : treeSetTopics) { // adds
+////																		// topics
+////																		// to
+////																		// Jcombobox
+////									boxForTopics.removeItem(topic);
+////								}
+//								treeSetTopics.clear();
+//								log.append("All students have been deleted\n");
+//								long end = System.nanoTime(); // gets system
+//																// time
+//								long elapsedTime = end - start; // gets elapsed
+//																// time in
+//																// nanoseconds
+//								double seconds = (double) elapsedTime / 1000000000.0; // converts
+//																						// nanoseconds
+//																						// to
+//																						// seconds
+//								seconds = M2Table.round(seconds, 3); // rounds
+//																		// to 3
+//																		// digits
+//								log.append("Execution time: " + seconds + " sec\n");
+//							} else
+								if (EditDatabase.topicParameter  == "All") {
 								// System.out.println(" compasdasd count: " +
 								// boxForTopics.getItemCount());
 								// System.out.println(" comp count: " +
 								// boxForSpecifics.getItemCount());
+								System.out.println("looooooooooooooooooooooooooooooooooooooooool");
 								for (ArrayList<String> data : deleteList) {
 									String name = data.get(0);
 									String phone = data.get(1);
@@ -1801,43 +1811,44 @@ public class EditDatabase {
 																		// to 3
 																		// digits
 								log.append("Execution time: " + seconds + " sec\n");
-							} else {
-								int id = (boxForSpecifics.getSelectedIndex() - 1);
-								String name = deleteList.get(id).get(0);
-								String phone = deleteList.get(id).get(1);
-								String topic = deleteList.get(id).get(2);
-								String sql = "DELETE FROM STUDENT WHERE PHONE='" + phone + "' AND TOPIC='" + topic
-										+ "'";
-								stmt = conn.createStatement();
-								stmt.executeUpdate(sql);
-								conn.commit();
-								boxForSpecifics.removeItem(name);
-								if (boxForSpecifics.getItemCount() == 1) {
-									sql = "DELETE FROM MODELMANAGER WHERE KEY LIKE '%" + topic + "'";
-									stmt = conn.createStatement(); // creates a
-																	// new
-																	// statement
-																	// object
-									stmt.executeUpdate(sql);
-									conn.commit();
-									boxForTopics.removeItem(topic);
-								}
-								log.append("Name: " + name + " Topic: " + topic + " Phone: " + phone
-										+ " has been deleted\n");
-								long end = System.nanoTime(); // gets system
-																// time
-								long elapsedTime = end - start; // gets elapsed
-																// time in
-																// nanoseconds
-								double seconds = (double) elapsedTime / 1000000000.0; // converts
-																						// nanoseconds
-																						// to
-																						// seconds
-								seconds = M2Table.round(seconds, 3); // rounds
-																		// to 3
-																		// digits
-								log.append("Execution time: " + seconds + " sec\n");
-							}
+							} 
+//								else {
+//								int id = (boxForSpecifics.getSelectedIndex() - 1);
+//								String name = deleteList.get(id).get(0);
+//								String phone = deleteList.get(id).get(1);
+//								String topic = deleteList.get(id).get(2);
+//								String sql = "DELETE FROM STUDENT WHERE PHONE='" + phone + "' AND TOPIC='" + topic
+//										+ "'";
+//								stmt = conn.createStatement();
+//								stmt.executeUpdate(sql);
+//								conn.commit();
+//								boxForSpecifics.removeItem(name);
+//								if (boxForSpecifics.getItemCount() == 1) {
+//									sql = "DELETE FROM MODELMANAGER WHERE KEY LIKE '%" + topic + "'";
+//									stmt = conn.createStatement(); // creates a
+//																	// new
+//																	// statement
+//																	// object
+//									stmt.executeUpdate(sql);
+//									conn.commit();
+//									boxForTopics.removeItem(topic);
+//								}
+//								log.append("Name: " + name + " Topic: " + topic + " Phone: " + phone
+//										+ " has been deleted\n");
+//								long end = System.nanoTime(); // gets system
+//																// time
+//								long elapsedTime = end - start; // gets elapsed
+//																// time in
+//																// nanoseconds
+//								double seconds = (double) elapsedTime / 1000000000.0; // converts
+//																						// nanoseconds
+//																						// to
+//																						// seconds
+//								seconds = M2Table.round(seconds, 3); // rounds
+//																		// to 3
+//																		// digits
+//								log.append("Execution time: " + seconds + " sec\n");
+//							}
 						} catch (ClassNotFoundException cnfe) {
 							LOG.error(cnfe.getMessage() + " " + cnfe.getCause());
 							cnfe.printStackTrace();

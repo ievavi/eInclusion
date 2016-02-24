@@ -23,7 +23,7 @@ public class FileUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = -9164530828669301284L;
 	private static final Logger LOG = Logger.getLogger(FileUploadServlet.class);
 	private static File file;
-
+	EditDatabase edDB = new EditDatabase();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String str = null;
@@ -34,8 +34,8 @@ public class FileUploadServlet extends HttpServlet {
 			InputStream inputStream = null;
 			OutputStream outputStream = null;
 			FileUploadServlet.file = new File(fileLocation + "/" + fileName);
-			EditDatabase edDB = new EditDatabase();
-			edDB.actionPerformed(FileUploadServlet.file, str);
+			
+			edDB.actionPerformed(FileUploadServlet.file,"uploadFile");
 			try {
 				File outputFilePath = new File(fileName);
 				inputStream = filePart.getInputStream();
@@ -93,33 +93,34 @@ public class FileUploadServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+//		if (request.getParameter("uploadFile") != null){
+//			edDB.actionPerformed(FileUploadServlet.file, "uploadFile");
+//			response.sendRedirect("/M1/databaseEdit.jsp");
+//		}
 		if (request.getParameter("button1") != null) {
-			EditDatabase edDB = new EditDatabase();
 			edDB.actionPerformed(FileUploadServlet.file, "OpenFile");
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		} else if (request.getParameter("button2") != null) {
-			EditDatabase edDB = new EditDatabase();
 			edDB.actionPerformed(FileUploadServlet.file, "createTemplateXlsx");
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		} else if (request.getParameter("button3") != null) {
-			EditDatabase edDB = new EditDatabase();
 			edDB.actionPerformed(FileUploadServlet.file, "openTemplateXlsx");
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		} else if (request.getParameter("button4") != null) {
-			EditDatabase edDB = new EditDatabase();
 			edDB.actionPerformed2(FileUploadServlet.file, "exampleFile");
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		}else if (request.getParameter("button5") != null) {
-			EditDatabase edDB = new EditDatabase();
 			edDB.actionPerformed(FileUploadServlet.file, "exportAllData");
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		}else if (request.getParameter("button6") != null) {
-			EditDatabase edDB = new EditDatabase();
 			edDB.actionPerformed(FileUploadServlet.file, "openExported");
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		}else if(request.getParameter("deleteButton") != null){
-			String paramater = request.getParameter("topic");
-			System.out.println("////////////////////////////"+paramater);
+			String parameter = request.getParameter("topic");
+			edDB.topicParameter = parameter;
+			edDB.actionPerformed2(FileUploadServlet.file, "deleteFromDB");
+			System.out.println("////////////////////////////"+parameter);
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		}
 	}
