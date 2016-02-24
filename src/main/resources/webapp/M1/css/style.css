@@ -61,9 +61,11 @@
 .progressSlim.green .ui-progressbar-value,
 .label-success,
 .badge-success {
-	background: #00A300 !important;
-	border-color: #00A300 !important;
-	color: #fff;
+/* 	background: #00A300 !important; */
+/* 	border-color: #00A300 !important; */
+/* 	color: #fff; */
+background: #55cc55 !important;
+ 	color: #000;
 }
 
 .greenDark,
@@ -123,9 +125,11 @@
 .progressSlim.yellow .ui-progressbar-value,
 .label-warning,
 .badge-warning {
-	background: #FFC40D !important;
-	border-color: #FFC40D !important;
-	color: #fff;
+/* 	background: #FFC40D !important; */
+/* 	border-color: #FFC40D !important; */
+/* 	color: #fff; */
+	background: #ffdd54!important;
+	color: #000;
 }
 
 .purple,
@@ -211,9 +215,11 @@
 .progressSlim.red .ui-progressbar-value,
 .label-important,
 .badge-important {
-	background: #EB3C00 !important;
-	border-color: #EB3C00 !important;
-	color: #fff;
+/* 	background: #EB3C00 !important; */
+/* 	border-color: #EB3C00 !important; */
+/* 	color: #000; */
+	background: #ff6654!important;
+	color: #000;
 }
 
 .widget.green h2 .glyphicons i:before,

@@ -40,6 +40,7 @@
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%
 		WebTable prediction = new PredictionWeb();
 		prediction.readDBfiltered("All", "All");
@@ -115,6 +116,7 @@
 										<th>Phone</th>
 										<th>Topic</th>
 										<th>Name</th>
+										<th>Submit date</th>
 										<th>M1</th>
 										<th>M2</th>
 										<th>M3</th>
@@ -130,9 +132,66 @@
 											<td><c:out value="${item.get(1)}" /></td>
 											<td><c:out value="${item.get(2)}" /></td>
 											<td><c:out value="${item.get(3)}" /></td>
-											<td><c:out value="${item.get(4)}" /></td>
-											<td><c:out value="${item.get(5)}" /></td>
-											<td><c:out value="${item.get(6)}" /></td>
+											<fmt:parseNumber var="m1" type="number" value="${item.get(4)}" />
+											<c:choose>
+												<c:when test="${m1 == 2}">
+													<td class=green><c:out value="${m1}" /></td>
+												</c:when>
+												<c:when test="${m1 == 1}">
+													<td class=yellow><c:out value="${m1}" /></td>
+												</c:when>
+												<c:when test="${m1 == 0}">
+													<td class=red><c:out value="${m1}" /></td>
+												</c:when>
+												<c:otherwise>
+													<td class=gray><c:out value="${m1}" /></td>
+												</c:otherwise>
+											</c:choose>
+											<fmt:parseNumber var="m2" type="number" value="${item.get(5)}" />
+											<c:choose>
+												<c:when test="${m2 > 60}">
+													<td class=green><c:out value="${m2}" /></td>
+												</c:when>
+												<c:when test="${m2 > 25}">
+													<td class=yellow><c:out value="${m2}" /></td>
+												</c:when>
+												<c:when test="${m2 > 0}">
+													<td class=red><c:out value="${m2}" /></td>
+												</c:when>
+												<c:otherwise>
+													<td class=gray><c:out value="${m2}" /></td>
+												</c:otherwise>
+											</c:choose>
+											<fmt:parseNumber var="m3" type="number" value="${item.get(6)}" />
+											<c:choose>
+												<c:when test="${m3 > 60}">
+													<td class=green><c:out value="${m3}" /></td>
+												</c:when>
+												<c:when test="${m3 > 25}">
+													<td class=yellow><c:out value="${m3}" /></td>
+												</c:when>
+												<c:when test="${m3 > 0}">
+													<td class=red><c:out value="${m3}" /></td>
+												</c:when>
+												<c:otherwise>
+													<td class=gray><c:out value="${m3}" /></td>
+												</c:otherwise>
+											</c:choose>
+											<c:set var="pred" value="${item.get(7)}"/>
+											<c:choose>
+												<c:when test="${pred == 'High'}">
+													<td class=green><c:out value="${pred}" /></td>
+												</c:when>
+												<c:when test="${pred == 'Medium'}">
+													<td class=yellow><c:out value="${pred}" /></td>
+												</c:when>
+												<c:when test="${pred =='Low'}">
+													<td class=red><c:out value="${pred}" /></td>
+												</c:when>
+												<c:otherwise>
+													<td class=gray><c:out value="${pred}" /></td>
+												</c:otherwise>
+											</c:choose>
 										</tr>
 									</c:forEach>
 								</tbody>

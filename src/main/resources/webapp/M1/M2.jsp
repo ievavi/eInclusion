@@ -40,6 +40,7 @@
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%
 		WebTable m2Table = new M2Web();
 		m2Table.readDBfiltered("All", "All");
@@ -138,7 +139,21 @@
 											<td><c:out value="${item.get(6)}" /></td>
 											<td><c:out value="${item.get(7)}" /></td>
 											<td><c:out value="${item.get(8)}" /></td>
-											<td><c:out value="${item.get(9)}" /></td>
+											<fmt:parseNumber var="i" type="number" value="${item.get(9)}" />
+											<c:choose>
+												<c:when test="${i > 60}">
+													<td class=green><c:out value="${item.get(9)}" /></td>
+												</c:when>
+												<c:when test="${i > 25}">
+													<td class=yellow><c:out value="${item.get(9)}" /></td>
+												</c:when>
+												<c:when test="${i > 0}">
+													<td class=red><c:out value="${item.get(9)}" /></td>
+												</c:when>
+												<c:otherwise>
+													<td class=gray><c:out value="${item.get(9)}" /></td>
+												</c:otherwise>
+											</c:choose>
 										</tr>
 									</c:forEach>
 								</tbody>

@@ -35,7 +35,8 @@
 	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%
 		WebTable m1Table = new M1Web();
 		m1Table.readDBfiltered("All", "All");
@@ -87,7 +88,7 @@
 				<div>
 					<h1>General evaluation of students</h1>
 					<div>
-						<div class="box-header" data-original-title></div>
+						<div class="box-header"></div>
 						<div class="box-content">
 							<form class="form-horizontal" action="M1.jsp" method="post"
 								enctype="multipart/form-data">
@@ -138,7 +139,20 @@
 											<td><c:out value="${item.get(8)}" /></td>
 											<td><c:out value="${item.get(9)}" /></td>
 											<td><c:out value="${item.get(10)}" /></td>
-											<td><c:out value="${item.get(11)}" /></td>
+											<c:choose>
+												<c:when test="${item.get(11) == 2}">
+													<td class=green><c:out value="${item.get(11)}" /></td>
+												</c:when>
+												<c:when test="${item.get(11) == 1}">
+													<td class=yellow><c:out value="${item.get(11)}" /></td>
+												</c:when>
+												<c:when test="${item.get(11) == 0}">
+													<td class=red><c:out value="${item.get(11)}" /></td>
+												</c:when>
+												<c:otherwise>
+													<td class=gray><c:out value="${item.get(11)}" /></td>
+												</c:otherwise>
+											</c:choose>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -170,9 +184,10 @@
 		<footer>
 
 		<p>
-			<span style="text-align: left; float: left; display: none">&copy; 2013 <a
-				href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/"
-				alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a></span>
+			<span style="text-align: left; float: left; display: none">&copy;
+				2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/"
+				alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a>
+			</span>
 
 		</p>
 
