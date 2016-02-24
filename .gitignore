@@ -1,7 +1,11 @@
 bin/**
 target/**
 src/main/resources/webapp/M1/demo/**
+<<<<<<< HEAD
 data/Student.lock.db
 data/Student.trace.db
 data/Student.h2.db
 
+=======
+data/**
+>>>>>>> 6ea86fc54b1d723e82aeba26eed92bde9c0801b1

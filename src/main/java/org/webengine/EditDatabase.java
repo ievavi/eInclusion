@@ -54,7 +54,7 @@ import org.einclusion.model.M3;
 import org.einclusion.model.ModelManager;
 import org.einclusion.model.Prediction;
 import org.einclusion.model.PrepareData;
-
+/* PLS KILL PREVIOUS PROGRAMMERS */
 /**
  * Panel for importing, exporting and updating database using xlsx and csv files
  * 
@@ -1164,30 +1164,37 @@ public class EditDatabase {
 			File file2 = new File("Update_Database.xls");
 			openFile(file2); // opens file with its default program
 		}
-		if(str == "exampleFile"){			// if exampleFile button is pressed
-			File file2 = new File("data/example.xls");		// creates file path to example.xls file
-			openFile(file2);									// function that opens file with its default program
+		if (str == "exampleFile") { // if exampleFile button is pressed
+			File file2 = new File("data/example.xls"); // creates file path to
+														// example.xls file
+			openFile(file2); // function that opens file with its default
+								// program
 		}
-		if( str == "exportAllData") {		// if exportAllData button is pressed
-			new Thread() { 				// creates a new thread so processes execute consecutively
-				public void run() {		// creates run method for thread
-					long start = System.nanoTime(); 	// gets system time
+		if (str == "exportAllData") { // if exportAllData button is pressed
+			new Thread() { // creates a new thread so processes execute
+							// consecutively
+				public void run() { // creates run method for thread
+					long start = System.nanoTime(); // gets system time
 					File pathToFile = new File("Exported.xls");
 					exportAllData(pathToFile, conn, stmt);
-					long end = System.nanoTime(); 			// gets system time
-					long elapsedTime = end - start; 		// gets elapsed time in nanoseconds
-					double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds to seconds
-					seconds = M2Table.round(seconds, 3);	// rounds to 3 digits
-					log.append("Execution time: "+seconds+" sec\n");
+					long end = System.nanoTime(); // gets system time
+					long elapsedTime = end - start; // gets elapsed time in
+													// nanoseconds
+					double seconds = (double) elapsedTime / 1000000000.0; // converts
+																			// nanoseconds
+																			// to
+																			// seconds
+					seconds = M2Table.round(seconds, 3); // rounds to 3 digits
+					log.append("Execution time: " + seconds + " sec\n");
 				}
 			}.start();
 		}
-		if( str == "openExported") {		// if openExportd button is pressed
-			File file4 = new File("Exported.xls");		// creates new path to file
-			openFile(file4);							// opens file with its default programm
+		if (str == "openExported") { // if openExportd button is pressed
+			File file4 = new File("Exported.xls"); // creates new path to file
+			openFile(file4); // opens file with its default programm
 		}
 	}
-	
+
 	public void actionPerformed2(final File file, String str) {
 		if (str == "updateDatabase") { // if updatedatabase button
 
@@ -1680,16 +1687,11 @@ public class EditDatabase {
 				}
 			}.start(); // starts thread
 		}
-<<<<<<< HEAD
+
 		if (str == "exampleFile") { // if exampleFile button is pressed
 			File file2 = new File("data/example.xls"); // creates file path to
 														// example.xls file
 			openFile(file2); // opens file with its default program
-=======
-		if(str == "exampleFile"){			// if exampleFile button is pressed
-			File file3 = new File("data/example.xls"); // creates file path to example.xls file	
-			openFile(file3); // opens file with its default program
->>>>>>> 00e2e5f140cac857b9e1599f077d9f229daca9ef
 		}
 
 		else if (false) {
@@ -1698,7 +1700,8 @@ public class EditDatabase {
 			if (confirm == JOptionPane.YES_OPTION) {
 				new Thread() { // creates a new thread so processes execute
 								// consecutively
-					public void run() { // creates run method for thread
+
+	public void run() { // creates run method for thread
 						try {
 							long start = System.nanoTime(); // get system time
 							log.setText("");
@@ -1713,7 +1716,7 @@ public class EditDatabase {
 														// false
 							log.append("Connected to database successfully \n");
 
-<<<<<<< HEAD
+
 							if (boxForSpecifics.getSelectedIndex() == 0 && boxForTopics.getSelectedIndex() == 0) {
 								String sql = "TRUNCATE TABLE STUDENT"; // make
 																		// sql
@@ -1854,25 +1857,12 @@ public class EditDatabase {
 								sqle.printStackTrace();
 							}
 						}
-					}
-				}.start();
-			} else {
-				try {
-					if (conn != null) {
-						conn.close();
-					}
-					if (stmt != null) {
-						stmt.close();
-					}
-				} catch (SQLException sqle) {
+					}}.start();}else{try{if(conn!=null){conn.close();}if(stmt!=null){stmt.close();}}catch(
+
+	SQLException sqle)
+
+	{
 					LOG.error(sqle.getMessage() + " " + sqle.getCause());
 					sqle.printStackTrace();
 				}
-			}
-		}
-	}
-}
-=======
-
-
->>>>>>> 00e2e5f140cac857b9e1599f077d9f229daca9ef
+}}}}

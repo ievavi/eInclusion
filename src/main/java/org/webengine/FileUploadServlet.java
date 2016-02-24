@@ -120,6 +120,7 @@ public class FileUploadServlet extends HttpServlet {
 		}else if(request.getParameter("deleteButton") != null){
 			String paramater = request.getParameter("topic");
 			System.out.println("////////////////////////////"+paramater);
+			response.sendRedirect("/M1/databaseEdit.jsp");
 		}
 	}
 
