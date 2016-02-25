@@ -77,7 +77,7 @@
 				</ul>
 				<div>
 					<h1>Edit database</h1>
-					<div>>
+					<div>
 						<div class="box-content">
 							<table class="upload">
 
