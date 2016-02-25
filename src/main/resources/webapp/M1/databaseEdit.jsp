@@ -138,6 +138,7 @@
 												System.out.println("topic #######################################" + topic);
 											request.setAttribute("topics", topics);
 											request.setAttribute("specifics", specifics);
+											request.setAttribute("selectedTopic", selectedTopic);
 
 											//  TODO read header if (header != refresh) refresh the page
 											//	response.setIntHeader("Refresh", 0);
@@ -149,7 +150,7 @@
 											enctype="multipart/form-data" name="f1">
 											<select name="topic">
 												<c:forEach items="${topics}" var="item">
-													<option value="${item}">${item}</option>
+													<option value="${item}" ${item == selectedTopic ? 'selected="selected"' : ''}>${item}</option>
 												</c:forEach>
 											</select>
 											 <input type="submit" name="deleteButton" value="Refresh names" />

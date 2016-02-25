@@ -129,6 +129,7 @@ public class FileUploadServlet extends HttpServlet {
 			edDB.specificParameter = parameter;
 			edDB.actionPerformed2(FileUploadServlet.file, "delete");
 			response.sendRedirect("/M1/databaseEdit.jsp");
+			
 		}
 	}
 
