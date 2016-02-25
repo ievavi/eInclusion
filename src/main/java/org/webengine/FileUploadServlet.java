@@ -28,6 +28,7 @@ public class FileUploadServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String str = null;
 		if (request.getPart("file") != null) {
+			System.out.println("BEEEEEEEEEEEEEEEEEEEEEEEEP");
 			Part filePart = request.getPart("file");
 			String fileName = getFileName(filePart);
 			String fileLocation = ".";
@@ -121,6 +122,12 @@ public class FileUploadServlet extends HttpServlet {
 			edDB.topicParameter = parameter;
 			edDB.actionPerformed2(FileUploadServlet.file, "deleteFromDB");
 			System.out.println("////////////////////////////"+parameter);
+			response.setHeader("Refresh","10;url=/fileupload?topic=" + parameter);
+			response.sendRedirect("/M1/databaseEdit.jsp");
+		}else if(request.getParameter("deleteFromDatabase") != null){
+			String parameter = request.getParameter("specific");
+			edDB.specificParameter = parameter;
+			edDB.actionPerformed2(FileUploadServlet.file, "delete");
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		}
 	}

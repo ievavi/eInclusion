@@ -80,14 +80,21 @@
 						<div class="box-header" data-original-title></div>
 						<div class="box-content">
 							<table class="upload">
-								<tr>
-									<td>Select a file to upload: <br />
-										<form method="post" action="/fileupload"
-											enctype="multipart/form-data">
-											Choose file (create) <input type="file" name="file">
-											<input type="submit" value="submit" name="uploadFile">
-										</form>
 
+								<h3>Select a file to upload:</h3>
+								<form method="post" action="/fileupload"
+									enctype="multipart/form-data">
+									Choose file (create) <input type="file" name="file"> <input
+										type="submit" value="submit" name="uploadFile">
+								</form>
+								</br>
+								<h3>Select file to update database parameters</h3>
+								<form method="post" action="/fileupload"
+									enctype="multipart/form-data">
+									Choose file (create) <input type="file" name="upload">
+									<input type="submit" value="submit" name="uploadFile">
+								</form>
+								<br>
 										<form method="get"
 											action="${pageContext.request.contextPath}/fileupload"
 											enctype="multipart/form-data">
@@ -107,37 +114,58 @@
 
 								<tr>
 									<td><%@ page import="org.einclusion.GUI.EditDatabasePanel"%>
-										<%@ page import="java.util.TreeSet"%> <%@ taglib
+										<%@ page import="java.util.TreeSet"%>
+										<%@ page import="java.util.ArrayList"%>
+										 <%@ taglib
 											prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 										<%
 											//public static String specificsParam;
 											TreeSet<String> topics = new TreeSet();
-// 											System.out.println("Breaking point");
-											EditDatabasePanel editPanel = new EditDatabasePanel();
+											ArrayList<String> specifics = new ArrayList<String>();
+											
+											
+											EditDatabase editPanel = new EditDatabase();
+											
 											editPanel.treeSetTopics.clear();
 											topics.clear();
-											
+
 											editPanel.getTopics(editPanel.conn, editPanel.stmt);
 											topics = editPanel.treeSetTopics;
+											specifics = editPanel.specificsList;
 											topics.add("All");
-											System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"	+ topics.size());
-											for (String topic : topics)	System.out.println("topic #######################################" + topic);
+											String selectedTopic = editPanel.topicParameter;
+											for (String topic : topics)
+												System.out.println("topic #######################################" + topic);
 											request.setAttribute("topics", topics);
-											
+											request.setAttribute("specifics", specifics);
+
 											//  TODO read header if (header != refresh) refresh the page
 											//	response.setIntHeader("Refresh", 0);
 											//response.setIntHeader("topic", 0);
 										%>
-										<h2> Delete from database </h2>
+										<tr> <h2> Delete from database </h2> </tr>
+										<tr>
 										<form method="get" action="${pageContext.request.contextPath}/fileupload"
-											enctype="multipart/form-data">
+											enctype="multipart/form-data" name="f1">
 											<select name="topic">
 												<c:forEach items="${topics}" var="item">
 													<option value="${item}">${item}</option>
 												</c:forEach>
 											</select>
-											 <input type="submit" name="deleteButton" value="Search names" />
+											 <input type="submit" name="deleteButton" value="Validate names" />
 										</form>
+										
+										<form method="get" action="${pageContext.request.contextPath}/fileupload"
+											enctype="multipart/form-data">
+											<select name="specific">
+												<c:forEach items="${specifics}" var="item">
+													<option value="${item}" selected="${selectedTopic}">${item}</option>
+												</c:forEach>
+<%-- 												<option selected="selected" value="<%=%>">${item}</option> --%>
+											</select>
+											 <input type="submit" name="deleteFromDatabase" value="Delete from database" />
+										</form>
+										</tr>
 										</td>
 								</tr>
 
@@ -150,19 +178,19 @@
 			</div>
 		</div>
 
-		<div class="modal hide fade" id="myModal">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">Ã</button>
-				<h3>Settings</h3>
-			</div>
-			<div class="modal-body">
-				<p>Here settings can be configured...</p>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a> <a href="#"
-					class="btn btn-primary">Save changes</a>
-			</div>
-		</div>
+<!-- 		<div class="modal hide fade" id="myModal"> -->
+<!-- 			<div class="modal-header"> -->
+<!-- 				<button type="button" class="close" data-dismiss="modal">Ã</button> -->
+<!-- 				<h3>Settings</h3> -->
+<!-- 			</div> -->
+<!-- 			<div class="modal-body"> -->
+<!-- 				<p>Here settings can be configured...</p> -->
+<!-- 			</div> -->
+<!-- 			<div class="modal-footer"> -->
+<!-- 				<a href="#" class="btn" data-dismiss="modal">Close</a> <a href="#" -->
+<!-- 					class="btn btn-primary">Save changes</a> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 		<div class="clearfix"></div>
 
@@ -202,6 +230,7 @@
 				jQuery('.table').ddTableFilter();
 			});
 		</script>
+
 		<!-- end: JavaScript-->
 </body>
 </html>

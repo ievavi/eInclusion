@@ -1273,7 +1273,7 @@ public class EditDatabasePanel extends JPanel implements ActionListener {
 					sqle.printStackTrace();
 				}
 			}
-		}
+		}//////
 
 		else if(e.getSource().equals(exampleFile)){			// if exampleFile button is pressed
 			File file = new File("data/example.xls");		// creates file path to example.xls file
@@ -1297,8 +1297,8 @@ public class EditDatabasePanel extends JPanel implements ActionListener {
 			File pathToFile = new File("Exported.xls");		// creates new path to file
 			openFile(pathToFile);							// opens file with its default programm
 		}
-		else if( e.getSource().equals(boxForTopics) ){
 
+		else if( e.getSource().equals(boxForTopics) ){
 			new Thread() { 				// creates a new thread so processes execute consecutively
 				public void run() {		// creates run method for thread
 					if( !((String)boxForTopics.getSelectedItem()).equals("ALL") ){
@@ -1349,6 +1349,6 @@ public class EditDatabasePanel extends JPanel implements ActionListener {
 					}
 				}
 			}.start();
-		}
+		} ////
 	}
 }
