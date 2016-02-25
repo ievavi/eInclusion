@@ -8,16 +8,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.einclusion.GUI.M1Table;
 
 public class M1Web extends WebTable {
 	private static final long serialVersionUID = 1001L;
 	// Logger for M1Table
-	private static final Logger LOG = Logger.getLogger(M1Table.class);
+	private static final Logger LOG = Logger.getLogger(M1Web.class);
 	// list for student data with COLUMNS
 	public static ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 	static final String[] COLUMNS = { "PHONE", "TOPIC", "NAME", "SWL", "DS", "SAL", "ELM", "IWS", "ELE", "PU",
@@ -48,33 +46,8 @@ public class M1Web extends WebTable {
 
 			colName = getShortForColumn(colName);
 			String sql;
-			if (colName.equals("*") || value.equals("All")) {
-				sql = "SELECT * FROM " + DB_TABLE_NAME + " ORDER BY NAME";
-				pStmt = conn.prepareStatement(sql);
-			} else if (colName.equals("M1")
-					&& (value.equals("Green") || value.equals("Orange") || value.equals("Red"))) {
-				sql = "SELECT * FROM " + DB_TABLE_NAME + " WHERE " + colName + " = ";
-				switch (value) {
-				case "Green":
-					sql += "2";
-					break;
-				case "Orange":
-					sql += "1";
-					break;
-				case "Red":
-					sql += "0";
-					break;
-				}
-				sql += " ORDER BY NAME";
-				pStmt = conn.prepareStatement(sql);
-			} else {
-				sql = "SELECT * FROM " + DB_TABLE_NAME + " WHERE " + colName + " = ? ORDER BY NAME";
-				pStmt = conn.prepareStatement(sql);
-				if (colName.equals("NAME") || colName.equals("TOPIC") || colName.equals("SUBMITDATE"))
-					pStmt.setString(1, value);
-				else
-					pStmt.setDouble(1, Double.parseDouble(value));
-			}
+			sql = "SELECT * FROM " + DB_TABLE_NAME + " ORDER BY NAME";
+			pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			conn.commit();
 

@@ -2,20 +2,22 @@ package org.webengine;
 
 import java.io.File;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.einclusion.GUI.PredictionTable;
 import org.einclusion.frontend.RegressionModel;
 
 public class PredictionWeb extends WebTable {
 	private static final long serialVersionUID = 1004L;
-	private static final Logger LOG = Logger.getLogger(PredictionTable.class);	// Logger for PredictionTable
+	// Logger for PredictionWeb
+	private static final Logger LOG = Logger.getLogger(PredictionWeb.class);	
 	public static ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 	static final String[] COLUMNS = {"PHONE","TOPIC","NAME","M1","M2","M3","RELIABILITY"};
 	static File path;				// path to exported file
@@ -83,10 +85,12 @@ public void readDBfiltered(String colName, String value) {
                 conn.commit();
             	
             	String name = rs.getString("NAME");
-            	String m1 = rs.getInt("M1") + "";
-            	String m2 = rs.getDouble("M2") + "";
-            	String m3 = rs.getDouble("M3") + "";
+            	String m1 = String.format(Locale.US, "%.2f", rs.getDouble("M1"));
+            	String m2 = String.format(Locale.US, "%.2f", rs.getDouble("M2"));
+            	String m3 = String.format(Locale.US, "%.2f", rs.getDouble("M3"));
             	String reliability = rs.getString("RELIABILITY");
+            	Date dateStamp = new Date(rs.getTimestamp("SUBMITDATE").getTime());
+				String date = dateStamp.toString();
             	System.out.println(reliability);
             	
             	if( m2m3coef.size()>1 ){
@@ -100,7 +104,8 @@ public void readDBfiltered(String colName, String value) {
             	ArrayList<String> row = new ArrayList<String>();
     			row.add(phone);
     			row.add(topic);	
-    			row.add(name);		
+    			row.add(name);
+    			row.add(date);
     			row.add(m1);
     			row.add(m2);
     			row.add(m3);

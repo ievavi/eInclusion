@@ -7,11 +7,6 @@
 <!-- start: Meta -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Prediction of student E-inclusion</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
-	
-</script>
-<meta charset="utf-8">
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
 <!-- end: Meta -->
@@ -40,6 +35,7 @@
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%
 		WebTable prediction = new PredictionWeb();
 		prediction.readDBfiltered("All", "All");
@@ -91,7 +87,7 @@
 				<div>
 					<h1>Prediction of student E-inclusion</h1>
 					<div>
-						<div class="box-header" data-original-title></div>
+						<div class="box-header"></div>
 						<div class="box-content">
 							<form class="form-horizontal" action="prediction.jsp"
 								method="post" enctype="multipart/form-data">
@@ -109,30 +105,91 @@
 
 								</fieldset>
 							</form>
+							<label><font color='#55cc55'><b>Green</b>
+							</font> - included, <font color='ffdd54'>
+							<b>Yellow</b></font> - partly included, <font color='#ff6654'>
+							<b>Red</b></font> - not included</label>
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>
 										<th>Phone</th>
 										<th>Topic</th>
 										<th>Name</th>
-										<th>M1</th>
-										<th>M2</th>
-										<th>M3</th>
+										<th>Submit date</th>
+										<th class = "colored">M1</th>
+										<th class = "colored">M2</th>
+										<th class = "colored">M3</th>
 										<th>Reliability</th>
 
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${list}" var="item">
-
 										<tr>
 											<td id="Nr"><c:out value="${item.get(0)}" /></td>
 											<td><c:out value="${item.get(1)}" /></td>
 											<td><c:out value="${item.get(2)}" /></td>
 											<td><c:out value="${item.get(3)}" /></td>
-											<td><c:out value="${item.get(4)}" /></td>
-											<td><c:out value="${item.get(5)}" /></td>
-											<td><c:out value="${item.get(6)}" /></td>
+											<fmt:parseNumber var="m1" type="number" value="${item.get(4)}" />
+											<c:choose>
+												<c:when test="${m1 == 2}">
+													<td class="green colored"><c:out value="${m1}" /></td>
+												</c:when>
+												<c:when test="${m1 == 1}">
+													<td class="yellow colored"><c:out value="${m1}" /></td>
+												</c:when>
+												<c:when test="${m1 == 0}">
+													<td class="red colored"><c:out value="${m1}" /></td>
+												</c:when>
+												<c:otherwise>
+													<td class="gray colored"><c:out value="${m1}" /></td>
+												</c:otherwise>
+											</c:choose>
+											<fmt:parseNumber var="m2" type="number" value="${item.get(5)}" />
+											<c:choose>
+												<c:when test="${m2 > 60}">
+													<td class="green colored"><c:out value="${m2}" /></td>
+												</c:when>
+												<c:when test="${m2 > 25}">
+													<td class="yellow colored"><c:out value="${m2}" /></td>
+												</c:when>
+												<c:when test="${m2 > 0}">
+													<td class="red colored"><c:out value="${m2}" /></td>
+												</c:when>
+												<c:otherwise>
+													<td class="gray colored"><c:out value="${m2}" /></td>
+												</c:otherwise>
+											</c:choose>
+											<fmt:parseNumber var="m3" type="number" value="${item.get(6)}" />
+											<c:choose>
+												<c:when test="${m3 > 60}">
+													<td class="green colored"><c:out value="${m3}" /></td>
+												</c:when>
+												<c:when test="${m3 > 25}">
+													<td class="yellow colored"><c:out value="${m3}" /></td>
+												</c:when>
+												<c:when test="${m3 > 0}">
+													<td class="red colored"><c:out value="${m3}" /></td>
+												</c:when>
+												<c:otherwise>
+													<td class="gray colored"><c:out value="${m3}" /></td>
+												</c:otherwise>
+											</c:choose>
+											<c:set var="pred" value="${item.get(7)}"/>
+											<c:choose>
+												<c:when test="${pred == 'High'}">
+													<td class="green"><c:out value="${pred}" /></td>
+												</c:when>
+												<c:when test="${pred == 'Medium'}">
+													<td class="yellow"><c:out value="${pred}" /></td>
+												</c:when>
+												<c:when test="${pred =='Low'}">
+													<td class="red"><c:out value="${pred}" /></td>
+												</c:when>
+												<c:otherwise>
+													<td class="gray"><c:out value="${pred}" /></td>
+												</c:otherwise>
+											</c:choose>
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -144,58 +201,36 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="modal hide fade" id="myModal">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">Ã</button>
-				<h3>Settings</h3>
-			</div>
-			<div class="modal-body">
-				<p>Here settings can be configured...</p>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a> <a href="#"
-					class="btn btn-primary">Save changes</a>
-			</div>
-		</div>
-
 		<div class="clearfix"></div>
-
-		<footer>
-
-		<p>
-			<span style="text-align: left; float: left; display: none">&copy;
-				2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/"
-				alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a>
-			</span>
-
-		</p>
-
-		</footer>
+	</div>
 
 		<!-- start: JavaScript-->
-
-		<script src="js/jquery-1.9.1.min.js"></script>
-		<script src="js/jquery-migrate-1.0.0.min.js"></script>
-
-		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
-		<script src="src/jquery.table2excel.js"></script>
-		<script type="text/javascript">
-			$("form").submit(function() {
-				var n = $("input:first").val()
-				$(".table").table2excel({
-					exclude : ".noExl",
-					name : "Excel Document Name",
-					filename : n
-				});
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+	</script>
+	<script src="src/jquery.table2excel.js"></script>
+	<script type="text/javascript">
+		$("form").submit(function() {
+			var n = $("input:first").val()
+			$(".table").table2excel({
+				exclude : ".noExl",
+				name : "Excel Document Name",
+				filename : n
 			});
-		</script>
-		<script type="text/javascript" src="ddtf.js"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function() {
-				jQuery('.table').ddTableFilter();
-			});
-		</script>
-		<!-- end: JavaScript-->
+		});
+	</script>
+	<script type="text/javascript" src="ddtf.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('.table').ddTableFilter();
+		});
+	</script>
+	<script type="text/javascript" src="ddtfc.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('.table').ddTableFilterColor();
+		});
+	</script>
+	<!-- end: JavaScript-->
 </body>
 </html>

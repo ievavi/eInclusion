@@ -11,13 +11,12 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.einclusion.GUI.M2Table;
 import org.einclusion.frontend.RegressionModel;
 
 public class M2Web extends WebTable {
 	private static final long serialVersionUID = 1002L;
 	// Logger for M2Table
-	private static final Logger LOG = Logger.getLogger(M2Table.class);
+	private static final Logger LOG = Logger.getLogger(M2Web.class);
 	// list of students with specific values
 	public static ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 	static final String[] COLUMNS = { "PHONE", "TOPIC", "NAME", "SWL", "SAL", "ELM", "ELE", "IWS", "SUBMITDATE", "M2" };

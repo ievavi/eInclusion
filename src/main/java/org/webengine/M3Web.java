@@ -11,12 +11,11 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.einclusion.GUI.M3Table;
 
 public class M3Web extends WebTable {
 	private static final long serialVersionUID = 1003L;
 	// Logger for M3Table
-	private static final Logger LOG = Logger.getLogger(M3Table.class);	
+	private static final Logger LOG = Logger.getLogger(M3Web.class);	
 	public static ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
 	static final String[] COLUMNS = {"PHONE","NAME","TOPIC","IWS","ELE","ELM","KLBL","SUBMITDATE","M3"};
 	static File path;
