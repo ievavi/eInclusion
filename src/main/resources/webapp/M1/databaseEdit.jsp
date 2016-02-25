@@ -172,7 +172,7 @@
 
 							</table>
 							
-							<label>Coefficients</label>
+							<h3>Coefficients</h3>
 							<%ArrayList<ArrayList<String>> list = WebTable.coef();
 							request.setAttribute("list", list);%>
 							<table class="table table-striped table-bordered">
