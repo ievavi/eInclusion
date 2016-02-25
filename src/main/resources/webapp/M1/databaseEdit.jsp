@@ -179,9 +179,9 @@
 								<thead>
 									<tr>
 										<th>Key</th>
-										<th>Coefficient</th>
-										<th>Relative</th>
-										<th>Value</th>
+										<th class = skip-filter>Coefficient</th>
+										<th class = skip-filter>Relative</th>
+										<th class = skip-filter>Value</th>
 									</tr>
 								</thead>
 								<tbody>
