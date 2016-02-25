@@ -7,10 +7,6 @@
 <!-- start: Meta -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Edit database</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
-	
-</script>
 <meta charset="utf-8">
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
@@ -32,6 +28,11 @@
 
 <body>
 	<%@ page import="org.webengine.*"%>
+	<%@ page import="org.einclusion.GUI.*"%>
+	<%@ page import="java.util.ArrayList"%>
+	<%@ page import="java.util.Iterator"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -76,15 +77,14 @@
 				</ul>
 				<div>
 					<h1>Edit database</h1>
-					<div>
-<!-- 						<div class="box-header" data-original-title></div> -->
+					<div>>
 						<div class="box-content">
 							<table class="upload">
 
 								<h3>Select a file to upload:</h3>
 								<form method="post" action="/fileupload"
 									enctype="multipart/form-data">
-									Choose file (create) <input type="file" name="file"> <input
+									Choose file: <input type="file" name="file"> <input
 										type="submit" value="Upload" name="uploadFile">
 								</form>
 								<input type="submit" name="button1" value="Open uploaded file" /><br />
@@ -92,7 +92,7 @@
 								<h3>Select file to update database parameters</h3>
 								<form method="post" action="/fileupload"
 									enctype="multipart/form-data">
-									Choose file (create) <input type="file" name="upload">
+									Choose file: <input type="file" name="upload">
 									<input type="submit" value="Update" name="uploadFile">
 								</form>
 								<br>
@@ -170,6 +170,30 @@
 								</tr>
 
 							</table>
+							
+							<label>Coefficients</label>
+							<%ArrayList<ArrayList<String>> list = WebTable.coef();
+							request.setAttribute("list", list);%>
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>Key</th>
+										<th>Coefficient</th>
+										<th>Relative</th>
+										<th>Value</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${list}" var="item">
+										<tr>
+											<td><c:out value="${item.get(0)}" /></td>
+											<td><c:out value="${item.get(1)}" /></td>
+											<td><c:out value="${item.get(2)}" /></td>
+											<td><c:out value="${item.get(3)}" /></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
 
@@ -177,47 +201,18 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-
-
-		<div class="clearfix"></div>
-
-		<footer>
-
-		<p>
-			<span style="text-align: left; float: bottom; display: none">&copy;
-				2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/"
-				alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a>
-			</span>
-
-		</p>
-
-		</footer>
-
-		<!-- start: JavaScript-->
-
-		<script src="js/jquery-1.9.1.min.js"></script>
-		<script src="js/jquery-migrate-1.0.0.min.js"></script>
-
-
-		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
-		<script src="src/jquery.table2excel.js"></script>
-		<script type="text/javascript">
-			$("form").submit(function() {
-				var n = $("input:first").val()
-				$(".table").table2excel({
-					exclude : ".noExl",
-					name : "Excel Document Name",
-					filename : n
-				});
-			});
-		</script>
-		<script type="text/javascript" src="ddtf.js"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function() {
-				jQuery('.table').ddTableFilter();
-			});
-		</script>
+	<!-- start: JavaScript-->
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+	</script>
+	<script type="text/javascript" src="ddtf.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('.table').ddTableFilter();
+		});
+	</script>
 
 		<!-- end: JavaScript-->
 </body>
