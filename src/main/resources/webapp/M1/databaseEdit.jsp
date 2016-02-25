@@ -77,7 +77,7 @@
 				<div>
 					<h1>Edit database</h1>
 					<div>
-						<div class="box-header" data-original-title></div>
+<!-- 						<div class="box-header" data-original-title></div> -->
 						<div class="box-content">
 							<table class="upload">
 
@@ -85,25 +85,25 @@
 								<form method="post" action="/fileupload"
 									enctype="multipart/form-data">
 									Choose file (create) <input type="file" name="file"> <input
-										type="submit" value="submit" name="uploadFile">
+										type="submit" value="Upload" name="uploadFile">
 								</form>
+								<input type="submit" name="button1" value="Open uploaded file" /><br />
 								</br>
 								<h3>Select file to update database parameters</h3>
 								<form method="post" action="/fileupload"
 									enctype="multipart/form-data">
 									Choose file (create) <input type="file" name="upload">
-									<input type="submit" value="submit" name="uploadFile">
+									<input type="submit" value="Update" name="uploadFile">
 								</form>
 								<br>
 										<form method="get"
 											action="${pageContext.request.contextPath}/fileupload"
 											enctype="multipart/form-data">
-											<input type="submit" name="button1" value="Open CSV file" /><br />
+											<input type="submit" name="button4" value="Example" /><br />
 											<input type="submit" name="button2" value="Create Template" />
 											<input type="submit" name="button3" value="Open Template" /><br />
-											<input type="submit" name="button4" value="Example" /><br />
-											<input type="submit" name="button5" value="exportAllData" /><br />
-											<input type="submit" name="button6" value="openExported" /><br />
+											<input type="submit" name="button5" value="Export all data" />
+											<input type="submit" name="button6" value="Open exported data" /><br />
 										</form>
 								</tr>
 
@@ -152,7 +152,7 @@
 													<option value="${item}">${item}</option>
 												</c:forEach>
 											</select>
-											 <input type="submit" name="deleteButton" value="Validate names" />
+											 <input type="submit" name="deleteButton" value="Refresh names" />
 										</form>
 										
 										<form method="get" action="${pageContext.request.contextPath}/fileupload"
@@ -178,26 +178,14 @@
 			</div>
 		</div>
 
-<!-- 		<div class="modal hide fade" id="myModal"> -->
-<!-- 			<div class="modal-header"> -->
-<!-- 				<button type="button" class="close" data-dismiss="modal">ÃƒÂ—</button> -->
-<!-- 				<h3>Settings</h3> -->
-<!-- 			</div> -->
-<!-- 			<div class="modal-body"> -->
-<!-- 				<p>Here settings can be configured...</p> -->
-<!-- 			</div> -->
-<!-- 			<div class="modal-footer"> -->
-<!-- 				<a href="#" class="btn" data-dismiss="modal">Close</a> <a href="#" -->
-<!-- 					class="btn btn-primary">Save changes</a> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
+
 
 		<div class="clearfix"></div>
 
 		<footer>
 
 		<p>
-			<span style="text-align: left; float: left; display: none">&copy;
+			<span style="text-align: left; float: bottom; display: none">&copy;
 				2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/"
 				alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a>
 			</span>

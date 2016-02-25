@@ -929,8 +929,8 @@ public class EditDatabase {
 	}
 
 	public void actionPerformed(final File file, String str) {
-		System.out.println("Debug actionPerformed ________");
-		System.out.println(str);
+//		System.out.println("Debug actionPerformed ________");
+//		System.out.println(str);
 	if (str == "uploadFile"){
 		
 		new Thread() { // creates a new thread so processes execute
@@ -945,7 +945,7 @@ public class EditDatabase {
 																													// extension
 				if (extension.equals(".xlsx")) { // if file is .xlsx
 					log.setText("Selected file: " + file.getName() + "\n");
-					System.out.println("filename " + file.getName());
+//					System.out.println("filename " + file.getName());
 					String fileName = file.getName(); // gets files name
 					fileName = fileName.substring(0, fileName.indexOf(".")) + ".csv"; // changes
 																						// extension
@@ -1209,7 +1209,7 @@ public class EditDatabase {
 							// consecutively
 				public void run() { // creates run method for thread
 					String extension = file.getName().substring(file.getName().indexOf("."), file.getName().length());
-					System.out.println("extension12 " + extension);
+//					System.out.println("extension12 " + extension);
 					if (extension.equals(".xls")) { // if file extension is
 													// xlsx
 						log.setText("Selected file: " + file.getName() + "\n");
@@ -1703,7 +1703,7 @@ public class EditDatabase {
 		// str = "deleteFromDB"
 		if (str == "deleteFromDB") {
 			updateSpecifics();
-			System.out.println("Specifics updated");
+//			System.out.println("Specifics updated");
 			
 		}
 		if(str == "delete"){
@@ -1725,12 +1725,12 @@ public class EditDatabase {
 						conn = DriverManager.getConnection(DB_URL, USER, PASS);	// establsih connection to database
 						conn.setAutoCommit(false);			// sets autocommit to false
 						log.append("Connected to database successfully \n");
-						System.out.println("topicParam:<" + EditDatabase.topicParameter + ">");
-						System.out.println("specificParam:<" + EditDatabase.specificParameter + ">");
+//						System.out.println("topicParam:<" + EditDatabase.topicParameter + ">");
+//						System.out.println("specificParam:<" + EditDatabase.specificParameter + ">");
 						
 						
 						if( EditDatabase.topicParameter.equals("All")){
-							System.out.println("I'm werking!!! ................");
+//							System.out.println("I'm werking!!! ................");
 							String sql = "TRUNCATE TABLE STUDENT";	// make sql statement
 							stmt = conn.createStatement();			// creates a new statement object
 							stmt.executeUpdate(sql);
@@ -1761,9 +1761,9 @@ public class EditDatabase {
 								String name = data.get(0);
 								String phone = data.get(1);
 								String topic = data.get(2);
-								System.out.println(name);
-								System.out.println(phone);
-								System.out.println(topic);
+//								System.out.println(name);
+//								System.out.println(phone);
+//								System.out.println(topic);
 								String sql = "DELETE FROM STUDENT WHERE PHONE='"+phone+"' AND TOPIC='"+topic+"'";
 								stmt = conn.createStatement();
 								stmt.executeUpdate(sql);
@@ -1866,7 +1866,7 @@ public class EditDatabase {
 						log.append("Reading from database...\n");
 						String sql = null;
 						ResultSet rs;
-						System.out.println("debug:  " + EditDatabase.topicParameter);
+//						System.out.println("debug:  " + EditDatabase.topicParameter);
 								sql = "SELECT PHONE, TOPIC, NAME FROM STUDENT WHERE TOPIC='"+ EditDatabase.topicParameter +"'";
 								stmt = conn.createStatement();				// creates a new statement object
 								rs = stmt.executeQuery(sql);				// a table of data that is obtained by executing a sql statement
@@ -1892,16 +1892,16 @@ public class EditDatabase {
 									deleteList.add(data);	// adds arrayList to arrayList
 								}
 								conn.close();						
-								System.out.println(specificsList.size());
-								for(String item : specificsList ){
-									System.out.println("From specifics list " + item);
-								}
+//								System.out.println(specificsList.size());
+//								for(String item : specificsList ){
+//									System.out.println("From specifics list " + item);
+//								}
 								
-								for(ArrayList<String> item : deleteList){
-									System.out.print("From deleteList  " + item.get(0) + " ");
-									System.out.print("From deleteList  " + item.get(1) + " ");
-									System.out.println("From deleteList  " + item.get(2) + " ");
-								}
+//								for(ArrayList<String> item : deleteList){
+//									System.out.print("From deleteList  " + item.get(0) + " ");
+//									System.out.print("From deleteList  " + item.get(1) + " ");
+//									System.out.println("From deleteList  " + item.get(2) + " ");
+//								}
 								//System.out.println(deleteList.size());
 								log.append("Finished reading!\n");
 							
