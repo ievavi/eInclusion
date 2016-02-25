@@ -85,7 +85,11 @@
 										<form method="post" action="/fileupload"
 											enctype="multipart/form-data">
 											Choose file (create) <input type="file" name="file">
-											<input type="submit" value="submit" name="uploadFile">
+											<input type="submit" value="submit">
+										</form>
+										<form method="post" action="/fileupload" enctype="multipart/form-data">
+											Choose file (update) <input type="file" name="upload">
+											<input type="submit" value="submit">
 										</form>
 
 										<form method="get"
@@ -112,33 +116,36 @@
 										<%
 											//public static String specificsParam;
 											TreeSet<String> topics = new TreeSet();
-// 											System.out.println("Breaking point");
+											// 											System.out.println("Breaking point");
 											EditDatabasePanel editPanel = new EditDatabasePanel();
 											editPanel.treeSetTopics.clear();
 											topics.clear();
-											
+
 											editPanel.getTopics(editPanel.conn, editPanel.stmt);
 											topics = editPanel.treeSetTopics;
 											topics.add("All");
-											System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"	+ topics.size());
-											for (String topic : topics)	System.out.println("topic #######################################" + topic);
+											System.out.println(
+													"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+															+ topics.size());
+											for (String topic : topics)
+												System.out.println("topic #######################################" + topic);
 											request.setAttribute("topics", topics);
-											
+
 											//  TODO read header if (header != refresh) refresh the page
 											//	response.setIntHeader("Refresh", 0);
 											//response.setIntHeader("topic", 0);
 										%>
-										<h2> Delete from database </h2>
-										<form method="get" action="${pageContext.request.contextPath}/fileupload"
+										<h2>Delete from database</h2>
+										<form method="get"
+											action="${pageContext.request.contextPath}/fileupload"
 											enctype="multipart/form-data">
 											<select name="topic">
 												<c:forEach items="${topics}" var="item">
 													<option value="${item}">${item}</option>
 												</c:forEach>
-											</select>
-											 <input type="submit" name="deleteButton" value="Search names" />
-										</form>
-										</td>
+											</select> <input type="submit" name="deleteButton"
+												value="Search names" />
+										</form></td>
 								</tr>
 
 							</table>
@@ -182,26 +189,7 @@
 
 		<script src="js/jquery-1.9.1.min.js"></script>
 		<script src="js/jquery-migrate-1.0.0.min.js"></script>
-
-
 		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
-		<script src="src/jquery.table2excel.js"></script>
-		<script type="text/javascript">
-			$("form").submit(function() {
-				var n = $("input:first").val()
-				$(".table").table2excel({
-					exclude : ".noExl",
-					name : "Excel Document Name",
-					filename : n
-				});
-			});
-		</script>
-		<script type="text/javascript" src="ddtf.js"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function() {
-				jQuery('.table').ddTableFilter();
-			});
-		</script>
 		<!-- end: JavaScript-->
 </body>
 </html>

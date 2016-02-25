@@ -14,7 +14,9 @@
 			$('th:visible', table).each(
 					function(index) {
 						if ($(this).hasClass('skip-filter'))
-							return;
+							return;						
+						if ($(this).hasClass('colored'))
+							return;	
 						var selectbox = $('<select>');
 						var values = [];
 						var opts = [];

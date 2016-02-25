@@ -7,11 +7,6 @@
 <!-- start: Meta -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Evaluation of knowledge flow</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
-	
-</script>
-<meta charset="utf-8">
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
 <!-- end: Meta -->
@@ -92,9 +87,9 @@
 				<div>
 					<h1>Evaluation of knowledge flow</h1>
 					<div>
-						<div class="box-header" data-original-title></div>
+						<div class="box-header"></div>
 						<div class="box-content">
-							<form class="form-horizontal" action="M2t.jsp" method="post"
+							<form class="form-horizontal" action="M3.jsp" method="post"
 								enctype="multipart/form-data">
 								<fieldset>
 									<div class="control-group">
@@ -110,6 +105,10 @@
 
 								</fieldset>
 							</form>
+							<label><font color='#55cc55'><b>Green</b>
+							</font> - included, <font color='ffdd54'>
+							<b>Yellow</b></font> - partly included, <font color='#ff6654'>
+							<b>Red</b></font> - not included</label>
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>
@@ -121,13 +120,12 @@
 										<th>E-materials</th>
 										<th>Before learning</th>
 										<th>Submit date</th>
-										<th>M3</th>
+										<th class = "colored">M3</th>
 
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${list}" var="item">
-
 										<tr>
 											<td id="Nr"><c:out value="${item.get(0)}" /></td>
 											<td><c:out value="${item.get(1)}" /></td>
@@ -140,16 +138,16 @@
 											<fmt:parseNumber var="i" type="number" value="${item.get(8)}" />
 											<c:choose>
 												<c:when test="${i > 60}">
-													<td class=green><c:out value="${item.get(8)}" /></td>
+													<td class="green colored"><c:out value="${item.get(8)}" /></td>
 												</c:when>
 												<c:when test="${i > 25}">
-													<td class=yellow><c:out value="${item.get(8)}" /></td>
+													<td class="yellow colored"><c:out value="${item.get(8)}" /></td>
 												</c:when>
 												<c:when test="${i > 0}">
-													<td class=red><c:out value="${item.get(8)}" /></td>
+													<td class="red colored"><c:out value="${item.get(8)}" /></td>
 												</c:when>
 												<c:otherwise>
-													<td class=gray><c:out value="${item.get(8)}" /></td>
+													<td class="gray colored"><c:out value="${item.get(8)}" /></td>
 												</c:otherwise>
 											</c:choose>
 										</tr>
@@ -158,63 +156,40 @@
 							</table>
 						</div>
 					</div>
-
-
 				</div>
 			</div>
 		</div>
+	</div>
 
-		<div class="modal hide fade" id="myModal">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal">Ã</button>
-				<h3>Settings</h3>
-			</div>
-			<div class="modal-body">
-				<p>Here settings can be configured...</p>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Close</a> <a href="#"
-					class="btn btn-primary">Save changes</a>
-			</div>
-		</div>
 
-		<div class="clearfix"></div>
+	<!-- start: JavaScript-->
 
-		<footer>
-
-		<p>
-			<span style="text-align: left; float: left; display: none">&copy;
-				2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/"
-				alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a>
-			</span>
-
-		</p>
-
-		</footer>
-
-		<!-- start: JavaScript-->
-
-		<script src="js/jquery-1.9.1.min.js"></script>
-		<script src="js/jquery-migrate-1.0.0.min.js"></script>
-
-		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
-		<script src="src/jquery.table2excel.js"></script>
-		<script type="text/javascript">
-			$("form").submit(function() {
-				var n = $("input:first").val()
-				$(".table").table2excel({
-					exclude : ".noExl",
-					name : "Excel Document Name",
-					filename : n
-				});
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">	
+	</script>
+	<script src="src/jquery.table2excel.js"></script>
+	<script type="text/javascript">
+		$("form").submit(function() {
+			var n = $("input:first").val()
+			$(".table").table2excel({
+				exclude : ".noExl",
+				name : "Excel Document Name",
+				filename : n
 			});
-		</script>
-		<script type="text/javascript" src="ddtf.js"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function() {
-				jQuery('.table').ddTableFilter();
-			});
-		</script>
-		<!-- end: JavaScript-->
+		});
+	</script>
+	<script type="text/javascript" src="ddtf.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('.table').ddTableFilter();
+		});
+	</script>
+	<script type="text/javascript" src="ddtfc.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('.table').ddTableFilterColor();
+		});
+	</script>
+	<!-- end: JavaScript-->
 </body>
 </html>
