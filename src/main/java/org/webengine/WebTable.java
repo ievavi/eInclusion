@@ -1,13 +1,18 @@
 package org.webengine;
 
-import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 //import org.apache.log4j.Logger;
 
 public abstract class WebTable {
 	static final String JDBC_DRIVER = "org.h2.Driver"; // JDBC driver name
-	 // databse URL (location of database)
+	// databse URL (location of database)
 	static final String DB_URL = "jdbc:h2:data/Student";
 	static final String USER = "sa"; // username for database
 	static final String PASS = ""; // password for database
@@ -16,6 +21,7 @@ public abstract class WebTable {
 	static final String DB_REGRESSION_TABLE = "MODELMANAGER";
 
 	public abstract void readDBfiltered(String colName, String value);
+
 	public abstract ArrayList<String> returnLabels();
 
 	public String getShortForColumn(String colName) {
@@ -69,7 +75,7 @@ public abstract class WebTable {
 		}
 		return shortCol;
 	}
-	
+
 	public static double round(double value, int places) {
 		if (places < 0)
 			throw new IllegalArgumentException();
@@ -78,5 +84,37 @@ public abstract class WebTable {
 		long tmp = Math.round(value);
 		return (double) tmp / factor;
 	}
-	// public void actionPerformed(ActionEvent e) - jaaskataas vai nav noderiigs datu izvilkshanai
+
+	public static ArrayList<ArrayList<String>> coef() {
+		ArrayList<ArrayList<String>> coef = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pStmt = null;
+
+		try {
+			Class.forName(JDBC_DRIVER);
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			conn.setAutoCommit(false);
+			
+			pStmt = conn.prepareStatement("SELECT * FROM " + DB_REGRESSION_TABLE + " ORDER BY KEY");
+			ResultSet rs = pStmt.executeQuery();
+			
+			while (rs.next()){
+				String s1 = rs.getString(1);
+				String s2 = rs.getString(2);
+				String s3 = rs.getString(3);
+				String s4 = rs.getString(4);
+				
+				ArrayList<String> row = new ArrayList<String>();
+				row.add(s1);
+				row.add(s2);
+				row.add(s3);
+				row.add(s4);
+				
+				coef.add(row);
+			}
+		} catch (SQLException | ClassNotFoundException sqle) {
+			sqle.printStackTrace();
+		}
+		return coef;
+	}
 }

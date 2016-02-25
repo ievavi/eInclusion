@@ -11,9 +11,13 @@
 .clearfix {
   *zoom: 1;
 }
-
+.footer{
+	position: fixed;
+	bottom: 0;
+}
 .clearfix:before,
 .clearfix:after {
+
   display: table;
   line-height: 0;
   content: "";

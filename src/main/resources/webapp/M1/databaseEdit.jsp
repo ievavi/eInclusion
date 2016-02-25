@@ -7,10 +7,6 @@
 <!-- start: Meta -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Edit database</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
-	
-</script>
 <meta charset="utf-8">
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
@@ -32,6 +28,11 @@
 
 <body>
 	<%@ page import="org.webengine.*"%>
+	<%@ page import="org.einclusion.GUI.*"%>
+	<%@ page import="java.util.ArrayList"%>
+	<%@ page import="java.util.Iterator"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -77,33 +78,32 @@
 				<div>
 					<h1>Edit database</h1>
 					<div>
-						<div class="box-header" data-original-title></div>
 						<div class="box-content">
 							<table class="upload">
 
 								<h3>Select a file to upload:</h3>
 								<form method="post" action="/fileupload"
 									enctype="multipart/form-data">
-									Choose file (create) <input type="file" name="file"> <input
-										type="submit" value="submit" name="uploadFile">
+									Choose file: <input type="file" name="file"> <input
+										type="submit" value="Upload" name="uploadFile">
 								</form>
+								<input type="submit" name="button1" value="Open uploaded file" /><br />
 								</br>
 								<h3>Select file to update database parameters</h3>
 								<form method="post" action="/fileupload"
 									enctype="multipart/form-data">
-									Choose file (create) <input type="file" name="upload">
-									<input type="submit" value="submit" name="uploadFile">
+									Choose file: <input type="file" name="upload">
+									<input type="submit" value="Update" name="uploadFile">
 								</form>
 								<br>
 										<form method="get"
 											action="${pageContext.request.contextPath}/fileupload"
 											enctype="multipart/form-data">
-											<input type="submit" name="button1" value="Open CSV file" /><br />
+											<input type="submit" name="button4" value="Example" /><br />
 											<input type="submit" name="button2" value="Create Template" />
 											<input type="submit" name="button3" value="Open Template" /><br />
-											<input type="submit" name="button4" value="Example" /><br />
-											<input type="submit" name="button5" value="exportAllData" /><br />
-											<input type="submit" name="button6" value="openExported" /><br />
+											<input type="submit" name="button5" value="Export all data" />
+											<input type="submit" name="button6" value="Open exported data" /><br />
 										</form>
 								</tr>
 
@@ -138,6 +138,7 @@
 												System.out.println("topic #######################################" + topic);
 											request.setAttribute("topics", topics);
 											request.setAttribute("specifics", specifics);
+											request.setAttribute("selectedTopic", selectedTopic);
 
 											//  TODO read header if (header != refresh) refresh the page
 											//	response.setIntHeader("Refresh", 0);
@@ -149,10 +150,10 @@
 											enctype="multipart/form-data" name="f1">
 											<select name="topic">
 												<c:forEach items="${topics}" var="item">
-													<option value="${item}">${item}</option>
+													<option value="${item}" ${item == selectedTopic ? 'selected="selected"' : ''}>${item}</option>
 												</c:forEach>
 											</select>
-											 <input type="submit" name="deleteButton" value="Validate names" />
+											 <input type="submit" name="deleteButton" value="Refresh names" />
 										</form>
 										
 										<form method="get" action="${pageContext.request.contextPath}/fileupload"
@@ -170,6 +171,30 @@
 								</tr>
 
 							</table>
+							
+							<h3>Coefficients</h3>
+							<%ArrayList<ArrayList<String>> list = WebTable.coef();
+							request.setAttribute("list", list);%>
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>Key</th>
+										<th class = skip-filter>Coefficient</th>
+										<th class = skip-filter>Relative</th>
+										<th class = skip-filter>Value</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${list}" var="item">
+										<tr>
+											<td><c:out value="${item.get(0)}" /></td>
+											<td><c:out value="${item.get(1)}" /></td>
+											<td><c:out value="${item.get(2)}" /></td>
+											<td><c:out value="${item.get(3)}" /></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
 
@@ -177,59 +202,18 @@
 				</div>
 			</div>
 		</div>
+	</div>
 
-<!-- 		<div class="modal hide fade" id="myModal"> -->
-<!-- 			<div class="modal-header"> -->
-<!-- 				<button type="button" class="close" data-dismiss="modal">ÃƒÂ—</button> -->
-<!-- 				<h3>Settings</h3> -->
-<!-- 			</div> -->
-<!-- 			<div class="modal-body"> -->
-<!-- 				<p>Here settings can be configured...</p> -->
-<!-- 			</div> -->
-<!-- 			<div class="modal-footer"> -->
-<!-- 				<a href="#" class="btn" data-dismiss="modal">Close</a> <a href="#" -->
-<!-- 					class="btn btn-primary">Save changes</a> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-
-		<div class="clearfix"></div>
-
-		<footer>
-
-		<p>
-			<span style="text-align: left; float: left; display: none">&copy;
-				2013 <a href="http://jiji262.github.io/Bootstrap_Metro_Dashboard/"
-				alt="Bootstrap_Metro_Dashboard">Bootstrap Metro Dashboard</a>
-			</span>
-
-		</p>
-
-		</footer>
-
-		<!-- start: JavaScript-->
-
-		<script src="js/jquery-1.9.1.min.js"></script>
-		<script src="js/jquery-migrate-1.0.0.min.js"></script>
-
-
-		<script src="js/jquery-ui-1.10.0.custom.min.js"></script>
-		<script src="src/jquery.table2excel.js"></script>
-		<script type="text/javascript">
-			$("form").submit(function() {
-				var n = $("input:first").val()
-				$(".table").table2excel({
-					exclude : ".noExl",
-					name : "Excel Document Name",
-					filename : n
-				});
-			});
-		</script>
-		<script type="text/javascript" src="ddtf.js"></script>
-		<script type="text/javascript">
-			jQuery(document).ready(function() {
-				jQuery('.table').ddTableFilter();
-			});
-		</script>
+	<!-- start: JavaScript-->
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+	</script>
+	<script type="text/javascript" src="ddtf.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('.table').ddTableFilter();
+		});
+	</script>
 
 		<!-- end: JavaScript-->
 </body>
