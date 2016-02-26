@@ -2,12 +2,13 @@ package org.Tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
-
-import org.webengine.*;
+import org.webengine.M1Web;
+import org.webengine.M2Web;
+import org.webengine.M3Web;
+import org.webengine.PredictionWeb;
+import org.webengine.WebTable;
 
 public class JUnit {
 

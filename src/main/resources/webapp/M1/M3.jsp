@@ -59,6 +59,8 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
+						<li><a href="ReadMe.pdf" target="_blank"><i class="icon-table"></i><span
+								class="hidden-tablet"> Instructions </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -80,8 +82,8 @@
 
 			<div id="content" class="span10">
 				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a> <i
-						class="icon-angle-right"></i></li>
+					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a>
+						<i class="icon-angle-right"></i></li>
 					<li><a href="#">M3</a></li>
 				</ul>
 				<div>
@@ -105,10 +107,10 @@
 
 								</fieldset>
 							</form>
-							<label><font color='#55cc55'><b>Green</b>
-							</font> - included, <font color='ffdd54'>
-							<b>Yellow</b></font> - partly included, <font color='#ff6654'>
-							<b>Red</b></font> - not included</label>
+							<label><font color='#55cc55'><b>Green</b> </font> -
+								included, <font color='ffdd54'> <b>Yellow</b></font> - partly
+								included, <font color='#ff6654'> <b>Red</b></font> - not
+								included</label>
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>
@@ -120,7 +122,7 @@
 										<th>E-materials</th>
 										<th>Before learning</th>
 										<th>Submit date</th>
-										<th class = "colored">M3</th>
+										<th class="colored">M3</th>
 
 									</tr>
 								</thead>
@@ -138,10 +140,12 @@
 											<fmt:parseNumber var="i" type="number" value="${item.get(8)}" />
 											<c:choose>
 												<c:when test="${i > 60}">
-													<td class="green colored"><c:out value="${item.get(8)}" /></td>
+													<td class="green colored"><c:out
+															value="${item.get(8)}" /></td>
 												</c:when>
 												<c:when test="${i > 25}">
-													<td class="yellow colored"><c:out value="${item.get(8)}" /></td>
+													<td class="yellow colored"><c:out
+															value="${item.get(8)}" /></td>
 												</c:when>
 												<c:when test="${i > 0}">
 													<td class="red colored"><c:out value="${item.get(8)}" /></td>
@@ -165,7 +169,8 @@
 	<!-- start: JavaScript-->
 
 	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">	
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+		
 	</script>
 	<script src="src/jquery.table2excel.js"></script>
 	<script type="text/javascript">

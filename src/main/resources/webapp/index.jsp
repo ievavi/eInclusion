@@ -44,6 +44,8 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="M1/prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
+						<li><a href="ReadMe.pdf" target="_blank"><i class="icon-table"></i><span
+								class="hidden-tablet"> Instructions </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -68,9 +70,10 @@
 					<h1>Einclusion</h1>
 					<div>
 						<div class="box-content">
-							<descrip><br /> The purpose of this system is predicting
-							behavior of students, studying digital skills, after completing
-							course.<br />
+							<descrip>
+							<br />
+							The purpose of this system is predicting behavior of students,
+							studying digital skills, after completing course.<br />
 							<br />
 							It gives instructor an opportunity to recognize students who
 							would fail to use the skills taught in course after completion.

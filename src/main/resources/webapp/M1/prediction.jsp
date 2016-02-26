@@ -59,6 +59,9 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
+						<li><a href="ReadMe.pdf" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Instructions </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -80,8 +83,8 @@
 
 			<div id="content" class="span10">
 				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a> <i
-						class="icon-angle-right"></i></li>
+					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a>
+						<i class="icon-angle-right"></i></li>
 					<li><a href="#">Prediction</a></li>
 				</ul>
 				<div>
@@ -105,10 +108,10 @@
 
 								</fieldset>
 							</form>
-							<label><font color='#55cc55'><b>Green</b>
-							</font> - included, <font color='ffdd54'>
-							<b>Yellow</b></font> - partly included, <font color='#ff6654'>
-							<b>Red</b></font> - not included</label>
+							<label><font color='#55cc55'><b>Green</b> </font> -
+								included, <font color='ffdd54'> <b>Yellow</b></font> - partly
+								included, <font color='#ff6654'> <b>Red</b></font> - not
+								included</label>
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>
@@ -116,9 +119,9 @@
 										<th>Topic</th>
 										<th>Name</th>
 										<th>Submit date</th>
-										<th class = "colored">M1</th>
-										<th class = "colored">M2</th>
-										<th class = "colored">M3</th>
+										<th class="colored">M1</th>
+										<th class="colored">M2</th>
+										<th class="colored">M3</th>
 										<th>Reliability</th>
 
 									</tr>
@@ -130,7 +133,8 @@
 											<td><c:out value="${item.get(1)}" /></td>
 											<td><c:out value="${item.get(2)}" /></td>
 											<td><c:out value="${item.get(3)}" /></td>
-											<fmt:parseNumber var="m1" type="number" value="${item.get(4)}" />
+											<fmt:parseNumber var="m1" type="number"
+												value="${item.get(4)}" />
 											<c:choose>
 												<c:when test="${m1 == 2}">
 													<td class="green colored"><c:out value="${m1}" /></td>
@@ -145,7 +149,8 @@
 													<td class="gray colored"><c:out value="${m1}" /></td>
 												</c:otherwise>
 											</c:choose>
-											<fmt:parseNumber var="m2" type="number" value="${item.get(5)}" />
+											<fmt:parseNumber var="m2" type="number"
+												value="${item.get(5)}" />
 											<c:choose>
 												<c:when test="${m2 > 60}">
 													<td class="green colored"><c:out value="${m2}" /></td>
@@ -160,7 +165,8 @@
 													<td class="gray colored"><c:out value="${m2}" /></td>
 												</c:otherwise>
 											</c:choose>
-											<fmt:parseNumber var="m3" type="number" value="${item.get(6)}" />
+											<fmt:parseNumber var="m3" type="number"
+												value="${item.get(6)}" />
 											<c:choose>
 												<c:when test="${m3 > 60}">
 													<td class="green colored"><c:out value="${m3}" /></td>
@@ -175,7 +181,7 @@
 													<td class="gray colored"><c:out value="${m3}" /></td>
 												</c:otherwise>
 											</c:choose>
-											<c:set var="pred" value="${item.get(7)}"/>
+											<c:set var="pred" value="${item.get(7)}" />
 											<c:choose>
 												<c:when test="${pred == 'High'}">
 													<td class="green"><c:out value="${pred}" /></td>
@@ -204,9 +210,10 @@
 		<div class="clearfix"></div>
 	</div>
 
-		<!-- start: JavaScript-->
+	<!-- start: JavaScript-->
 	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+		
 	</script>
 	<script src="src/jquery.table2excel.js"></script>
 	<script type="text/javascript">
