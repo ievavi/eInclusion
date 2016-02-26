@@ -87,7 +87,11 @@
 									Choose file: <input type="file" name="file"> <input
 										type="submit" value="Upload" name="uploadFile">
 								</form>
+								<form method="get"
+											action="${pageContext.request.contextPath}/fileupload"
+											enctype="multipart/form-data">
 								<input type="submit" name="button1" value="Open uploaded file" /><br />
+								</form>
 								</br>
 								<h3>Select file to update database parameters</h3>
 								<form method="post" action="/fileupload"

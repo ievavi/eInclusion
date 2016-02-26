@@ -188,141 +188,6 @@ public class EditDatabase {
 			log.append(errorText + "\n");
 			highlight(log, errorText);
 		}
-
-		// chooseFile = new JButton("Choose a file"); // creates a new button
-		// for choosing file path
-		// chooseFile.setFont(new Font("Arial", Font.BOLD, 12)); // sets button
-		// font
-		// chooseFile.addActionListener(this); // adds actionlistener to button
-		// chooseFile.setToolTipText("Choose a valid .xlsx file"); // adds
-		// tooltip to button
-		// chooseFile.setBounds(50, 10, 190, 30); // set location and size of
-		// button
-		// this.add(chooseFile); // add button to jpanel
-		//
-		// openFile = new JButton("Open"); // creates a new button for opening a
-		// file
-		// openFile.setToolTipText("<html>Opens the created .csv file with its
-		// default program<br>"+
-		// "(to change this program right click on any .csv file<br>and choose"+
-		// " the program you want to open it with)</html>"); // sets tooltip for
-		// jbutton
-		// openFile.setFont(new Font("Arial", Font.BOLD, 12)); // sets font for
-		// jbutton
-		// openFile.setBounds(250,10,110,30); // sets location and size of
-		// jbutton
-		// openFile.addActionListener(this); // adds actionlistener to jbutton
-		// openFile.setVisible(false); // sets jbutton to not visible
-		// this.add(openFile); // adds jbutton to jpanel
-		//
-		// createTemplateXlsx = new JButton("Create template"); // creates a new
-		// Jbutton for opening a file
-		// createTemplateXlsx.setToolTipText("Creates Update_Database.xls
-		// file"); // sets tooltip for jbutton
-		// createTemplateXlsx.setFont(new Font("Arial", Font.BOLD, 12)); // sets
-		// font for jbutton
-		// createTemplateXlsx.setBounds(50,60,190,30); // sets location and size
-		// of jbutton
-		// createTemplateXlsx.addActionListener(this); // adds actionlistener to
-		// jbutton
-		// this.add(createTemplateXlsx); // adds jbutton to jpanel
-		//
-		// openTemplateXlsx = new JButton("Open"); // creates a new jbutton for
-		// opening a file
-		// openTemplateXlsx.setToolTipText("Opens the created Update_Databse.xls
-		// file"); // sets tooltip for jbutton
-		// openTemplateXlsx.setFont(new Font("Arial", Font.BOLD, 12)); // sets
-		// font for jbutton
-		// openTemplateXlsx.setBounds(250,60,110,30); // sets location and size
-		// of jbutton
-		// openTemplateXlsx.setVisible(false); // this jbutton is not visible
-		// openTemplateXlsx.addActionListener(this); // adds actionlistener to
-		// jbutton
-		// this.add(openTemplateXlsx); // adds jbutton to jpanel
-		//
-		// updateDatabase = new JButton("Update database"); // creates a jbutton
-		// for updating database
-		// updateDatabase.setToolTipText("<html>Choose a .xls file that will
-		// update the database<br>"+
-		// " (see example first)</html>"); // sets tooltip for jbutton
-		// updateDatabase.setFont(new Font("Arial", Font.BOLD, 12)); // sets
-		// font for jbutton
-		// updateDatabase.setBounds(50,110,190,30); // sets location and size of
-		// jbutton
-		// updateDatabase.addActionListener(this); // adds actionlistener to
-		// jbutton
-		// this.add(updateDatabase); // adds jbutton to jpanel
-		//
-		// exampleFile = new JButton("Example"); // creates a jbutton for seeing
-		// example .xlsx file
-		// exampleFile.setToolTipText("Opens example.xls file with its default
-		// program"); // sets tooltip for jbutton
-		// exampleFile.setFont(new Font("Arial", Font.BOLD, 12)); // sets font
-		// for jbutton
-		// exampleFile.setBounds(250,110,110,30); // sets location and size of
-		// jbutton
-		// exampleFile.addActionListener(this); // adds actionlistener to
-		// jbutton
-		// this.add(exampleFile); // adds jbutton to janel
-		//
-		// eraseFromDatabase = new JButton("Delete from database"); // creates a
-		// jbutton for deleting database
-		// eraseFromDatabase.setToolTipText("<html>Erases selected entries from
-		// database<br>"+
-		// "(if no entries are selected deletes all entries)</html>"); // sets
-		// tooltip for jbutton
-		// eraseFromDatabase.setFont(new Font("Arial", Font.BOLD, 12)); // sets
-		// font for jbutton
-		// eraseFromDatabase.setBounds(50,350,190,30); // sets location and size
-		// of jbutton
-		// eraseFromDatabase.addActionListener(this); // adds actionlistener to
-		// jbutton
-		// this.add(eraseFromDatabase); // adds jbutton to janel
-		//
-		// boxForTopics = new JComboBox<String>(); // creates new JComboBox for
-		// choosing topics
-		// boxForTopics.addItem("ALL");
-		// boxForTopics.setSelectedIndex(0); // sets selected value to first
-		// boxForTopics.setBounds(270,350,190,30); // sets location and size of
-		// jcombobox
-		// boxForTopics.addActionListener(this); // adds actionlistener to
-		// jcombobox
-		// this.add(boxForTopics); // adds jcombobox to JPanel
-		//
-		// boxForSpecifics = new JComboBox<String>(); // creates a new Jcombobox
-		// for choosing specific students
-		// boxForSpecifics.addItem("ALL");
-		// boxForSpecifics.setSelectedIndex(0); // sets selected value to first
-		// boxForSpecifics.setBounds(490, 350, 190, 30); // sets location and
-		// size of jcombobox
-		// this.add(boxForSpecifics); // adds jcombobox to jpanel
-		//
-		//
-		// exportAllData = new JButton("Export"); // creates a jbutton for
-		// exporting data specifically for weka
-		// exportAllData.setToolTipText("Exports all database contents to
-		// Exported.xls file"); // sets tooltip for jbutton
-		// exportAllData.setFont(new Font("Arial", Font.BOLD, 12)); // sets font
-		// for jbutton
-		// exportAllData.setBounds(50,160,190,30); // sets location and size of
-		// jbutton
-		// exportAllData.addActionListener(this); // adds actionlistener to
-		// jbutton
-		// this.add(exportAllData); // adds jbutton to janel
-		//
-		// openExported = new JButton("Open"); // creates a jbutton for opening
-		// file
-		// openExported.setToolTipText("Opens Exported.xls file"); // sets
-		// tooltip for jbutton
-		// openExported.setFont(new Font("Arial", Font.BOLD, 12)); // sets font
-		// for jbutton
-		// openExported.setBounds(250,160,110,30); // sets location and size of
-		// jbutton
-		// openExported.addActionListener(this); // adds actionlistener to
-		// jbutton
-		// openExported.setVisible(false); // sets button to not visible
-		// this.add(openExported); // adds jbutton to janel
-		//
 		LOG.info("EditDatabasePanel intialized");
 	}
 
@@ -1200,6 +1065,17 @@ public class EditDatabase {
 			File file4 = new File("Exported.xls"); // creates new path to file
 			openFile(file4); // opens file with its default programm
 		}
+		
+		// str = "deleteFromDB"
+		if (str == "deleteFromDB") {
+			updateSpecifics();
+//			System.out.println("Specifics updated");
+			
+		}
+		if(str == "delete"){
+			eraseFromDB();
+		}
+		
 	}
 
 	public void actionPerformed2(final File file, String str) {
@@ -1700,15 +1576,7 @@ public class EditDatabase {
 														// example.xls file
 			openFile(file2); // opens file with its default program
 		}
-		// str = "deleteFromDB"
-		if (str == "deleteFromDB") {
-			updateSpecifics();
-//			System.out.println("Specifics updated");
-			
-		}
-		if(str == "delete"){
-			eraseFromDB();
-		}
+
 	}
 	
 	public void eraseFromDB(){
@@ -1768,14 +1636,6 @@ public class EditDatabase {
 								stmt = conn.createStatement();
 								stmt.executeUpdate(sql);
 								conn.commit();
-//								boxForSpecifics.removeItem(name);
-//								if( boxForSpecifics.getItemCount() == 1 ){
-//									sql = "DELETE FROM MODELMANAGER WHERE KEY LIKE '%"+topic+"'";
-//									stmt = conn.createStatement();				// creates a new statement object
-//									stmt.executeUpdate(sql);
-//									conn.commit();
-//									boxForTopics.removeItem(topic);
-//								}
 								log.append("Name: "+name+" Topic: "+topic+" Phone: "+phone+" has been deleted\n");
 							}
 							long end = System.nanoTime(); 				// gets system time
@@ -1789,19 +1649,12 @@ public class EditDatabase {
 //							String name = deleteList.get(id).get(0);
 //							String phone = deleteList.get(id).get(1);
 //							String topic = deleteList.get(id).get(2);
-							String sql = "DELETE FROM STUDENT WHERE NAME='"+EditDatabase.specificParameter+"' AND TOPIC='"+EditDatabase.topicParameter+"'";
+							String sql = "DELETE FROM STUDENT WHERE NAME='"+ EditDatabase.specificParameter +"' AND TOPIC='"+ EditDatabase.topicParameter + "'";
 							stmt = conn.createStatement();
 							stmt.executeUpdate(sql);
 							conn.commit();
-//							boxForSpecifics.removeItem(name);
-//							if( boxForSpecifics.getItemCount() == 1 ){
-//								sql = "DELETE FROM MODELMANAGER WHERE KEY LIKE '%"+topic+"'";
-//								stmt = conn.createStatement();				// creates a new statement object
-//								stmt.executeUpdate(sql);
-//								conn.commit();
-//								boxForTopics.removeItem(topic);
-//							}
-//							log.append("Name: "+name+" Topic: "+topic+" Phone: "+phone+" has been deleted\n");
+
+							//log.append("Name: "+name+" Topic: "+topic+" Phone: "+phone+" has been deleted\n");
 							long end = System.nanoTime(); 				// gets system time
 							long elapsedTime = end - start; 			// gets elapsed time in nanoseconds
 							double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds to seconds
