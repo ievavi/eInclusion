@@ -25,48 +25,48 @@
       <task id="3" name="Install SpringBoot and run Jetty" note="" work="28800" start="20160216T000000Z" end="20160216T093500Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
       <task id="4" name="Look at dependencies for software design" note="" work="28800" start="20160216T000000Z" end="20160216T170000Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
     </task>
-    <task id="5" name="Implementation" note="" work="792000" start="20160216T170000Z" end="20160225T114500Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="5" name="Implementation" note="" work="792000" start="20160216T170000Z" end="20160225T094500Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="1" type="FS"/>
       </predecessors>
-      <task id="6" name="Functionality development" note="" work="397800" start="20160216T170000Z" end="20160225T100000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-        <task id="7" name="M1" note="" work="28800" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
-        <task id="8" name="M2, M3" note="" work="28800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="6" name="Functionality development" note="" work="397800" start="20160216T170000Z" end="20160225T094500Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="7" name="M1" note="" work="28800" start="20160216T170000Z" end="20160217T120000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="8" name="M2, M3" note="" work="28800" start="20160217T120000Z" end="20160218T120000Z" work-start="20160217T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="7" type="FS"/>
           </predecessors>
         </task>
-        <task id="9" name="Prediction" note="" work="28800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="9" name="Prediction" note="" work="28800" start="20160217T120000Z" end="20160218T120000Z" work-start="20160217T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="7" type="FS"/>
           </predecessors>
         </task>
-        <task id="10" name="Edit Database" note="" work="259200" start="20160218T170000Z" end="20160223T170000Z" work-start="20160219T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="10" name="Edit Database" note="" work="259200" start="20160218T120000Z" end="20160223T120000Z" work-start="20160218T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="9" type="FS"/>
             <predecessor id="1" predecessor-id="8" type="FS"/>
           </predecessors>
         </task>
-        <task id="11" name="Index" note="" work="28800" start="20160223T170000Z" end="20160224T170000Z" work-start="20160224T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="11" name="Index" note="" work="28800" start="20160223T120000Z" end="20160224T120000Z" work-start="20160223T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="10" type="FS"/>
           </predecessors>
         </task>
-        <task id="12" name="Instructions" note="" work="23400" start="20160224T154500Z" end="20160225T100000Z" work-start="20160224T154500Z" percent-complete="31" priority="0" type="normal" scheduling="fixed-work">
+        <task id="12" name="Instructions" note="" work="23400" start="20160224T153000Z" end="20160225T094500Z" work-start="20160224T153000Z" percent-complete="31" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="19" type="FS"/>
             <predecessor id="1" predecessor-id="10" type="FS"/>
           </predecessors>
         </task>
       </task>
-      <task id="13" name="Graphical design" note="" work="225000" start="20160216T170000Z" end="20160224T154500Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="13" name="Graphical design" note="" work="225000" start="20160216T170000Z" end="20160224T153000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <task id="14" name="Basic design" note="" work="28800" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
         <task id="15" name="Filtering options" note="" work="28800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="14" type="FS"/>
           </predecessors>
         </task>
-        <task id="16" name="Finding design template" note="" work="57600" start="20160218T170000Z" end="20160222T170000Z" work-start="20160219T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="16" name="Finding design template" note="" work="57600" start="20160218T120000Z" end="20160222T120000Z" work-start="20160218T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="9" type="FS"/>
             <predecessor id="1" predecessor-id="8" type="FS"/>
@@ -77,39 +77,42 @@
             <predecessor id="1" predecessor-id="15" type="FS"/>
           </predecessors>
         </task>
-        <task id="18" name="Throwing out junk" note="" work="28800" start="20160222T170000Z" end="20160223T170000Z" work-start="20160223T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="18" name="Throwing out junk" note="" work="28800" start="20160222T164500Z" end="20160223T164500Z" work-start="20160222T164500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="17" type="FS"/>
             <predecessor id="1" predecessor-id="16" type="FS"/>
           </predecessors>
         </task>
-        <task id="19" name="Adding color-coding, filtering by them" note="" work="24300" start="20160223T170000Z" end="20160224T154500Z" work-start="20160224T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="19" name="Adding color-coding, filtering by them" note="" work="24300" start="20160223T164500Z" end="20160224T153000Z" work-start="20160223T164500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="18" type="FS"/>
           </predecessors>
         </task>
       </task>
-      <task id="20" name="Verification" note="" work="42300" start="20160223T170000Z" end="20160225T114500Z" work-start="20160224T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="20" name="Verification" note="" work="42300" start="20160223T120000Z" end="20160224T164500Z" work-start="20160223T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="10" type="FS"/>
         </predecessors>
-        <task id="21" name="Junit Tests" note="" work="18000" start="20160224T154500Z" end="20160225T114500Z" work-start="20160224T154500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="21" name="Junit Tests" note="" work="18000" start="20160224T104500Z" end="20160224T164500Z" work-start="20160224T104500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="22" type="FS"/>
           </predecessors>
         </task>
-        <task id="22" name="Selenium Tests" note="" work="24300" start="20160223T170000Z" end="20160224T154500Z" work-start="20160224T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+        <task id="22" name="Selenium Tests" note="" work="24300" start="20160223T120000Z" end="20160224T104500Z" work-start="20160223T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
       </task>
-      <task id="23" name="Build configuration" note="" work="126900" start="20160223T170000Z" end="20160225T114500Z" work-start="20160224T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="23" name="Build configuration" note="" work="126900" start="20160223T120000Z" end="20160224T164500Z" work-start="20160223T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <predecessors>
           <predecessor id="1" predecessor-id="10" type="FS"/>
         </predecessors>
       </task>
     </task>
-    <task id="24" name="Presentation" note="" work="28800" start="20160225T114500Z" end="20160226T114500Z" work-start="20160225T114500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="24" name="Presentation" note="" work="28800" start="20160225T094500Z" end="20160226T094500Z" work-start="20160225T094500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="5" type="FS"/>
       </predecessors>
+    </task>
+    <task id="25" name="Misc tasks" note="" work="259200" start="20160216T000000Z" end="20160226T170000Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="26" name="Git support" note="" work="259200" start="20160216T000000Z" end="20160226T170000Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
     </task>
   </tasks>
   <resource-groups/>
@@ -143,12 +146,14 @@
     <allocation task-id="6" resource-id="3" units="100"/>
     <allocation task-id="3" resource-id="3" units="100"/>
     <allocation task-id="2" resource-id="3" units="100"/>
+    <allocation task-id="7" resource-id="4" units="100"/>
     <allocation task-id="16" resource-id="4" units="100"/>
     <allocation task-id="10" resource-id="4" units="100"/>
     <allocation task-id="13" resource-id="4" units="100"/>
     <allocation task-id="6" resource-id="4" units="100"/>
     <allocation task-id="3" resource-id="4" units="100"/>
     <allocation task-id="2" resource-id="4" units="100"/>
+    <allocation task-id="25" resource-id="5" units="100"/>
     <allocation task-id="23" resource-id="5" units="100"/>
     <allocation task-id="14" resource-id="5" units="100"/>
     <allocation task-id="12" resource-id="5" units="100"/>
