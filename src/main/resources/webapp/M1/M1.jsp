@@ -30,7 +30,7 @@
 	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%
 		WebTable m1Table = new M1Web();
@@ -55,6 +55,8 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
+						<li><a href="ReadMe.pdf" target="_blank"><i class="icon-table"></i><span
+								class="hidden-tablet"> Instructions </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -100,10 +102,10 @@
 									</div>
 								</fieldset>
 							</form>
-							<label><font color='#55cc55'><b>Green</b>
-							</font> - included, <font color='ffdd54'>
-							<b>Yellow</b></font> - partly included, <font color='#ff6654'>
-							<b>Red</b></font> - not included</label>
+							<label><font color='#55cc55'><b>Green</b> </font> -
+								included, <font color='ffdd54'> <b>Yellow</b></font> - partly
+								included, <font color='#ff6654'> <b>Red</b></font> - not
+								included</label>
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>
@@ -118,7 +120,7 @@
 										<th>E-environment</th>
 										<th>Predicted usage</th>
 										<th>Submit date</th>
-										<th class = "colored">M1</th>
+										<th class="colored">M1</th>
 
 									</tr>
 								</thead>
@@ -139,16 +141,19 @@
 											<td><c:out value="${item.get(10)}" /></td>
 											<c:choose>
 												<c:when test="${item.get(11) == 2}">
-													<td class="green colored"><c:out value="${item.get(11)}" /></td>
+													<td class="green colored"><c:out
+															value="${item.get(11)}" /></td>
 												</c:when>
 												<c:when test="${item.get(11) == 1}">
-													<td class = "yellow colored"><c:out value="${item.get(11)}" /></td>
+													<td class="yellow colored"><c:out
+															value="${item.get(11)}" /></td>
 												</c:when>
 												<c:when test="${item.get(11) == 0}">
-													<td class = "red colored"><c:out value="${item.get(11)}" /></td>
+													<td class="red colored"><c:out value="${item.get(11)}" /></td>
 												</c:when>
 												<c:otherwise>
-													<td class = "gray colored"><c:out value="${item.get(11)}" /></td>
+													<td class="gray colored"><c:out
+															value="${item.get(11)}" /></td>
 												</c:otherwise>
 											</c:choose>
 										</tr>
@@ -163,9 +168,10 @@
 	</div>
 
 
-	<!-- start: JavaScript-->	
+	<!-- start: JavaScript-->
 	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">	
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+		
 	</script>
 	<script src="src/jquery.table2excel.js"></script>
 	<script type="text/javascript">

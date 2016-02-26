@@ -31,7 +31,7 @@
 	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>	
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<!-- start: Header -->
 	<div class="navbar">
@@ -50,6 +50,8 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
+						<li><a href="ReadMe.pdf" target="_blank"><i class="icon-table" ></i><span
+								class="hidden-tablet"> Instructions </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -87,24 +89,28 @@
 									Choose file: <input type="file" name="file"> <input
 										type="submit" value="Upload" name="uploadFile">
 								</form>
-								<input type="submit" name="button1" value="Open uploaded file" /><br />
+								<form method="get"
+									action="${pageContext.request.contextPath}/fileupload"
+									enctype="multipart/form-data">
+									<input type="submit" name="button1" value="Open uploaded file" /><br />
+								</form>
 								</br>
 								<h3>Select file to update database parameters</h3>
 								<form method="post" action="/fileupload"
 									enctype="multipart/form-data">
-									Choose file: <input type="file" name="upload">
-									<input type="submit" value="Update" name="uploadFile">
+									Choose file: <input type="file" name="upload"> <input
+										type="submit" value="Update" name="uploadFile">
 								</form>
 								<br>
-										<form method="get"
-											action="${pageContext.request.contextPath}/fileupload"
-											enctype="multipart/form-data">
-											<input type="submit" name="button4" value="Example" /><br />
-											<input type="submit" name="button2" value="Create Template" />
-											<input type="submit" name="button3" value="Open Template" /><br />
-											<input type="submit" name="button5" value="Export all data" />
-											<input type="submit" name="button6" value="Open exported data" /><br />
-										</form>
+								<form method="get"
+									action="${pageContext.request.contextPath}/fileupload"
+									enctype="multipart/form-data">
+									<input type="submit" name="button4" value="Example" /><br />
+									<input type="submit" name="button2" value="Create Template" />
+									<input type="submit" name="button3" value="Open Template" /><br />
+									<input type="submit" name="button5" value="Export all data" />
+									<input type="submit" name="button6" value="Open exported data" /><br />
+								</form>
 								</tr>
 
 								</tr>
@@ -114,18 +120,16 @@
 
 								<tr>
 									<td><%@ page import="org.einclusion.GUI.EditDatabasePanel"%>
-										<%@ page import="java.util.TreeSet"%>
-										<%@ page import="java.util.ArrayList"%>
-										 <%@ taglib
+										<%@ page import="java.util.TreeSet"%> <%@ page
+											import="java.util.ArrayList"%> <%@ taglib
 											prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 										<%
 											//public static String specificsParam;
 											TreeSet<String> topics = new TreeSet();
 											ArrayList<String> specifics = new ArrayList<String>();
-											
-											
+
 											EditDatabase editPanel = new EditDatabase();
-											
+
 											editPanel.treeSetTopics.clear();
 											topics.clear();
 
@@ -144,44 +148,51 @@
 											//	response.setIntHeader("Refresh", 0);
 											//response.setIntHeader("topic", 0);
 										%>
-										<tr> <h2> Delete from database </h2> </tr>
-										<tr>
-										<form method="get" action="${pageContext.request.contextPath}/fileupload"
-											enctype="multipart/form-data" name="f1">
-											<select name="topic">
-												<c:forEach items="${topics}" var="item">
-													<option value="${item}" ${item == selectedTopic ? 'selected="selected"' : ''}>${item}</option>
-												</c:forEach>
-											</select>
-											 <input type="submit" name="deleteButton" value="Refresh names" />
-										</form>
-										
-										<form method="get" action="${pageContext.request.contextPath}/fileupload"
-											enctype="multipart/form-data">
-											<select name="specific">
-												<c:forEach items="${specifics}" var="item">
-													<option value="${item}" selected="${selectedTopic}">${item}</option>
-												</c:forEach>
-<%-- 												<option selected="selected" value="<%=%>">${item}</option> --%>
-											</select>
-											 <input type="submit" name="deleteFromDatabase" value="Delete from database" />
-										</form>
-										</tr>
-										</td>
+								<tr>
+									<h2>Delete from database</h2>
+								</tr>
+								<tr>
+									<form method="get"
+										action="${pageContext.request.contextPath}/fileupload"
+										enctype="multipart/form-data" name="f1">
+										<select name="topic">
+											<c:forEach items="${topics}" var="item">
+												<option value="${item}"
+													${item == selectedTopic ? 'selected="selected"' : ''}>${item}</option>
+											</c:forEach>
+										</select> <input type="submit" name="deleteButton"
+											value="Refresh names" />
+									</form>
+
+									<form method="get"
+										action="${pageContext.request.contextPath}/fileupload"
+										enctype="multipart/form-data">
+										<select name="specific">
+											<c:forEach items="${specifics}" var="item">
+												<option value="${item}" selected="${selectedTopic}">${item}</option>
+											</c:forEach>
+											<%-- 												<option selected="selected" value="<%=%>">${item}</option> --%>
+										</select> <input type="submit" name="deleteFromDatabase"
+											value="Delete from database" />
+									</form>
+								</tr>
+								</td>
 								</tr>
 
 							</table>
-							
-							<label>Coefficients</label>
-							<%ArrayList<ArrayList<String>> list = WebTable.coef();
-							request.setAttribute("list", list);%>
+
+							<h3>Coefficients</h3>
+							<%
+								ArrayList<ArrayList<String>> list = WebTable.coef();
+								request.setAttribute("list", list);
+							%>
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>
 										<th>Key</th>
-										<th>Coefficient</th>
-										<th>Relative</th>
-										<th>Value</th>
+										<th class=skip-filter>Coefficient</th>
+										<th class=skip-filter>Relative</th>
+										<th class=skip-filter>Value</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -206,7 +217,8 @@
 
 	<!-- start: JavaScript-->
 	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+		
 	</script>
 	<script type="text/javascript" src="ddtf.js"></script>
 	<script type="text/javascript">
@@ -215,6 +227,6 @@
 		});
 	</script>
 
-		<!-- end: JavaScript-->
+	<!-- end: JavaScript-->
 </body>
 </html>
