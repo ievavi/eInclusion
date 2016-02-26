@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost:8080/M1/M1.jsp" />
+<title>testcase3</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">testcase3</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/M1/databaseEdit.jsp</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Edit database</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=span.hidden-tablet</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=file</td>
+	<td>/home/student/Einclusion/EinclusionFiles/Feedback files for testing/feedback4.xlsx</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=uploadFile</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=upload</td>
+	<td>/home/student/Einclusion/EinclusionFiles/Feedback files for testing/Update_Database2.xls</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@name='uploadFile'])[2]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button4</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button2</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=button6</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=topic</td>
+	<td>label=Video</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=deleteButton</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=specific</td>
+	<td>label=All</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=deleteFromDatabase</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=th &gt; select</td>
+	<td>label=M1-centroids-Mobilās tehnoloģijas</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=th &gt; select</td>
+	<td>label=M1-centroids-Robotika</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=th &gt; select</td>
+	<td>label=Key</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//li[2]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>General evaluation of student</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=select</td>
+	<td>label=2222222</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[1]/select</td>
+	<td>label=Phone</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[2]/select</td>
+	<td>label=Mobilās tehnoloģijas</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[2]/select</td>
+	<td>label=Topic</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[3]/select</td>
+	<td>label=aija fedotova</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[3]/select</td>
+	<td>label=Name</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[4]/select</td>
+	<td>label=1.50</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[4]/select</td>
+	<td>label=Motivation</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[5]/select</td>
+	<td>label=1.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[5]/select</td>
+	<td>label=Digital skills</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[6]/select</td>
+	<td>label=1.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[6]/select</td>
+	<td>label=Learning ability</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[7]/select</td>
+	<td>label=3.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[7]/select</td>
+	<td>label=E-materials</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[8]/select</td>
+	<td>label=3.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[8]/select</td>
+	<td>label=Instructor</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[9]/select</td>
+	<td>label=3.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[9]/select</td>
+	<td>label=E-environment</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[10]/select</td>
+	<td>label=1.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[10]/select</td>
+	<td>label=Predicted usage</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[11]/select</td>
+	<td>label=2015-05-04</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[11]/select</td>
+	<td>label=Submit date</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=th.colored &gt; select</td>
+	<td>label=green</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=th.colored &gt; select</td>
+	<td>label=M1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//li[3]/a/i</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Evaluation of ability to learn and knowledge sharing</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=select</td>
+	<td>label=2222222</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=select</td>
+	<td>label=Phone</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[2]/select</td>
+	<td>label=Mobilās tehnoloģijas</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[2]/select</td>
+	<td>label=Topic</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[3]/select</td>
+	<td>label=aija fedotova</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[3]/select</td>
+	<td>label=Name</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[4]/select</td>
+	<td>label=1.50</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[4]/select</td>
+	<td>label=Motivation</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[5]/select</td>
+	<td>label=1.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[5]/select</td>
+	<td>label=Learning ability</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[6]/select</td>
+	<td>label=3.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[6]/select</td>
+	<td>label=E-materials</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[7]/select</td>
+	<td>label=3.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[7]/select</td>
+	<td>label=E-environment</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[8]/select</td>
+	<td>label=3.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[8]/select</td>
+	<td>label=Instructor</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[9]/select</td>
+	<td>label=2015-05-04</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[9]/select</td>
+	<td>label=Submit date</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=th.colored &gt; select</td>
+	<td>label=yellow</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=th.colored &gt; select</td>
+	<td>label=M2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//li[4]/a/span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Evaluation of knowledge flow</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[1]/select</td>
+	<td>label=2222222</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[1]/select</td>
+	<td>label=Phone</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[2]/select</td>
+	<td>label=Mobilās tehnoloģijas</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[2]/select</td>
+	<td>label=Topic</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[3]/select</td>
+	<td>label=aija fedotova</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[3]/select</td>
+	<td>label=Name</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[4]/select</td>
+	<td>label=3.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[4]/select</td>
+	<td>label=Instructor</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[5]/select</td>
+	<td>label=3.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[5]/select</td>
+	<td>label=E-environment</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[6]/select</td>
+	<td>label=3.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[6]/select</td>
+	<td>label=E-materials</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[7]/select</td>
+	<td>label=1.00</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[7]/select</td>
+	<td>label=Before learning</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[8]/select</td>
+	<td>label=2015-05-04</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[8]/select</td>
+	<td>label=Submit date</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=th.colored &gt; select</td>
+	<td>label=green</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>css=th.colored &gt; select</td>
+	<td>label=M3</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Prediction</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertTitle</td>
+	<td>Prediction of student E-inclusion</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[1]/select</td>
+	<td>label=2222222</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[1]/select</td>
+	<td>label=Phone</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[3]/select</td>
+	<td>label=aigars erdmanis</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[3]/select</td>
+	<td>label=Name</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[4]/select</td>
+	<td>label=2015-05-04</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>//div[@id='content']/div/div/div[2]/table/thead/tr/th[4]/select</td>
+	<td>label=Submit date</td>
+</tr>
+</tbody></table>
+</body>
+</html>
