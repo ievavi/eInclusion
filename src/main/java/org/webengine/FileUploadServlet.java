@@ -26,9 +26,13 @@ public class FileUploadServlet extends HttpServlet {
 	EditDatabase edDB = new EditDatabase();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		System.out.println("BEEEEEEEEEEEEEEEEEEEEEEEEP");
+		System.out.println(FileUploadServlet.class.getName());
+		LOG.info("loggertest");
 		String str = null;
 		if (request.getPart("file") != null) {
-//			System.out.println("BEEEEEEEEEEEEEEEEEEEEEEEEP");
+			
+			//System.out.println("BEEEEEEEEEEEEEEEEEEEEEEEEP");
 			Part filePart = request.getPart("file");
 			String fileName = getFileName(filePart);
 			String fileLocation = ".";
