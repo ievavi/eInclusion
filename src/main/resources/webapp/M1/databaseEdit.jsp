@@ -176,16 +176,16 @@
 
 							</table>
 							
-							<label>Coefficients</label>
+							<h3>Coefficients</h3>
 							<%ArrayList<ArrayList<String>> list = WebTable.coef();
 							request.setAttribute("list", list);%>
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>
 										<th>Key</th>
-										<th>Coefficient</th>
-										<th>Relative</th>
-										<th>Value</th>
+										<th class = skip-filter>Coefficient</th>
+										<th class = skip-filter>Relative</th>
+										<th class = skip-filter>Value</th>
 									</tr>
 								</thead>
 								<tbody>
