@@ -120,14 +120,14 @@ public class FileUploadServlet extends HttpServlet {
 		}else if(request.getParameter("deleteButton") != null){
 			String parameter = request.getParameter("topic");
 			edDB.topicParameter = parameter;
-			edDB.actionPerformed2(FileUploadServlet.file, "deleteFromDB");
+			edDB.actionPerformed(FileUploadServlet.file, "deleteFromDB");
 //			System.out.println("////////////////////////////"+parameter);
 			response.setHeader("Refresh","10;url=/fileupload?topic=" + parameter);
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		}else if(request.getParameter("deleteFromDatabase") != null){
 			String parameter = request.getParameter("specific");
 			edDB.specificParameter = parameter;
-			edDB.actionPerformed2(FileUploadServlet.file, "delete");
+			edDB.actionPerformed(FileUploadServlet.file, "delete");
 			response.sendRedirect("/M1/databaseEdit.jsp");
 			
 		}
