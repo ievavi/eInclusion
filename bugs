@@ -1,0 +1,10 @@
+- No concurrent database connections
+
+- After using Update Database button connection to database is not closed,
+therefore a new connection to database cannot be established due to the concurrent connections bug (No explicit errors are thrown, only JdbcSQLException log)
+
+- When deleting student it is offered to choose the student by name, not by phone number. If there are 2 students with the same name, they both can be selected.
+
+- Update database function in web app currently doesn't work with .xlsx files, works only with .xls.
+
+- When trying to upload a .xls/.xlsx file with wrong content scema, it prints error in console but does not show any warning in web

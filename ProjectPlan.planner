@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<project name="" company="" manager="" phase="" project-start="20160216T000000Z" mrproject-version="2" calendar="1">
+  <properties/>
+  <phases/>
+  <calendars>
+    <day-types>
+      <day-type id="0" name="Working" description="A default working day"/>
+      <day-type id="1" name="Nonworking" description="A default non working day"/>
+      <day-type id="2" name="Use base" description="Use day from base calendar"/>
+    </day-types>
+    <calendar id="1" name="Default">
+      <default-week mon="0" tue="0" wed="0" thu="0" fri="0" sat="1" sun="1"/>
+      <overridden-day-types>
+        <overridden-day-type id="0">
+          <interval start="0800" end="1200"/>
+          <interval start="1300" end="1700"/>
+        </overridden-day-type>
+      </overridden-day-types>
+      <days/>
+    </calendar>
+  </calendars>
+  <tasks>
+    <task id="1" name="Analysis" note="" work="86400" start="20160216T000000Z" end="20160216T170000Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="2" name="Get introduced with the framework and requirements" note="" work="28800" start="20160216T000000Z" end="20160216T093500Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="3" name="Install SpringBoot and run Jetty" note="" work="28800" start="20160216T000000Z" end="20160216T093500Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="4" name="Look at dependencies for software design" note="" work="28800" start="20160216T000000Z" end="20160216T170000Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+    </task>
+    <task id="5" name="Design" note="" work="28800" start="20160216T000000Z" end="20160216T170000Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+    <task id="6" name="Implementation" note="" work="201600" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="1" type="FS"/>
+      </predecessors>
+      <task id="7" name="Edit database page" note="" work="28800" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="8" name="M1 page" note="" work="28800" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="9" name="M2 page" note="" work="28800" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="10" name="M3 page" note="" work="28800" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="11" name="Prediction page" note="" work="28800" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="12" name="Auth and security" note="" work="28800" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="13" name="Graphical design" note="" work="28800" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+    </task>
+    <task id="14" name="Verification" note="" work="172800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="6" type="FS"/>
+      </predecessors>
+      <task id="15" name="UT Edit database page" note="" work="28800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="16" name="UT M1 page" note="" work="28800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="17" name="UT M2 page" note="" work="28800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="18" name="UT M3 page" note="" work="28800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="19" name="UT Prediction page" note="" work="28800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+      <task id="20" name="UT Auth and security" note="" work="28800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
+    </task>
+  </tasks>
+  <resource-groups/>
+  <resources>
+    <resource id="1" name="Aleksandrs" short-name="Ale" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource id="2" name="Sergejs" short-name="Ser" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource id="3" name="Inga" short-name="Ing" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource id="4" name="Mohamed" short-name="Moh" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource id="5" name="Mat&#x12B;ss" short-name="Mat" type="1" units="0" email="" note="" std-rate="0"/>
+  </resources>
+  <allocations>
+    <allocation task-id="3" resource-id="1" units="100"/>
+    <allocation task-id="2" resource-id="1" units="100"/>
+    <allocation task-id="3" resource-id="2" units="100"/>
+    <allocation task-id="2" resource-id="2" units="100"/>
+    <allocation task-id="3" resource-id="3" units="100"/>
+    <allocation task-id="2" resource-id="3" units="100"/>
+    <allocation task-id="3" resource-id="4" units="100"/>
+    <allocation task-id="2" resource-id="4" units="100"/>
+    <allocation task-id="3" resource-id="5" units="100"/>
+    <allocation task-id="2" resource-id="5" units="100"/>
+  </allocations>
+</project>
