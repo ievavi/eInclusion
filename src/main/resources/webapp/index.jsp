@@ -12,6 +12,7 @@
 <!-- end: Meta -->
 
 <!-- start: CSS -->
+<link id="bootstrap-style" href="M1/css/bootstrap.min.css" rel="stylesheet">
 <link id="bootstrap-style" href="M1/css/bootstrap.min.css"
 	rel="stylesheet">
 <link id="base-style" href="M1/css/style.css" rel="stylesheet">
@@ -44,7 +45,7 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="M1/prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
-						<li><a href="ReadMe.pdf" target="_blank"><i class="icon-table"></i><span
+						<li><a href="M1/ReadMe.pdf" target="_blank"><i class="icon-table"></i><span
 								class="hidden-tablet"> Instructions </span></a></li>
 					</ul>
 				</div>
@@ -64,7 +65,6 @@
 					</p>
 				</div>
 			</noscript>
-
 			<div id="content" class="span10" style="width: 65%">
 				<div>
 					<h1>Einclusion</h1>
@@ -90,12 +90,9 @@
 			</div>
 		</div>
 	</div>
-
-
 	<!-- start: JavaScript-->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
-		
 	</script>
 	<script src="M1/src/jquery.table2excel.js"></script>
 	<script type="text/javascript">

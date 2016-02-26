@@ -45,6 +45,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xslf.model.geom.IfElseExpression;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.einclusion.GUI.M2Table;
@@ -61,6 +62,7 @@ import org.einclusion.model.PrepareData;
  * @author student
  */
 public class EditDatabase {
+	
 	private static final long serialVersionUID = 1000L;
 
 	static final String PERSISTENCE_SET = "test"; // persistence set for
@@ -1032,12 +1034,13 @@ public class EditDatabase {
 			File file2 = new File("Update_Database.xls");
 			openFile(file2); // opens file with its default program
 		}
-		if (str == "exampleFile") { // if exampleFile button is pressed
-			File file2 = new File("data/example.xls"); // creates file path to
-														// example.xls file
-			openFile(file2); // function that opens file with its default
-								// program
-		}
+//		if (str == "exampleFile") { // if exampleFile button is pressed
+//			File file2 = new File("data/example1234e5.xls"); // creates file path to
+//														// example.xls file
+//			System.out.print("ir fail: " + file2.exists());
+//			openFile(file2); // function that opens file with its default
+//								// program
+//		}
 		if (str == "exportAllData") { // if exportAllData button is pressed
 			new Thread() { // creates a new thread so processes execute
 							// consecutively

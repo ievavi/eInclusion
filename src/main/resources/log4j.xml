@@ -9,16 +9,16 @@
 		</layout>
 	</appender>
 	<logger name="org.einclusion">
-		<level value="error" />
+		<level value="debug" />
 	</logger>
 	<logger name="org.webengine">
-		<level value="error" />
+		<level value="debug" />
 	</logger>
 	<logger name="javax.persistence">
-		<level value="error" />
+		<level value="debug" />
 	</logger>
 	<logger name="org.hibernate">
-		<level value="error" />
+		<level value="debug" />
 	</logger>
 	<root>
 		<level value="info" />
