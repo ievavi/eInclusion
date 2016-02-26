@@ -25,11 +25,11 @@
       <task id="3" name="Install SpringBoot and run Jetty" note="" work="28800" start="20160216T000000Z" end="20160216T093500Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
       <task id="4" name="Look at dependencies for software design" note="" work="28800" start="20160216T000000Z" end="20160216T170000Z" work-start="20160216T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
     </task>
-    <task id="5" name="Implementation" note="" work="792000" start="20160216T170000Z" end="20160225T094500Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="5" name="Implementation" note="" work="792000" start="20160216T170000Z" end="20160224T164500Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="1" type="FS"/>
       </predecessors>
-      <task id="6" name="Functionality development" note="" work="397800" start="20160216T170000Z" end="20160225T094500Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="6" name="Functionality development" note="" work="397800" start="20160216T170000Z" end="20160224T150000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <task id="7" name="M1" note="" work="28800" start="20160216T170000Z" end="20160217T120000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
         <task id="8" name="M2, M3" note="" work="28800" start="20160217T120000Z" end="20160218T120000Z" work-start="20160217T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
@@ -52,14 +52,14 @@
             <predecessor id="1" predecessor-id="10" type="FS"/>
           </predecessors>
         </task>
-        <task id="12" name="Instructions" note="" work="23400" start="20160224T153000Z" end="20160225T094500Z" work-start="20160224T153000Z" percent-complete="31" priority="0" type="normal" scheduling="fixed-work">
+        <task id="12" name="Instructions" note="" work="23400" start="20160224T104500Z" end="20160224T150000Z" work-start="20160224T104500Z" percent-complete="31" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="19" type="FS"/>
             <predecessor id="1" predecessor-id="10" type="FS"/>
           </predecessors>
         </task>
       </task>
-      <task id="13" name="Graphical design" note="" work="225000" start="20160216T170000Z" end="20160224T153000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <task id="13" name="Graphical design" note="" work="225000" start="20160216T170000Z" end="20160224T104500Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
         <task id="14" name="Basic design" note="" work="28800" start="20160216T170000Z" end="20160217T170000Z" work-start="20160217T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work"/>
         <task id="15" name="Filtering options" note="" work="28800" start="20160217T170000Z" end="20160218T170000Z" work-start="20160218T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
@@ -72,18 +72,18 @@
             <predecessor id="1" predecessor-id="8" type="FS"/>
           </predecessors>
         </task>
-        <task id="17" name="Exporting table to xls options" note="" work="56700" start="20160218T170000Z" end="20160222T164500Z" work-start="20160219T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="17" name="Exporting table to xls options" note="" work="56700" start="20160218T170000Z" end="20160219T165140Z" work-start="20160219T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="15" type="FS"/>
           </predecessors>
         </task>
-        <task id="18" name="Throwing out junk" note="" work="28800" start="20160222T164500Z" end="20160223T164500Z" work-start="20160222T164500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="18" name="Throwing out junk" note="" work="28800" start="20160222T120000Z" end="20160223T120000Z" work-start="20160222T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="17" type="FS"/>
             <predecessor id="1" predecessor-id="16" type="FS"/>
           </predecessors>
         </task>
-        <task id="19" name="Adding color-coding, filtering by them" note="" work="24300" start="20160223T164500Z" end="20160224T153000Z" work-start="20160223T164500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+        <task id="19" name="Adding color-coding, filtering by them" note="" work="24300" start="20160223T120000Z" end="20160224T104500Z" work-start="20160223T120000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
           <predecessors>
             <predecessor id="1" predecessor-id="18" type="FS"/>
           </predecessors>
@@ -106,7 +106,7 @@
         </predecessors>
       </task>
     </task>
-    <task id="24" name="Presentation" note="" work="28800" start="20160225T094500Z" end="20160226T094500Z" work-start="20160225T094500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="24" name="Presentation" note="" work="28800" start="20160224T164500Z" end="20160225T164500Z" work-start="20160224T164500Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <predecessors>
         <predecessor id="1" predecessor-id="5" type="FS"/>
       </predecessors>
@@ -124,6 +124,9 @@
     <resource id="5" name="Mat&#x12B;ss" short-name="Mat" type="1" units="0" email="" note="" std-rate="0"/>
   </resources>
   <allocations>
+    <allocation task-id="22" resource-id="1" units="100"/>
+    <allocation task-id="21" resource-id="1" units="100"/>
+    <allocation task-id="17" resource-id="1" units="100"/>
     <allocation task-id="24" resource-id="1" units="100"/>
     <allocation task-id="20" resource-id="1" units="100"/>
     <allocation task-id="6" resource-id="1" units="100"/>
