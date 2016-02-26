@@ -14,7 +14,7 @@
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
 			<property name="hibernate.connection.driver_class" value="org.h2.Driver" />
-			<property name="hibernate.connection.url" value="jdbc:h2:data/Student" />
+			<property name="hibernate.connection.url" value="jdbc:h2:data/Student;AUTO_SERVER=TRUE" />
 			<property name="hibernate.connection.user" value="sa" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.flushMode" value="COMMIT" />
