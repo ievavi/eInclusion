@@ -98,11 +98,6 @@ public class FileUploadServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-//		if (request.getParameter("uploadFile") != null){
-//			edDB.actionPerformed(FileUploadServlet.file, "uploadFile");
-//			response.sendRedirect("/M1/databaseEdit.jsp");
-//		}
 		if (request.getParameter("button1") != null) {
 			edDB.actionPerformed(FileUploadServlet.file, "OpenFile");
 			response.sendRedirect("/M1/databaseEdit.jsp");

@@ -65,22 +65,6 @@
 					</p>
 				</div>
 			</noscript>
-
-<<<<<<< HEAD
-			<div id="content" class="span10">
-				<div>
-					<h1>Einclusion</h1>
-					<div>
-						<div class="box-header"></div>
-						<div class="box-content">
-							<h3>Einclusion is a web based tool for predicting student E-inclusion from survey answers.
-							Sistēmas mērķis ir  prognozēt studentu, kuri apgūst digitālās prasmes, uzvedību pēc mācību kursa pabeigšanas.
-							Sistēma ļauj pasniedzējam jau mācību kursa norises laikā konstatēt problemātiskos studentus, tas ir, studentus,
-							kuri kursā mācīto neizmantos pēc kursa pabeigšanas. Sistēma ļauj noteikt, kādi ir riska faktori katram no šiem
-							studentiem un tas dod iespēju pasniedzējam tos novērst, pielāgojot mācību procesu konkrētam studentam.
-							Šīs sistēmas kontekstā e-iekļauts students ir tāds students, kurš pēc kursa apguves lieto jaunapgūtās
-							digitālās prasmes.</h3>
-=======
 			<div id="content" class="span10" style="width: 65%">
 				<div>
 					<h1>Einclusion</h1>
@@ -100,25 +84,15 @@
 							In the scope of this system, an e-included student is such a
 							student that after course completion applies the skills taught in
 							it. </descrip>
->>>>>>> 4fa002c8d263aead91211a49bae36af297df8dfc
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-<<<<<<< HEAD
-	<!-- start: JavaScript-->	
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">	
-=======
 	<!-- start: JavaScript-->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
-		
->>>>>>> 4fa002c8d263aead91211a49bae36af297df8dfc
 	</script>
 	<script src="M1/src/jquery.table2excel.js"></script>
 	<script type="text/javascript">
