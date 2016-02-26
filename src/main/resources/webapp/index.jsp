@@ -12,12 +12,9 @@
 <!-- end: Meta -->
 
 <!-- start: CSS -->
-<<<<<<< HEAD
 <link id="bootstrap-style" href="M1/css/bootstrap.min.css" rel="stylesheet">
-=======
 <link id="bootstrap-style" href="M1/css/bootstrap.min.css"
 	rel="stylesheet">
->>>>>>> 4fa002c8d263aead91211a49bae36af297df8dfc
 <link id="base-style" href="M1/css/style.css" rel="stylesheet">
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
@@ -35,11 +32,7 @@
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div>
-<<<<<<< HEAD
-				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
-=======
 				<a class="brand" href="M1/databaseEdit.jsp"><span>Einclusion</span></a>
->>>>>>> 4fa002c8d263aead91211a49bae36af297df8dfc
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs main-menu">
 						<li><a href="M1/databaseEdit.jsp"><i class="icon-edit"></i><span
@@ -52,11 +45,8 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="M1/prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
-<<<<<<< HEAD
-=======
 						<li><a href="ReadMe.pdf" target="_blank"><i class="icon-table"></i><span
 								class="hidden-tablet"> Instructions </span></a></li>
->>>>>>> 4fa002c8d263aead91211a49bae36af297df8dfc
 					</ul>
 				</div>
 			</div>
