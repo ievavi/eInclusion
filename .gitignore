@@ -1,5 +1,5 @@
-bin/**
-target/**
+﻿bin/**
+
 src/main/resources/webapp/M1/demo/**
 
 data/Student.lock.db
