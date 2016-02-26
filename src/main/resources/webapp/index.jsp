@@ -12,7 +12,8 @@
 <!-- end: Meta -->
 
 <!-- start: CSS -->
-<link id="bootstrap-style" href="M1/css/bootstrap.min.css" rel="stylesheet">
+<link id="bootstrap-style" href="M1/css/bootstrap.min.css"
+	rel="stylesheet">
 <link id="base-style" href="M1/css/style.css" rel="stylesheet">
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
@@ -30,7 +31,7 @@
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div>
-				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
+				<a class="brand" href="M1/databaseEdit.jsp"><span>Einclusion</span></a>
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs main-menu">
 						<li><a href="M1/databaseEdit.jsp"><i class="icon-edit"></i><span
@@ -62,13 +63,24 @@
 				</div>
 			</noscript>
 
-			<div id="content" class="span10">
+			<div id="content" class="span10" style="width: 65%">
 				<div>
 					<h1>Einclusion</h1>
 					<div>
-						<div class="box-header"></div>
 						<div class="box-content">
-							<h3>Einclusion is a web based tool for predicting student E-inclusion from survey answers.</h3>
+							<descrip><br /> The purpose of this system is predicting
+							behavior of students, studying digital skills, after completing
+							course.<br />
+							<br />
+							It gives instructor an opportunity to recognize students who
+							would fail to use the skills taught in course after completion.
+							It helps to determine risk factors for each of the students and
+							allows the instructor to avert them by adjusting the studies to
+							the needs of each student.<br />
+							<br />
+							In the scope of this system, an e-included student is such a
+							student that after course completion applies the skills taught in
+							it. </descrip>
 						</div>
 					</div>
 				</div>
@@ -77,9 +89,10 @@
 	</div>
 
 
-	<!-- start: JavaScript-->	
+	<!-- start: JavaScript-->
 	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">	
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+		
 	</script>
 	<script src="M1/src/jquery.table2excel.js"></script>
 	<script type="text/javascript">
