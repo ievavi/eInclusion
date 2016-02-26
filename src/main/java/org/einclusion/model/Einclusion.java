@@ -23,8 +23,8 @@ public class Einclusion {
 	public static DBManager dbManager;
 
 	public static void main(String[] args) throws Exception {
-		 AppFrame gui = new AppFrame();
-		//gui.setVisible(true);
+		AppFrame gui = new AppFrame();
+		gui.setVisible(true);
 
 		Server server = new Server(8080);
 		System.setProperty("is_DCA", "YES");
