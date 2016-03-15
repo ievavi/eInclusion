@@ -1,11 +1,6 @@
 ﻿bin/**
-
-src/main/resources/webapp/M1/demo/**
-
-data/Student.lock.db
-data/Student.trace.db
-data/Student.h2.db
-
-
+target/**
 data/**
+
+
 
