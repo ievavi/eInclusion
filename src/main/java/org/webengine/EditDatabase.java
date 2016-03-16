@@ -45,7 +45,6 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xslf.model.geom.IfElseExpression;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.einclusion.GUI.M2Table;
@@ -70,6 +69,21 @@ public class EditDatabase {
 	private static final Logger LOG = Logger.getLogger(EditDatabase.class); // Logger
 																			// for
 																			// EditDatabasePanel
+	private String ext=null;
+	/**
+	 * @return the ext
+	 */
+	public String getExt() {
+		return ext;
+	}
+
+	/**
+	 * @param ext the ext to set
+	 */
+	public void setExt(String ext) {
+		this.ext = ext;
+	}
+
 	JFileChooser fileChooser; // a file chooser for choosing paths to files
 	FileNameExtensionFilter filterxlsx, filterxls; // filter for jfilechooser
 	JButton chooseFile, createTemplateXlsx, openTemplateXlsx, updateDatabase, exampleFile, eraseFromDatabase, openFile,
@@ -804,7 +818,7 @@ public class EditDatabase {
 												// nanoseconds
 				// System.out.println("File name: " + file.get);
 				String extension = file.getName().substring(file.getName().indexOf("."), file.getName().length()); // gets
-																													// file
+						setExt(extension);																							// file
 																													// extension
 				if (extension.equals(".xlsx")) { // if file is .xlsx
 					log.setText("Selected file: " + file.getName() + "\n");
@@ -939,8 +953,8 @@ public class EditDatabase {
 					log.append("Execution time: " + seconds + " sec\n");
 				} else { // if not .xlsx file shows warning
 					LOG.warn("Invalid file type: " + extension);
-					JOptionPane.showMessageDialog(null, "Invalid file type: " + extension, "Warning !",
-							JOptionPane.INFORMATION_MESSAGE);
+					//JOptionPane.showMessageDialog(null, "Invalid file type: " + extension, "Warning !",
+						//	JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 		}.start(); // starts thread
@@ -1563,8 +1577,8 @@ public class EditDatabase {
 							}
 						}
 					} else {
-						JOptionPane.showMessageDialog(null, "Invalid file type", "Warning !",
-								JOptionPane.INFORMATION_MESSAGE);
+					//	JOptionPane.showMessageDialog(null, "Invalid file type", "Warning !",
+								//JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 			}.start(); // starts thread

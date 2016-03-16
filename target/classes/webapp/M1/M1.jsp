@@ -55,8 +55,12 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
-						<li><a href="ReadMe.pdf" target="_blank"><i class="icon-table"></i><span
-								class="hidden-tablet"> Instructions </span></a></li>
+						<li><a href="ReadMe.pdf" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Instructions </span></a></li>
+						<li><a href="coefficients.jsp" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Coefficients </span></a></li>
 					</ul>
 				</div>
 			</div>
