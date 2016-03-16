@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 
 import javax.persistence.Query;
 
@@ -60,13 +61,74 @@ public class PrepareData {
 				Double KFA = ((Double.parseDouble(IWS) + ELE + ELM) * KLBL) / 3;
 				
 				// creates a statement that will add one student with the selected values into the database
-				String sql = "INSERT INTO STUDENT (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY)"
-						+ " SELECT '" + PHONE + "','" + NAME + "','" + TOPIC + "','" + IWS + "','" + KLAL + "','"
-						+ KLBL + "','" + PU + "','" + submitDate + "','" + SWL + "','" + DS + "','" + ELM + "','"
-						+ ELE + "','" + SAL + "', 0,-1,-1,'"+KFA+"', -1, 'not available' WHERE NOT EXISTS (SELECT PHONE,TOPIC FROM STUDENT WHERE PHONE='" + PHONE
-						+ "' " + "AND TOPIC=" + " '" + TOPIC + "')";
+				//PreparedStatement pst = 
+				
+				String sql = "UPDATE STUDENT"
+						+ " SET NAME=:name, IWS=:iws, KLAL=:klal, KLBL=:klbl, PU = :pu,"
+						+ " SUBMITDATE=:submitdate, SWL=:swl, DS=:ds, ELM=:elm, ELE=:ele,"
+						+ " SAL=:sal, PUOU=:puou, M1=:m1, M2=:m2, KFA=:kfa, M3=:m3, RELIABILITY=:reliability"
+						+ " WHERE PHONE=:phone and TOPIC=:topic";
 				q = entityManager.createNativeQuery(sql);
+				q.setParameter("name", NAME);
+				q.setParameter("iws", IWS);
+				q.setParameter("klal", KLAL);
+				q.setParameter("klbl", KLBL);
+				q.setParameter("pu", PU);
+				q.setParameter("submitdate", submitDate);
+				q.setParameter("swl", SWL);
+				q.setParameter("ds", DS);
+				q.setParameter("elm", ELM);
+				q.setParameter("ele", ELE);
+				q.setParameter("sal", SAL);
+				q.setParameter("puou", 0);
+				q.setParameter("m1", -1);
+				q.setParameter("m2", -1);
+				q.setParameter("kfa", KFA);
+				q.setParameter("m3", -1);
+				q.setParameter("reliability", "not available");
+				q.setParameter("phone", PHONE);
+				q.setParameter("topic", TOPIC);
 				q.executeUpdate();	// executes q statement
+
+
+				sql = "INSERT INTO STUDENT (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,"
+						+ "ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY)"
+						+ " SELECT :phone, :name, :topic, :iws, :klal, :klbl, :pu, :submitdate,"
+						+ " :swl, :ds, :elm, :ele, :sal, :puou, :m1, :m2, :kfa, :m3, :reliability"
+						+ " WHERE NOT EXISTS "
+						+ " (SELECT PHONE, TOPIC from STUDENT WHERE PHONE=:phone and TOPIC=:topic)";
+				
+				q = entityManager.createNativeQuery(sql);
+				q.setParameter("name", NAME);
+				q.setParameter("iws", IWS);
+				q.setParameter("klal", KLAL);
+				q.setParameter("klbl", KLBL);
+				q.setParameter("pu", PU);
+				q.setParameter("submitdate", submitDate);
+				q.setParameter("swl", SWL);
+				q.setParameter("ds", DS);
+				q.setParameter("elm", ELM);
+				q.setParameter("ele", ELE);
+				q.setParameter("sal", SAL);
+				q.setParameter("puou", 0);
+				q.setParameter("m1", -1);
+				q.setParameter("m2", -1);
+				q.setParameter("kfa", KFA);
+				q.setParameter("m3", -1);
+				q.setParameter("reliability", "not available");
+				q.setParameter("phone", PHONE);
+				q.setParameter("topic", TOPIC);
+				q.executeUpdate();	// executes q statement
+				
+				
+				
+			//  sql = "INSERT INTO STUDENT (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY)"
+			//  		+ " SELECT '" + PHONE + "','" + NAME + "','" + TOPIC + "','" + IWS + "','" + KLAL + "','"
+			//  		+ KLBL + "','" + PU + "','" + submitDate + "','" + SWL + "','" + DS + "','" + ELM + "','"
+			//  		+ ELE + "','" + SAL + "', 0,-1,-1,'"+KFA+"', -1, 'not available' WHERE NOT EXISTS (SELECT PHONE,TOPIC FROM STUDENT WHERE PHONE='" + PHONE
+			//  		+ "' " + "AND TOPIC=" + " '" + TOPIC + "')";
+			//  q = entityManager.createNativeQuery(sql);
+			//  q.executeUpdate();	// executes q statement
 			}
 			br.close();				// closes buffered reader
 			transaction.commit();	// ends the transaction
