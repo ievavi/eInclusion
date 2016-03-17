@@ -45,9 +45,9 @@
 				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs main-menu">
-						<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
+					<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
 								class="hidden-tablet"> Edit database</span></a></li>
-						<li><a href="M1.jsp"><i class="icon-table"></i><span
+					<li><a href="M1.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M1</span></a></li>
 						<li><a href="M2.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M2</span></a></li>
@@ -58,7 +58,7 @@
 						<li><a href="ReadMe.pdf" target="_blank"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Instructions </span></a></li>
-						<li><a href="coefficients.jsp" target="_blank"><i
+						<li><a href="coefficients.jsp"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Coefficients </span></a></li>
 					</ul>
