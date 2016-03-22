@@ -114,7 +114,7 @@
 				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs main-menu">
-					<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
+						<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
 								class="hidden-tablet"> Edit database</span></a></li>
 						<li><a href="M1.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M1</span></a></li>
@@ -136,7 +136,7 @@
 		</div>
 	</div>
 	<!-- start: Header -->
-table
+
 	<div>
 		<div>
 			<noscript>
@@ -176,16 +176,13 @@ table
 
 								</fieldset>
 							</form>
-<<<<<<< Updated upstream
-							
+
 							<label>From</label><input type="text" id="one" ></input>
 							<label>To</label><input type="text" id="two" ></input>
 							<label>Name</label>
 							<select id="mySelect" multiple="multiple" size="1">
 							</select>
 							<button type="submit" onclick="search();">Search</button>
-							
-=======
 
 							<form id="formFromToDate" method="get"
 								enctype="multipart/form-data">
@@ -302,18 +299,18 @@ table
 
 
 
->>>>>>> Stashed changes
+
 							<label><font color='#55cc55'><b>Green</b> </font> -
 								included, <font color='ffdd54'> <b>Yellow</b></font> - partly
 								included, <font color='#ff6654'> <b>Red</b></font> - not
 								included</label>
-<<<<<<< Updated upstream
+
 								<div class="DefStyle" id="Definition">Click to see results</div>
-=======
+
 								
 
 								
->>>>>>> Stashed changes
+
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>
@@ -330,7 +327,7 @@ table
 								</thead>
 								<tbody>
 									<c:forEach items="${list}" var="item">
-<<<<<<< Updated upstream
+
 										<tr class="toshow">
 											<td id="Nr"><c:out value="${item.get(0)}" /></td>
 											<td><c:out value="${item.get(1)}" /></td>
@@ -400,7 +397,7 @@ table
 												</c:otherwise>
 											</c:choose>
 										</tr>
-=======
+
 										<c:if
 											test="${(param.from == null || param.to == null || param.from == '' || param.to == '')
 													|| item.get(3) >= param.from &&  item.get(3) <= param.to}">
@@ -482,17 +479,11 @@ table
 												</c:if>
 											</c:if>
 										</c:if>
->>>>>>> Stashed changes
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
-<<<<<<< Updated upstream
-
-				
-=======
->>>>>>> Stashed changes
 				</div>
 			</div>
 		</div>
@@ -509,8 +500,7 @@ table
   </div>
 </div>
 
-<<<<<<< Updated upstream
-	
+
 	<!-- start: JavaScript-->
 								
 	<script>
@@ -652,8 +642,6 @@ table
 	
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
-		
-=======
 
 	<!-- start: JavaScript DATEPICKERRANGE-->
 	<script type="text/javascript">
@@ -694,7 +682,6 @@ table
         if(evt.value > 100) evt.value = 100;
 	    return true;
 	}
->>>>>>> Stashed changes
 	</script>
 
 	<!-- start: JavaScript-->
