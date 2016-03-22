@@ -58,7 +58,7 @@
 		</div>
 	</div>
 	<!-- start: Header -->
-
+jquery.js
 	<div>
 		<div>
 			<noscript>
@@ -93,7 +93,7 @@
 									action="${pageContext.request.contextPath}/fileupload"
 									enctype="multipart/form-data">
 									<input type="submit" name="button1" value="Open uploaded file" /><br />
-								</form>
+								</form> 
 								</br>
 								<h3>Select file to update database parameters</h3>
 								<form method="post" action="/fileupload"
@@ -226,7 +226,13 @@
 			jQuery('.table').ddTableFilter();
 		});
 	</script>
-
+	<script>
+	$(document).ready(function(){
+		$('input[type="file"]').change(function(){
+				$(this).next().removeAttr('disabled');
+			}).next().attr('disabled', 'disabled');
+		});
+	</script>
 	<!-- end: JavaScript-->
 </body>
 </html>

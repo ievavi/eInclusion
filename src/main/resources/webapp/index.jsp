@@ -29,6 +29,7 @@
 
 <body>
 	<!-- start: Header -->
+	<h1>Hello</h1>
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div>

@@ -26,13 +26,15 @@ public class FileUploadServlet extends HttpServlet {
 	EditDatabase edDB = new EditDatabase();
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("BEEEEEEEEEEEEEEEEEEEEEEEEP");
-		System.out.println(FileUploadServlet.class.getName());
+		LOG.debug("BEEEEEEEEEEEEEEEEEEEEEEEEP");
+		LOG.debug(FileUploadServlet.class.getName());
 		LOG.info("loggertest");
 		String str = null;
 		if (request.getPart("file") != null) {
-			
-			//System.out.println("BEEEEEEEEEEEEEEEEEEEEEEEEP");
+			// TODO
+			// use System.getProperty("java.io.tmpdir") for place
+			// and random name for filname
+			//LOG.debug("BEEEEEEEEEEEEEEEEEEEEEEEEP");
 			Part filePart = request.getPart("file");
 			String fileName = getFileName(filePart);
 			String fileLocation = ".";
@@ -120,7 +122,7 @@ public class FileUploadServlet extends HttpServlet {
 			String parameter = request.getParameter("topic");
 			edDB.topicParameter = parameter;
 			edDB.actionPerformed(FileUploadServlet.file, "deleteFromDB");
-//			System.out.println("////////////////////////////"+parameter);
+//			LOG.debug("////////////////////////////"+parameter);
 			response.setHeader("Refresh","10;url=/fileupload?topic=" + parameter);
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		}else if(request.getParameter("deleteFromDatabase") != null){
