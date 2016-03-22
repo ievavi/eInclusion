@@ -62,7 +62,7 @@
 		</div>
 	</div>
 	<!-- start: Header -->
-
+jquery.js
 	<div>
 		<div>
 			<noscript>
@@ -93,6 +93,13 @@
 									Choose file: <input type="file" name="file"> <input
 										type="submit" value="Upload" name="uploadFile">
 								</form>
+<<<<<<< HEAD
+								<form method="get"
+									action="${pageContext.request.contextPath}/fileupload"
+									enctype="multipart/form-data">
+									<input type="submit" name="button1" value="Open uploaded file" /><br />
+								</form> 
+=======
 
 								<script type="text/javascript">
 								var Msg ='<%=session.getAttribute("Message")%>
@@ -103,6 +110,7 @@
 								</script>
 
 
+>>>>>>> 1688c074326f6e8d2ef9d39a3fbf53009c3d320d
 								</br>
 								<h3 align="center">Select file to update database
 									parameters</h3>
@@ -196,6 +204,61 @@
 
 							</table>
 
+<<<<<<< HEAD
+							<h3>Coefficients</h3>
+							<%
+								ArrayList<ArrayList<String>> list = WebTable.coef();
+								request.setAttribute("list", list);
+							%>
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>Key</th>
+										<th class=skip-filter>Coefficient</th>
+										<th class=skip-filter>Relative</th>
+										<th class=skip-filter>Value</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${list}" var="item">
+										<tr>
+											<td><c:out value="${item.get(0)}" /></td>
+											<td><c:out value="${item.get(1)}" /></td>
+											<td><c:out value="${item.get(2)}" /></td>
+											<td><c:out value="${item.get(3)}" /></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- start: JavaScript-->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+		
+	</script>
+	<script type="text/javascript" src="ddtf.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('.table').ddTableFilter();
+		});
+	</script>
+	<script>
+	$(document).ready(function(){
+		$('input[type="file"]').change(function(){
+				$(this).next().removeAttr('disabled');
+			}).next().attr('disabled', 'disabled');
+		});
+	</script>
+	<!-- end: JavaScript-->
+=======
 							<!-- start: JavaScript-->
 							<script
 								src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
@@ -209,5 +272,6 @@
 							</script>
 
 							<!-- end: JavaScript-->
+>>>>>>> 1688c074326f6e8d2ef9d39a3fbf53009c3d320d
 </body>
 </html>

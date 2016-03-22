@@ -21,6 +21,49 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
+	
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	
+	<style>
+#dialogoverlay{
+	display: none;
+	opacity: .5;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	background: #FFF;
+	width: 100%;
+	z-index: 100;
+}
+#dialogbox{
+	display: none;
+	position: fixed;
+	background: #000;
+	border-radius:8px; 
+	width:500px;
+	z-index: 100;
+}
+#dialogbox > div{ background:#FFF; margin:4px; }
+#dialogbox > div > #dialogboxhead{ background: white ; font-size:19px; padding:5px; color:black; }
+#dialogbox > div > #dialogboxbody{ background:#777; font-size:15px; padding:20px; color:#FFF; }
+#dialogbox > div > #dialogboxfoot{ background: #C0C0C0 ; padding:5px; text-align:right; }
+
+.DefStyle
+		    {
+		    	position: fixed;
+		    	top: 40%;
+				left: 50%;
+		    	font-family:Verdana;
+		    	color:Gray;
+		    	font-size:12px;
+		    	border-width:1px;
+		    	border-color:Black;
+		    	border-style:outset;
+				width: 120px;
+		    	padding:5px,5px,5px,5px,5px;
+		    	display:none;
+		    }
+</style>
 <!-- end: CSS -->
 
 
@@ -41,6 +84,25 @@
 		prediction.readDBfiltered("All", "All");
 		ArrayList<ArrayList<String>> list = PredictionWeb.list;
 		request.setAttribute("list", list);
+	%>
+	
+	<%
+		WebTable m1Table = new M1Web();
+		m1Table.readDBfiltered("All", "All");
+		ArrayList<ArrayList<String>> listM1 = M1Web.list;
+		request.setAttribute("listM1", listM1);
+	%>
+	<%
+		WebTable m2Table = new M2Web();
+		m2Table.readDBfiltered("All", "All");
+		ArrayList<ArrayList<String>> listM2 = M2Web.list;
+		request.setAttribute("listM2", listM2);
+	%>
+	<%
+		WebTable m3Table = new M3Web();
+		m3Table.readDBfiltered("All", "All");
+		ArrayList<ArrayList<String>> listM3 = M3Web.list;
+		request.setAttribute("listM3", listM3);
 	%>
 	<!-- start: Header -->
 	<div class="navbar">
@@ -71,7 +133,7 @@
 		</div>
 	</div>
 	<!-- start: Header -->
-
+table
 	<div>
 		<div>
 			<noscript>
@@ -111,10 +173,19 @@
 
 								</fieldset>
 							</form>
+							
+							<label>From</label><input type="text" id="one" ></input>
+							<label>To</label><input type="text" id="two" ></input>
+							<label>Name</label>
+							<select id="mySelect" multiple="multiple" size="1">
+							</select>
+							<button type="submit" onclick="search();">Search</button>
+							
 							<label><font color='#55cc55'><b>Green</b> </font> -
 								included, <font color='ffdd54'> <b>Yellow</b></font> - partly
 								included, <font color='#ff6654'> <b>Red</b></font> - not
 								included</label>
+								<div class="DefStyle" id="Definition">Click to see results</div>
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>
@@ -131,12 +202,12 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${list}" var="item">
-										<tr>
+										<tr class="toshow">
 											<td id="Nr"><c:out value="${item.get(0)}" /></td>
 											<td><c:out value="${item.get(1)}" /></td>
 											<td><c:out value="${item.get(2)}" /></td>
 											<td><c:out value="${item.get(3)}" /></td>
-											<fmt:parseNumber var="m1" type="number"
+											<fmt:parseNumber var="m1" type="number" 
 												value="${item.get(4)}" />
 											<c:choose>
 												<c:when test="${m1 == 2}">
@@ -149,7 +220,7 @@
 													<td class="red colored"><c:out value="${m1}" /></td>
 												</c:when>
 												<c:otherwise>
-													<td class="gray colored"><c:out value="${m1}" /></td>
+													<td class="gray colored" onclick="showM1('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m1}" /></td>
 												</c:otherwise>
 											</c:choose>
 											<fmt:parseNumber var="m2" type="number"
@@ -165,7 +236,7 @@
 													<td class="red colored"><c:out value="${m2}" /></td>
 												</c:when>
 												<c:otherwise>
-													<td class="gray colored"><c:out value="${m2}" /></td>
+													<td class="gray colored" onclick="showM2('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m2}" /></td>
 												</c:otherwise>
 											</c:choose>
 											<fmt:parseNumber var="m3" type="number"
@@ -181,7 +252,7 @@
 													<td class="red colored"><c:out value="${m3}" /></td>
 												</c:when>
 												<c:otherwise>
-													<td class="gray colored"><c:out value="${m3}" /></td>
+													<td class="gray colored" onclick="showM3('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m3}" /></td>
 												</c:otherwise>
 											</c:choose>
 											<c:set var="pred" value="${item.get(7)}" />
@@ -206,14 +277,163 @@
 						</div>
 					</div>
 
-
+				
 				</div>
 			</div>
 		</div>
+		<p id="testing"></p>
 		<div class="clearfix"></div>
-	</div>
 
+	</div>
+	<div id="dialogoverlay"></div>
+<div id="dialogbox">
+  <div>
+    <div id="dialogboxhead"></div>
+    <div id="dialogboxbody"></div>
+    <div id="dialogboxfoot"></div>
+  </div>
+</div>
+
+	
 	<!-- start: JavaScript-->
+								
+	<script>
+	var a = new Array();
+	var co = 0;
+	<c:forEach items="${list}" var="itemM1">
+	a[co++] = '<c:out value="${itemM1.get(2)}" />';
+	</c:forEach>
+	var select= document.getElementById('mySelect');
+	for(names in a)
+		select.add(new Option(a[names]));
+	
+	function search()
+	{
+		$('tr').attr('class','tos');
+		$('.tos').show();
+		var counter = 0;
+		var one = document.getElementById("one").value;
+		var two = document.getElementById("two").value;
+		
+		<c:forEach items="${list}" var="itemM1">
+		a = '<c:out value="${itemM1.get(3)}" />';
+		counter++;
+		if(!(a >= one && a <= two))
+		{
+			
+			//var b = '<c:out value="${itemM1.get(0)}" />';
+			//var c = '<c:out value="${itemM1.get(1)}" />';
+			//var d = '<c:out value="${itemM1.get(2)}" />';
+			//var e = b + " " + c + " " + d; 
+			//arr[counter++] = e;
+			$('tr:nth-child('+counter+')').attr('class','tod')
+			//$('.donotshow').css('display', 'none');
+		}
+		</c:forEach>
+		$('.tod').hide();
+		//for(i = 0; i< arr.length; i++)
+			//alert(arr[i]);
+	
+			
+		//var one = document.getElementById("one").value;
+		//document.getElementById("body_table").style.display = "none";
+		
+	}
+	
+	var name_of_person;
+	var results;
+	
+	function ShowDef()
+	{
+	    document.getElementById("Definition").style.display="block";
+	}
+	function HideDef()
+	{
+		document.getElementById("Definition").style.display="none";
+	}
+	
+	function CustomAlert(){
+	    this.render = function(dialog){
+	        var winW = window.innerWidth;
+	        var winH = window.innerHeight;
+	        var dialogoverlay = document.getElementById('dialogoverlay');
+	        var dialogbox = document.getElementById('dialogbox');
+	        dialogoverlay.style.display = "block";
+	        dialogoverlay.style.height = winH+"px";
+	        dialogbox.style.left = (winW/2) - (550 * .5)+"px";
+	        dialogbox.style.top = "100px";
+	        dialogbox.style.display = "block";
+	        document.getElementById('dialogboxhead').innerHTML = results + " results for: " + name_of_person;
+	        document.getElementById('dialogboxbody').innerHTML = dialog;
+	        document.getElementById('dialogboxfoot').innerHTML = '<button onclick="Alert.ok()">OK</button>';
+	    }
+		this.ok = function(){
+			document.getElementById('dialogbox').style.display = "none";
+			document.getElementById('dialogoverlay').style.display = "none";
+		}
+	}
+	var Alert = new CustomAlert();
+	
+		function showM1(topic, name)
+		{
+			<c:forEach items="${listM1}" var="itemM1">
+			var top = '<c:out value="${itemM1.get(1)}" />';
+			var nam = '<c:out value="${itemM1.get(2)}" />';
+			if(topic == top && name == nam){	
+			var m = '<c:out value="${itemM1.get(3)}" />';
+			var ds = '<c:out value="${itemM1.get(4)}" />';
+			var la = '<c:out value="${itemM1.get(5)}" />';
+			var e = '<c:out value="${itemM1.get(6)}" />';
+			var i = '<c:out value="${itemM1.get(7)}" />';
+			var ee = '<c:out value="${itemM1.get(8)}" />';
+			var pu = '<c:out value="${itemM1.get(9)}" />';
+			}
+			</c:forEach>
+			name_of_person = name;
+			results = "M1";
+			Alert.render("<ul style=\"list-style-type:none\">" + "<li>" + "motivation: " + m + "<li>" + "digital skills: " + ds + "<li>" + "learning ability: " + la + "<li>" + "e-materials: " + e + "<li>" + "instructor: " + i + "<li>" + "e-environment: " + ee + "<li>" + "predicted usage: " + pu + "<ul>");
+			//Alert.render("<ul>"+"motivation: "+m+"<\ul>"+"<ul>"+"digital skills: "+ds+"<\ul>"+"<ul>"+"learning ability: "+la+"<\ul>"+"<ul>"+"e-materials: "+e+"<\ul>"+"<ul>"+"instructor: "+i+"<\ul>"+"<ul>"+"e-environment: "+ee+"<\ul>"+"<ul>"+"predicted usage: "+pu+"<\ul>");
+			//alert("motivation: "+m+"\n"+"digital skills: "+ds+"\n"+"learning ability: "+la+"\n"+"e-materials: "+e+"\n"+"instructor: "+i+"\n"+"e-environment: "+ee+"\n"+"predicted usage: "+pu);
+		}
+		
+		function showM2(topic, name)
+		{
+			<c:forEach items="${listM2}" var="itemM2">
+			var top = '<c:out value="${itemM2.get(1)}" />';
+			var nam = '<c:out value="${itemM2.get(2)}" />';
+			if(topic == top && name == nam){	
+			var m = '<c:out value="${itemM2.get(3)}" />';
+			var la = '<c:out value="${itemM2.get(4)}" />';
+			var em = '<c:out value="${itemM2.get(5)}" />';
+			var ee = '<c:out value="${itemM2.get(6)}" />';
+			var i = '<c:out value="${itemM2.get(7)}" />';
+			}
+			</c:forEach>
+			name_of_person = name;
+			results = "M2";
+			Alert.render("<ul style=\"list-style-type:none\">" + "<li>" + "motivation: " + m + "<li>" + "learning ability: " + la + "<li>" + "e-materials: " + em + "<li>" + "e-environment: " + ee + "<li>" + "instructor: " + i + "<ul>");
+			//alert("motivation: "+m+"\n"+"learning ability: "+la+"\n"+"e-materials: "+em+"\n"+"e-environment: "+ee+"\n"+"instructor: "+i);
+		}
+		
+		function showM3(topic, name)
+		{
+			<c:forEach items="${listM3}" var="itemM3">
+			var top = '<c:out value="${itemM3.get(1)}" />';
+			var nam = '<c:out value="${itemM3.get(2)}" />';
+			if(topic == top && name == nam){	
+			var i = '<c:out value="${itemM3.get(3)}" />';
+			var ee = '<c:out value="${itemM3.get(4)}" />';
+			var em = '<c:out value="${itemM3.get(5)}" />';
+			var bl = '<c:out value="${itemM3.get(6)}" />';
+			}
+			</c:forEach>
+			name_of_person = name;
+			results = "M3";
+			Alert.render("<ul style=\"list-style-type:none\">" + "<li>" + "instructor: " + i + "<li>" + "e-environment: " + ee + "<li>" + "e-materials: " + em + "<li>" + "before learning: " + bl + "<ul>");
+			//alert("instructor: "+i+"\n"+"e-environment: "+ee+"\n"+"e-materials: "+em+"\n"+"before learning: "+bl);
+		}
+	</script>
+	
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
 		
