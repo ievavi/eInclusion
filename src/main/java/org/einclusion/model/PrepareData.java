@@ -21,8 +21,9 @@ import org.einclusion.GUI.EditDatabasePanel;
 import static org.einclusion.model.ModelManager.*;
 
 /**
- * 	This class is used to add data from the converted .csv file to database
- * 	@author student
+ * This class is used to add data from the converted .csv file to database
+ * 
+ * @author student
  */
 
 public class PrepareData {
@@ -32,27 +33,37 @@ public class PrepareData {
 	static final String PASS = ""; // password for database
 	static final String DB_TABLE_NAME = "STUDENT"; // default table name
 	public static Connection conn = null; // connection with a database
+	static final String PERSISTENCE_SET = "test"; // persistence set for
+	// connecting to database
+
 
 	/**
-	 * 	Function that reads a given .csv file and writes students to database
-	 * 	@param file - path to a .csv file
+	 * Function that reads a given .csv file and writes students to database
+	 * 
+	 * @param file
+	 *            - path to a .csv file
 	 */
 	public static void csv2db(File file) {
-		try
-		{
-			//EditDatabasePanel.log.append("Reading from file: "+file.getName()+"\n");
+		try {
+			// EditDatabasePanel.log.append("Reading from file:
+			// "+file.getName()+"\n");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS); // establsih
 			// connection
 			// to
 			// database
 			conn.setAutoCommit(false); // sets autocommit to false
 
-			//Query q;
-			//transaction.begin();	// starts the transaction
-			BufferedReader br = new BufferedReader(new FileReader(file));					// reads the file using buffered reader
-			String line;																	// a row from the file
-			while ((line = br.readLine()) != null) {										// while rows aren't empty
-				String[] value = line.split(",");											// splits the line by ,
+			// Query q;
+			// transaction.begin(); // starts the transaction
+			BufferedReader br = new BufferedReader(new FileReader(file)); // reads
+																			// the
+																			// file
+																			// using
+																			// buffered
+																			// reader
+			String line; // a row from the file
+			while ((line = br.readLine()) != null) { // while rows aren't empty
+				String[] value = line.split(","); // splits the line by ,
 				String PHONE = value[0];
 				String NAME = value[1];
 				String TOPIC = value[2];
@@ -61,35 +72,42 @@ public class PrepareData {
 				Double KLBL = Double.parseDouble(value[13]);
 				Double PU = Double.parseDouble(value[14]);
 				String SUBMITDATE = value[15];
-				Double SWL = (Double.parseDouble(value[3]) + Double.parseDouble(value[4])) / 2;	// calculates SWL
-				Double DS = (Double.parseDouble(value[5]) + Double.parseDouble(value[6])) / 2;	// calculates DS
-				Double ELM = (Double.parseDouble(value[7]) + Double.parseDouble(value[8])) / 2;	// calculates ELM
-				Double ELE = (Double.parseDouble(value[9]) + Double.parseDouble(value[10])) / 2;	// calculates ELE
-				Double SAL = (double) 0;													    // creates SAL
-				if (5 - KLBL == 0) {						// if student cant learning anything new (MAX - KLBL)
-					SAL = (double) 0;						// SAL is 0
-				} else {									// else if student is able to learn smth new
-					if(KLAL > KLBL)
+				Double SWL = (Double.parseDouble(value[3]) + Double.parseDouble(value[4])) / 2; // calculates
+																								// SWL
+				Double DS = (Double.parseDouble(value[5]) + Double.parseDouble(value[6])) / 2; // calculates
+																								// DS
+				Double ELM = (Double.parseDouble(value[7]) + Double.parseDouble(value[8])) / 2; // calculates
+																								// ELM
+				Double ELE = (Double.parseDouble(value[9]) + Double.parseDouble(value[10])) / 2; // calculates
+																									// ELE
+				Double SAL = (double) 0; // creates SAL
+				if (5 - KLBL == 0) { // if student cant learning anything new
+										// (MAX - KLBL)
+					SAL = (double) 0; // SAL is 0
+				} else { // else if student is able to learn smth new
+					if (KLAL > KLBL)
 						SAL = (KLAL - KLBL) * 4 / (5 - KLBL);
 					else
 						SAL = (KLBL - KLAL) * 4 / (5 - KLAL);
 				}
-				SAL++;										// so SAL max value is 5 and lowest value is 1
+				SAL++; // so SAL max value is 5 and lowest value is 1
 				Double KFA = ((IWS + ELE + ELM) * KLBL) / 3;
-				
-				// creates a statement that will add one student with the selected values into the database
-				//String used with entity manager
-				
-				//String sql = "UPDATE STUDENT"
-				//		+ " SET NAME=:name, IWS=:iws, KLAL=:klal, KLBL=:klbl, PU = :pu,"
-				//		+ " SUBMITDATE=:submitdate, SWL=:swl, DS=:ds, ELM=:elm, ELE=:ele,"
-				//		+ " SAL=:sal, PUOU=:puou, M1=:m1, M2=:m2, KFA=:kfa, M3=:m3, RELIABILITY=:reliability"
-				//		+ " WHERE PHONE=:phone and TOPIC=:topic";
-				String sql = "UPDATE STUDENT"
-						+ " SET NAME=?, IWS=?, KLAL=?, KLBL=?, PU =?,"
+
+				// creates a statement that will add one student with the
+				// selected values into the database
+				// String used with entity manager
+
+				// String sql = "UPDATE STUDENT"
+				// + " SET NAME=:name, IWS=:iws, KLAL=:klal, KLBL=:klbl, PU =
+				// :pu,"
+				// + " SUBMITDATE=:submitdate, SWL=:swl, DS=:ds, ELM=:elm,
+				// ELE=:ele,"
+				// + " SAL=:sal, PUOU=:puou, M1=:m1, M2=:m2, KFA=:kfa, M3=:m3,
+				// RELIABILITY=:reliability"
+				// + " WHERE PHONE=:phone and TOPIC=:topic";
+				String sql = "UPDATE STUDENT" + " SET NAME=?, IWS=?, KLAL=?, KLBL=?, PU =?,"
 						+ " SUBMITDATE=?, SWL=?, DS=?, ELM=?, ELE=?,"
-						+ " SAL=?, PUOU=?, M1=?, M2=?, KFA=?, M3=?, RELIABILITY=?, OU=?"
-						+ " WHERE PHONE=? and TOPIC=?";
+						+ " SAL=?, PUOU=?, M1=?, M2=?, KFA=?, M3=?, RELIABILITY=?, OU=?" + " WHERE PHONE=? and TOPIC=?";
 				PreparedStatement pst = conn.prepareStatement(sql);
 				pst.setString(1, NAME);
 				pst.setDouble(2, IWS);
@@ -111,39 +129,42 @@ public class PrepareData {
 				pst.setNull(18, java.sql.Types.INTEGER);
 				pst.setString(19, PHONE);
 				pst.setString(20, TOPIC);
-				//LOG.debug(pst.);
+				// LOG.debug(pst.);
 				pst.executeUpdate();
 				conn.commit();
-				//q = entityManager.createNativeQuery(sql);
-				//q.setParameter("name", NAME);
-				//q.setParameter("iws", IWS);
-				//q.setParameter("klal", KLAL);
-				//q.setParameter("klbl", KLBL);
-				//q.setParameter("pu", PU);
-				//q.setParameter("submitdate", submitDate);
-				//q.setParameter("swl", SWL);
-				//q.setParameter("ds", DS);
-				//q.setParameter("elm", ELM);
-				//q.setParameter("ele", ELE);
-				//q.setParameter("sal", SAL);
-				//q.setParameter("puou", 0);
-				//q.setParameter("m1", -1);
-				//q.setParameter("m2", -1);
-				//q.setParameter("kfa", KFA);
-				//q.setParameter("m3", -1);
-				//q.setParameter("reliability", "not available");
-				//q.setParameter("phone", PHONE);
-				//q.setParameter("topic", TOPIC);
-				//q.executeUpdate();	// executes q statement
-				
+				// q = entityManager.createNativeQuery(sql);
+				// q.setParameter("name", NAME);
+				// q.setParameter("iws", IWS);
+				// q.setParameter("klal", KLAL);
+				// q.setParameter("klbl", KLBL);
+				// q.setParameter("pu", PU);
+				// q.setParameter("submitdate", submitDate);
+				// q.setParameter("swl", SWL);
+				// q.setParameter("ds", DS);
+				// q.setParameter("elm", ELM);
+				// q.setParameter("ele", ELE);
+				// q.setParameter("sal", SAL);
+				// q.setParameter("puou", 0);
+				// q.setParameter("m1", -1);
+				// q.setParameter("m2", -1);
+				// q.setParameter("kfa", KFA);
+				// q.setParameter("m3", -1);
+				// q.setParameter("reliability", "not available");
+				// q.setParameter("phone", PHONE);
+				// q.setParameter("topic", TOPIC);
+				// q.executeUpdate(); // executes q statement
 
-				//sql = "INSERT INTO STUDENT (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,"
-				//		+ "ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY)"
-				//		+ " SELECT :phone, :name, :topic, :iws, :klal, :klbl, :pu, :submitdate,"
-				//		+ " :swl, :ds, :elm, :ele, :sal, :puou, :m1, :m2, :kfa, :m3, :reliability"
-				//		+ " WHERE NOT EXISTS "
-				//		+ " (SELECT PHONE, TOPIC from STUDENT WHERE PHONE=:phone and TOPIC=:topic)";
-				
+				// sql = "INSERT INTO STUDENT
+				// (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,"
+				// + "ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY)"
+				// + " SELECT :phone, :name, :topic, :iws, :klal, :klbl, :pu,
+				// :submitdate,"
+				// + " :swl, :ds, :elm, :ele, :sal, :puou, :m1, :m2, :kfa, :m3,
+				// :reliability"
+				// + " WHERE NOT EXISTS "
+				// + " (SELECT PHONE, TOPIC from STUDENT WHERE PHONE=:phone and
+				// TOPIC=:topic)";
+
 				sql = "INSERT INTO STUDENT (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,"
 						+ "ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY)"
 						+ " SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?"
@@ -172,85 +193,154 @@ public class PrepareData {
 				pst.setString(21, TOPIC);
 				pst.executeUpdate();
 				conn.commit();
-				
-				//q = entityManager.createNativeQuery(sql);
-				//q.setParameter("name", NAME);
-				//q.setParameter("iws", IWS);
-				//q.setParameter("klal", KLAL);
-				//q.setParameter("klbl", KLBL);
-				//q.setParameter("pu", PU);
-				//q.setParameter("submitdate", submitDate);
-				//q.setParameter("swl", SWL);
-				//q.setParameter("ds", DS);
-				//q.setParameter("elm", ELM);
-				//q.setParameter("ele", ELE);
-				//q.setParameter("sal", SAL);
-				//q.setParameter("puou", 0);
-				//q.setParameter("m1", -1);
-				//q.setParameter("m2", -1);
-				//q.setParameter("kfa", KFA);
-				//q.setParameter("m3", -1);
-				//q.setParameter("reliability", "not available");
-				//q.setParameter("phone", PHONE);
-				//q.setParameter("topic", TOPIC);
-				//q.executeUpdate();	// executes q statement
-				
-				
-				
-				
-			//  sql = "INSERT INTO STUDENT (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY)"
-			//  		+ " SELECT '" + PHONE + "','" + NAME + "','" + TOPIC + "','" + IWS + "','" + KLAL + "','"
-			//  		+ KLBL + "','" + PU + "','" + submitDate + "','" + SWL + "','" + DS + "','" + ELM + "','"
-			//  		+ ELE + "','" + SAL + "', 0,-1,-1,'"+KFA+"', -1, 'not available' WHERE NOT EXISTS (SELECT PHONE,TOPIC FROM STUDENT WHERE PHONE='" + PHONE
-			//  		+ "' " + "AND TOPIC=" + " '" + TOPIC + "')";
-			//  q = entityManager.createNativeQuery(sql);
-			//  q.executeUpdate();	// executes q statement
+
+				// q = entityManager.createNativeQuery(sql);
+				// q.setParameter("name", NAME);
+				// q.setParameter("iws", IWS);
+				// q.setParameter("klal", KLAL);
+				// q.setParameter("klbl", KLBL);
+				// q.setParameter("pu", PU);
+				// q.setParameter("submitdate", submitDate);
+				// q.setParameter("swl", SWL);
+				// q.setParameter("ds", DS);
+				// q.setParameter("elm", ELM);
+				// q.setParameter("ele", ELE);
+				// q.setParameter("sal", SAL);
+				// q.setParameter("puou", 0);
+				// q.setParameter("m1", -1);
+				// q.setParameter("m2", -1);
+				// q.setParameter("kfa", KFA);
+				// q.setParameter("m3", -1);
+				// q.setParameter("reliability", "not available");
+				// q.setParameter("phone", PHONE);
+				// q.setParameter("topic", TOPIC);
+				// q.executeUpdate(); // executes q statement
+
+				// sql = "INSERT INTO STUDENT
+				// (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,ELM,ELE,SAL,PUOU,M1,M2,KFA,
+				// M3, RELIABILITY)"
+				// + " SELECT '" + PHONE + "','" + NAME + "','" + TOPIC + "','"
+				// + IWS + "','" + KLAL + "','"
+				// + KLBL + "','" + PU + "','" + submitDate + "','" + SWL +
+				// "','" + DS + "','" + ELM + "','"
+				// + ELE + "','" + SAL + "', 0,-1,-1,'"+KFA+"', -1, 'not
+				// available' WHERE NOT EXISTS (SELECT PHONE,TOPIC FROM STUDENT
+				// WHERE PHONE='" + PHONE
+				// + "' " + "AND TOPIC=" + " '" + TOPIC + "')";
+				// q = entityManager.createNativeQuery(sql);
+				// q.executeUpdate(); // executes q statement
 			}
-			br.close();				// closes buffered reader
-			//transaction.commit();	// ends the transaction
-		} catch( FileNotFoundException fnfe ){
-			LOG.error(fnfe.getMessage()+" "+fnfe.getCause());
+			br.close(); // closes buffered reader
+			// transaction.commit(); // ends the transaction
+			conn.close();
+		} catch (FileNotFoundException fnfe) {
+			LOG.error(fnfe.getMessage() + " " + fnfe.getCause());
 			fnfe.printStackTrace();
 			String errorText = "File not found choose a different path!";
-			EditDatabasePanel.log.append(errorText+"\n");
+			EditDatabasePanel.log.append(errorText + "\n");
 			EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
-		} catch( IOException ioe ){
-			LOG.error(ioe.getMessage()+" "+ioe.getCause());
+		} catch (IOException ioe) {
+			LOG.error(ioe.getMessage() + " " + ioe.getCause());
 			ioe.printStackTrace();
 			String errorText = "Exception while writing to file!";
-			EditDatabasePanel.log.append(errorText+"\n");
+			EditDatabasePanel.log.append(errorText + "\n");
 			EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally{
+			
+		}
 	}
-	
-	public static void calculateStudentCoeficients(){
+
+	public static void updatePrediction() {
 		try {
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
 			conn.setAutoCommit(false); // sets autocommit to false
+
+			String sql = "SELECT DISTINCT TOPIC FROM STUDENT where OU IS NULL";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			conn.commit();
+			
+			while (rs.next()) { // while table has contents
+
+				String topic = rs.getString("TOPIC");
+				// Prediction should be called for topics which have OU values with NULL.
+				//FIXME : Should update SQL to exclude topics which don't have coefficients
+				try {
+					Prediction.getPrediction(topic);
+				} catch (Throwable t) {
+					LOG.error(t.getMessage() + " " + t.getCause());
+					t.printStackTrace();
+				}
+
+			}
+			conn.close();
+
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} // establsih
-	
+
 	}
-	
-	public static void updateModels(){
+
+	public static void generateModels() {
 		try {
+			
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
 			conn.setAutoCommit(false); // sets autocommit to false
+			LOG.info("Generating models\n");
+			
+			String sql = "SELECT DISTINCT TOPIC FROM STUDENT where OU IS NOT NULL";
+			PreparedStatement pst = conn.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			conn.commit();
+			
+			//Model manager should be initialised for Instance manager to work properly, necessary for model generation
+			
+			//ModelManager.initModelManager(PERSISTENCE_SET); // loads
 
+			while (rs.next()) { // while table has contents
+
+				String topic = rs.getString("TOPIC");
+				// If one type of model generation fails, next one should still
+				// be generated
+				try {
+					M1.getCluster(topic, "M1-clusters-" + topic, "M1-centroids-" + topic);
+				} catch (Throwable t) {
+					LOG.error(t.getMessage() + " " + t.getCause());
+					t.printStackTrace();
+				}
+				try {
+					M2.getRegression(topic, "M2-" + topic);
+				} catch (Throwable t) {
+					LOG.error(t.getMessage() + " " + t.getCause());
+					t.printStackTrace();
+				}
+				try {
+					M3.getRegression(topic, "M3-" + topic);
+				} catch (Throwable t) {
+					LOG.error(t.getMessage() + " " + t.getCause());
+					t.printStackTrace();
+				}
+				
+			}
+			conn.close();									
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} // establsih
-	
+		}
+		finally {
+			//ModelManager.closeModelManager(); // closes
+												// connection
+			LOG.info("Finished generating models\n");
+		}//
+
 	}
 
-	
 }
