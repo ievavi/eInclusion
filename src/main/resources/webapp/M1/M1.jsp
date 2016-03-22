@@ -90,7 +90,7 @@
 					<li><a href="#">M1</a></li>
 				</ul>
 				<div>
-					<h1>General evaluation of students</h1>
+					<h1 class="text-success" align="center">General evaluation of students</h1>
 					<div>
 						<div class="box-header"></div>
 						<div class="box-content">
