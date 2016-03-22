@@ -91,7 +91,6 @@ public void readDBfiltered(String colName, String value) {
             	String reliability = rs.getString("RELIABILITY");
             	Date dateStamp = new Date(rs.getTimestamp("SUBMITDATE").getTime());
 				String date = dateStamp.toString();
-            	System.out.println(reliability);
             	
             	if( m2m3coef.size()>1 ){
             		if( (Double.parseDouble(m2m3coef.get(0)) >= Double.parseDouble(m2m3coef.get(1))) ){
