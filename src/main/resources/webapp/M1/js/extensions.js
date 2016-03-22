@@ -50,7 +50,7 @@ function ValidateSingleInput2(oInput) {
 			}
 		}
 
-	}
+	}g
 	return true;
 }
 
