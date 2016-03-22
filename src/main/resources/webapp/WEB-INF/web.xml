@@ -8,13 +8,22 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>  
-  <servlet>
+<servlet>
     <servlet-name>servlet1</servlet-name>
     <servlet-class>org.webengine.FileUploadServlet</servlet-class>
     <multipart-config></multipart-config>
-	</servlet>
-	<servlet-mapping>
+</servlet>
+<servlet-mapping>
     <servlet-name>servlet1</servlet-name>
     <url-pattern>/fileupload</url-pattern>
+</servlet-mapping>
+<servlet>
+    <servlet-name>report</servlet-name>
+    <servlet-class>org.webengine.ReportServlet</servlet-class>
+    <multipart-config></multipart-config>
+	</servlet>
+<servlet-mapping>
+    <servlet-name>report</servlet-name>
+    <url-pattern>/report</url-pattern>
 </servlet-mapping>
 </web-app>

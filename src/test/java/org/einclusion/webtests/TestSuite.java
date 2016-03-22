@@ -1,4 +1,4 @@
-package org.Tests;
+package org.einclusion.webtests;
 
 import org.junit.Test;
 import org.junit.runner.JUnitCore;

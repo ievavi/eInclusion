@@ -1,4 +1,4 @@
-package org.Tests;
+package org.einclusion.webtests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;

@@ -24,19 +24,23 @@ public class FileUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = -9164530828669301284L;
 	private static final Logger LOG = Logger.getLogger(FileUploadServlet.class);
 	private static File file;
-	String message=null;
+	String message = null;
 
 	EditDatabase edDB = new EditDatabase();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("BEEEEEEEEEEEEEEEEEEEEEEEEP");
-		System.out.println(FileUploadServlet.class.getName());
+		LOG.debug("BEEEEEEEEEEEEEEEEEEEEEEEEP");
+		LOG.debug(FileUploadServlet.class.getName());
 		LOG.info("loggertest");
 		String str = null;
 		if (request.getPart("file") != null) {
 
-			// System.out.println("BEEEEEEEEEEEEEEEEEEEEEEEEP");
+			// TODO
+			// use System.getProperty("java.io.tmpdir") for place
+			// and random name for filname
+			// LOG.debug("BEEEEEEEEEEEEEEEEEEEEEEEEP");
+
 			Part filePart = request.getPart("file");
 			String fileName = getFileName(filePart);
 			String fileLocation = ".";
@@ -55,12 +59,12 @@ public class FileUploadServlet extends HttpServlet {
 					outputStream.write(bytes, 0, read);
 				}
 				if (!edDB.getExt().equals(".xlsx")) {
-					message="Wrong data type "+edDB.getExt()+", but need .xlsx!";
-				}else {
-				message="File "+file.getName()+" uploaded and saved into database";
+					message = "Wrong data type " + edDB.getExt() + ", but need .xlsx!";
+				} else {
+					message = "File " + file.getName() + " uploaded and saved into database";
 				}
 			} catch (FileNotFoundException fne) {
-				message="File upload failed";
+				message = "File upload failed";
 				fne.printStackTrace();
 
 			} finally {
@@ -91,16 +95,17 @@ public class FileUploadServlet extends HttpServlet {
 				while ((read = inputStream.read(bytes)) != -1) {
 					outputStream.write(bytes, 0, read);
 				}
-				String ex2=outputFilePath.getName().substring(outputFilePath.getName().indexOf("."), outputFilePath.getName().length());
+				String ex2 = outputFilePath.getName().substring(outputFilePath.getName().indexOf("."),
+						outputFilePath.getName().length());
 				if (ex2.equals(".xls")) {
-					message="File "+outputFilePath.getName()+" uploaded and saved into database";
-					
-					}else{
-						message="Wrong data type "+edDB.getExt()+", but need .xls!";
-					}
-				} catch (FileNotFoundException fne) {
-					message="File upload failed";
-				
+					message = "File " + outputFilePath.getName() + " uploaded and saved into database";
+
+				} else {
+					message = "Wrong data type " + edDB.getExt() + ", but need .xls!";
+				}
+			} catch (FileNotFoundException fne) {
+				message = "File upload failed";
+
 				fne.printStackTrace();
 
 			} finally {
@@ -112,11 +117,11 @@ public class FileUploadServlet extends HttpServlet {
 				}
 			}
 		}
-		
+
 		request.setAttribute("Message", message);
-		
+
 		getServletContext().getRequestDispatcher("/M1/databaseEdit2.jsp").forward(request, response);
-		//request.getRequestDispatcher("/M1/databaseEdit.jsp");
+		// request.getRequestDispatcher("/M1/databaseEdit.jsp");
 		response.sendRedirect("/M1/databaseEdit.jsp");
 	}
 
@@ -126,7 +131,7 @@ public class FileUploadServlet extends HttpServlet {
 			edDB.actionPerformed(FileUploadServlet.file, "createTemplateXlsx");
 			edDB.actionPerformed(FileUploadServlet.file, "openTemplateXlsx");
 			response.sendRedirect("/M1/databaseEdit.jsp");
-		}  else if (request.getParameter("exportData") != null) {
+		} else if (request.getParameter("exportData") != null) {
 			edDB.actionPerformed(FileUploadServlet.file, "exportAllData");
 			edDB.actionPerformed(FileUploadServlet.file, "openExported");
 			response.sendRedirect("/M1/databaseEdit.jsp");
@@ -134,7 +139,7 @@ public class FileUploadServlet extends HttpServlet {
 			String parameter = request.getParameter("topic");
 			edDB.topicParameter = parameter;
 			edDB.actionPerformed(FileUploadServlet.file, "deleteFromDB");
-			// System.out.println("////////////////////////////"+parameter);
+			LOG.debug("////////////////////////////" + parameter);
 			response.setHeader("Refresh", "10;url=/fileupload?topic=" + parameter);
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		} else if (request.getParameter("deleteFromDatabase") != null) {
@@ -142,9 +147,11 @@ public class FileUploadServlet extends HttpServlet {
 			edDB.specificParameter = parameter;
 			edDB.actionPerformed(FileUploadServlet.file, "delete");
 			response.sendRedirect("/M1/databaseEdit.jsp");
-
 		}
 	}
+
+	// System.out.println("////////////////////////////"+parameter);
+	// response.setHeader("Refresh", "10;url=/fileupload?topic=" + parameter);
 
 	private String getFileName(Part part) {
 		for (String content : part.getHeader("content-disposition").split(";")) {
