@@ -4,6 +4,7 @@
 <html>
 <head>
 
+
 <!-- start: Meta -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Edit database</title>
@@ -14,7 +15,15 @@
 
 <!-- start: CSS -->
 <link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+<link id="base-style" href="css/jasny-bootstrap.min.css"
+	rel="stylesheet">
 <link id="base-style" href="css/style.css" rel="stylesheet">
+<link id="base-style" href="css/jasny-bootstrap.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.core.css">
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.default.css">
+<script src="js/extensions.js"></script>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
@@ -34,15 +43,16 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<!-- start: Header -->
-	<div class="navbar">
-		<div class="navbar-inner">
+	<div style="color: highlighttext;" class="nav-tabs ">
+		<div class="navbar-inner ">
 			<div>
-				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
-				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs main-menu">
-					<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
+				<a class="img-rounded text-right" href="../index.jsp"> <img
+					src="../logo.png" alt="logo" /></a>
+				<div class="nav-header text-center">
+					<ul class="nav nav-tabs main-menu animate ">
+						<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
 								class="hidden-tablet"> Edit database</span></a></li>
-								<li><a href="M1.jsp"><i class="icon-table"></i><span
+						<li><a href="M1.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M1</span></a></li>
 						<li><a href="M2.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M2</span></a></li>
@@ -61,8 +71,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- start: Header -->
-jquery.js
+	<!-- startonsubmit="return Validate(this);: Header -->
+
 	<div>
 		<div>
 			<noscript>
@@ -75,203 +85,184 @@ jquery.js
 				</div>
 			</noscript>
 
-			<div align="center" id="content" class="span10">
-				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a>
-						<i class="icon-angle-right"></i></li>
-					<li><a href="#">Edit database</a></li>
-				</ul>
-				<div>
-					<h1 align="center">Edit database</h1>
-					<div>
-						<div style="text-align: center">
-							<table>
+		<noscript>
+			<!-- <div class="alert alert-error">
+				<h4 class="alert-heading">Warning!</h4>
+				<p>
+					You need to have <a href="http://en.wikipedia.org/wiki/JavaScript"
+						target="_blank">JavaScript</a> enabled to use this site.
+				</p>
+			</div> -->
+		</noscript>
 
-								<h3 align="center">Select a file to upload:</h3>
-								<form method="post" action="/fileupload"
-									enctype="multipart/form-data">
-									Choose file: <input type="file" name="file"> <input
-										type="submit" value="Upload" name="uploadFile">
-								</form>
-<<<<<<< HEAD
-								<form method="get"
-									action="${pageContext.request.contextPath}/fileupload"
-									enctype="multipart/form-data">
-									<input type="submit" name="button1" value="Open uploaded file" /><br />
-								</form> 
-=======
+		<div id="content" class="input-xxlarge"
+			style="width: 85%; margin: auto;">
+			<ul class="breadcrumb">
+				<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a>
+					<i class="icon-angle-right"></i></li>
+				<li"><a href="#">Edit database</a></li>
+			</ul>
 
-								<script type="text/javascript">
-								var Msg ='<%=session.getAttribute("Message")%>
-									';
-									if (Msg != "null") {
-										alert("File uploaded!");
-									}
-								</script>
+			<h1 class="text-success" align="center">Edit database</h1>
 
+			<div style="text-align: center">
+				<table>
 
->>>>>>> 1688c074326f6e8d2ef9d39a3fbf53009c3d320d
-								</br>
-								<h3 align="center">Select file to update database
-									parameters</h3>
-								<form method="post" action="/fileupload"
-									enctype="multipart/form-data">
-									Choose file: <input type="file" name="upload"> <input
-										type="submit" value="Update" name="uploadFile">
-								</form>
-
-								<br>
-								<form method="get"
-									action="${pageContext.request.contextPath}/fileupload"
-									enctype="multipart/form-data">
-									<input type="submit" name="createOPENTemplate"
-										value="Create/OPEN Template" />
-								</form>
-									<form method="get"
-									action="${pageContext.request.contextPath}/fileupload"
-									enctype="multipart/form-data">
-									<input type="submit" name="exportData"
-										value="Export and open all data" />
-								</form>
-								</tr>
-
-								</tr>
-
-								</td>
-								</tr>
-
-								<tr>
-									<td><%@ page import="org.einclusion.GUI.EditDatabasePanel"%>
-										<%@ page import="java.util.TreeSet"%> <%@ page
-											import="java.util.ArrayList"%> <%@ taglib
-											prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-										<%
-											//public static String specificsParam;
-											TreeSet<String> topics = new TreeSet();
-											ArrayList<String> specifics = new ArrayList<String>();
-
-											EditDatabase editPanel = new EditDatabase();
-
-											editPanel.treeSetTopics.clear();
-											topics.clear();
-
-											editPanel.getTopics(editPanel.conn, editPanel.stmt);
-											topics = editPanel.treeSetTopics;
-											specifics = editPanel.specificsList;
-											topics.add("All");
-											String selectedTopic = editPanel.topicParameter;
-											for (String topic : topics)
-												System.out.println("topic #######################################" + topic);
-											request.setAttribute("topics", topics);
-											request.setAttribute("specifics", specifics);
-											request.setAttribute("selectedTopic", selectedTopic);
-
-											//  TODO read header if (header != refresh) refresh the page
-											//	response.setIntHeader("Refresh", 0);
-											//response.setIntHeader("topic", 0);
-										%>
-								<tr>
-									<h2 align="center">Delete from database</h2>
-								</tr>
-								<tr>
-									<br />
-									<form method="get"
-										action="${pageContext.request.contextPath}/fileupload"
-										enctype="multipart/form-data" name="f1">
-										<select name="topic">
-											<c:forEach items="${topics}" var="item">
-												<option value="${item}"
-													${item == selectedTopic ? 'selected="selected"' : ''}>${item}</option>
-											</c:forEach>
-										</select> <input type="submit" name="deleteButton"
-											value="Refresh names" />
-									</form>
-									<br />
-									<form method="get"
-										action="${pageContext.request.contextPath}/fileupload"
-										enctype="multipart/form-data">
-										<select name="specific">
-											<c:forEach items="${specifics}" var="item">
-												<option value="${item}" selected="${selectedTopic}">${item}</option>
-											</c:forEach>
-											<%-- 												<option selected="selected" value="<%=%>">${item}</option> --%>
-										</select> <input type="submit" name="deleteFromDatabase"
-											value="Delete from database" />
-									</form>
-								</tr>
-								</td>
-								</tr>
-
-							</table>
-
-<<<<<<< HEAD
-							<h3>Coefficients</h3>
-							<%
-								ArrayList<ArrayList<String>> list = WebTable.coef();
-								request.setAttribute("list", list);
-							%>
-							<table class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th>Key</th>
-										<th class=skip-filter>Coefficient</th>
-										<th class=skip-filter>Relative</th>
-										<th class=skip-filter>Value</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${list}" var="item">
-										<tr>
-											<td><c:out value="${item.get(0)}" /></td>
-											<td><c:out value="${item.get(1)}" /></td>
-											<td><c:out value="${item.get(2)}" /></td>
-											<td><c:out value="${item.get(3)}" /></td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
+					<h3 class="text-info" align="center">Select a file to upload:</h3>
+					<div class="fileinput fileinput-new" data-provides="fileinput">
+						<form method="post" action="/fileupload"
+							enctype="multipart/form-data">
+							<span class="btn btn-default btn-file"><span
+								class="fileinput-new">Select file</span><span
+								class="fileinput-exists">Change</span><input type="file"
+								name="file" onchange="ValidateSingleInput(this);"></span> <span
+								class="fileinput-filename"></span> <a href="#"
+								class="close fileinput-exists" data-dismiss="fileinput"
+								style="float: none">&times;</a> <input type="submit"
+								value="Upload" name="uploadFile" 
+								class="btn btn-primary fileinput-exists " onclick="UploadSuccess(this)">
+						</form "> 
 					</div>
+					</br>
+					<div class="fileinput fileinput-new" data-provides="fileinput">
 
+						<h3 class="text-info" align="center">Select file to update
+							database parameters</h3>
 
-				</div>
-			</div>
-		</div>
-	</div>
+						<form method="post" action="/fileupload"
+							enctype="multipart/form-data">
+							<span class="btn btn-default btn-file"><span
+								class="fileinput-new">Select file</span><span
+								class="fileinput-exists">Change</span><input type="file"
+								name="file2" onchange="ValidateSingleInput2(this);""></span> <span
+								class="fileinput-filename"></span> <a href="#"
+								class="close fileinput-exists" data-dismiss="fileinput"
+								style="float: none">&times;</a> <input type="submit"
+								value="Upload" name="uploadFile"
+								class="btn btn-primary fileinput-exists" onclick="UploadSuccess(this)">
+						</form>
+					</div>
+					<br>
+					<div class="fileinput fileinput-new" data-provides="fileinput">
+						<form method="get"
+							action="${pageContext.request.contextPath}/fileupload"
+							enctype="multipart/form-data">
+							<input type="submit" name="createOPENTemplate"
+								value="Create/OPEN Template" class="btn btn-navbar  ">
+						</form>
+						<form method="get"
+							action="${pageContext.request.contextPath}/fileupload"
+							enctype="multipart/form-data">
+							<input type="submit" name="exportData"
+								value="Export and open all data" class="btn btn-primary">
+						</form>
+					</div>
+					</tr>
 
-	<!-- start: JavaScript-->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
-		
-	</script>
-	<script type="text/javascript" src="ddtf.js"></script>
-	<script type="text/javascript">
-		jQuery(document).ready(function() {
-			jQuery('.table').ddTableFilter();
-		});
-	</script>
-	<script>
-	$(document).ready(function(){
-		$('input[type="file"]').change(function(){
-				$(this).next().removeAttr('disabled');
-			}).next().attr('disabled', 'disabled');
-		});
-	</script>
-	<!-- end: JavaScript-->
-=======
-							<!-- start: JavaScript-->
-							<script
-								src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
-								
-							</script>
-							<script type="text/javascript" src="ddtf.js"></script>
-							<script type="text/javascript">
-								jQuery(document).ready(function() {
-									jQuery('.table').ddTableFilter();
-								});
-							</script>
+					</tr>
 
-							<!-- end: JavaScript-->
->>>>>>> 1688c074326f6e8d2ef9d39a3fbf53009c3d320d
+					</td>
+					</tr>
+
+					<tr>
+						<td><%@ page import="org.einclusion.GUI.EditDatabasePanel"%>
+							<%@ page import="java.util.TreeSet"%> <%@ page
+								import="java.util.ArrayList"%> <%@ taglib
+								prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+							<%
+								//public static String specificsParam;
+								TreeSet<String> topics = new TreeSet();
+								ArrayList<String> specifics = new ArrayList<String>();
+
+								EditDatabase editPanel = new EditDatabase();
+
+								editPanel.treeSetTopics.clear();
+								topics.clear();
+
+								editPanel.getTopics(editPanel.conn, editPanel.stmt);
+								topics = editPanel.treeSetTopics;
+								specifics = editPanel.specificsList;
+								topics.add("All");
+								String selectedTopic = editPanel.topicParameter;
+								for (String topic : topics)
+									System.out.println("topic #######################################" + topic);
+								request.setAttribute("topics", topics);
+								request.setAttribute("specifics", specifics);
+								request.setAttribute("selectedTopic", selectedTopic);
+
+								//  TODO read header if (header != refresh) refresh the page
+								//	response.setIntHeader("Refresh", 0);
+								//response.setIntHeader("topic", 0);
+							%>
+					<tr>
+						<h2 align="center">Delete from database</h2>
+					</tr>
+					<tr>
+						<br />
+						<form method="get"
+							action="${pageContext.request.contextPath}/fileupload"
+							enctype="multipart/form-data" name="f1">
+							<select name="topic">
+								<c:forEach items="${topics}" var="item">
+									<option value="${item}"
+										${item == selectedTopic ? 'selected="selected"' : ''}>${item}</option>
+								</c:forEach>
+							</select> <input type="submit" name="deleteButton" value="Refresh names"
+								class="btn btn-navbar  " />
+						</form>
+						<p>&nbsp&nbsp</p>
+						<form method="get"
+							action="${pageContext.request.contextPath}/fileupload"
+							enctype="multipart/form-data">
+							<select>
+								<c:forEach items="${specifics}" var="item">
+									<option value="${item}" selected="${selectedTopic}">${item}</option>
+								</c:forEach>
+								<%-- 												<option selected="selected" value="<%=%>">${item}</option> --%>
+							</select> <input class="btn btn-primary" type="submit"
+								name="deleteFromDatabase" value="Delete from database"
+								onClick="return confirm(
+  'Are you sure you want to delete all data?');" />
+						</form>
+					</tr>
+					</td>
+
+					</tr>
+				</table>
+
+				<!-- start: JavaScript-->
+				<script
+					src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+					
+				</script>
+				<script type="text/javascript" src="ddtf.js"></script>
+				<script type="text/javascript">
+					jQuery(document).ready(function() {
+						jQuery('.table').ddTableFilter();
+					});
+				</script>
+				<!-- Latest compiled and minified CSS -->
+				<link rel="stylesheet"
+					href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+
+				<!-- Latest compiled and minified JavaScript -->
+				<script
+					src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+				<!-- Latest compiled and minified CSS -->
+				<link rel="stylesheet"
+					href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
+				<!-- Latest compiled and minified JavaScript -->
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+				<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+				<script
+					src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/i18n/defaults-*.min.js"></script>
+				<script src="bower_components/jquery/dist/jquery.min.js"></script>
+				<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+				<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+				<!-- end: JavaScript-->
 </body>
 </html>

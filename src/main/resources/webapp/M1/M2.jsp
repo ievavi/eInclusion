@@ -43,12 +43,13 @@
 		request.setAttribute("list", list);
 	%>
 	<!-- start: Header -->
-	<div class="navbar">
-		<div class="navbar-inner">
+		<div style="color: highlighttext;" class="nav-tabs ">
+		<div class="navbar-inner ">
 			<div>
-				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
-				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs main-menu">
+				<a class="img-rounded text-right" href="../index.jsp"> <img
+					src="../logo.png" alt="logo" /></a>
+				<div class="nav-header text-center">
+					<ul class="nav nav-tabs main-menu animate ">	
 					<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
 								class="hidden-tablet"> Edit database</span></a></li>
 						<li><a href="M1.jsp"><i class="icon-table"></i><span
@@ -84,14 +85,14 @@
 				</div>
 			</noscript>
 
-			<div id="content" class="span10">
+			<div id="content" class="input-xxlarge" style="width: 85%;margin: auto;">
 				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a>
 						<i class="icon-angle-right"></i></li>
 					<li><a href="#">M2</a></li>
 				</ul>
 				<div>
-					<h1>Evaluation of ability to learn and knowledge sharing</h1>
+					<h1 class="text-success" align="center">Evaluation of ability to learn and knowledge sharing</h1>
 					<div>
 						<div class="box-header"></div>
 						<div class="box-content">

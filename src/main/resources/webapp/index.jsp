@@ -31,15 +31,15 @@
 
 <body>
 	<!-- start: Header -->
-	<h1>Hello</h1>
-	<div class="navbar">
-		<div class="navbar-inner">
+	<div style="color: highlighttext;" class="nav-tabs ">
+		<div class="navbar-inner ">
 			<div>
-				<a class="brand" href="M1/databaseEdit.jsp"><span>Einclusion</span></a>
-				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs main-menu">
+				<a class="img-rounded text-right" href="index.jsp"> <img
+					src="logo.png" alt="logo" /></a>
+				<div class="nav-header text-center">
+					<ul class="nav nav-tabs main-menu animate ">
 						<li><a href="M1/databaseEdit.jsp"><i class="icon-edit"></i><span
-								class="hidden-tablet"> Edit database</span></a></li>
+								class="hidden-tablet text-center"> Edit database</span></a></li>
 						<li><a href="M1/M1.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M1</span></a></li>
 						<li><a href="M1/M2.jsp"><i class="icon-table"></i><span
@@ -51,8 +51,9 @@
 						<li><a href="M1/ReadMe.pdf" target="_blank"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Instructions </span></a></li>
-						<li><a href="M1/coefficients.jsp"><i class="icon-table"></i><span
-								class="hidden-tablet"> Coefficients </span></a></li>
+						<li><a class="a" href="M1/coefficients.jsp"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Coefficients </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -71,12 +72,15 @@
 					</p>
 				</div>
 			</noscript>
-			<div id="content" class="span10" style="width: 65%">
+			<div id="content" class="input-xxlarge" style="width: 85%;margin: auto;">
 				<div>
-					<h1>Einclusion</h1>
+					<h1 align="center" style="color: aqua;">
+						<a href="index.jsp ">Einclusion </a>
+					</h1>
 					<div>
-						<div class="box-content">
+						<div align="center" class="text-info" style="color: graytext;">
 							<descrip> <br />
+							<p>
 							The purpose of this system is predicting behavior of students,
 							studying digital skills, after completing course.<br />
 							<br />
@@ -88,7 +92,32 @@
 							<br />
 							In the scope of this system, an e-included student is such a
 							student that after course completion applies the skills taught in
-							it. </descrip>
+							it.
+							</p>
+							 <br />
+							<h2 align="center" style="color: aqua;">
+								<a href="M1/databaseEdit.jsp ">Edit database </a>
+							</h2>
+							<p align="center">Helps to add new students to database and
+								update database, also provides export all data to .xlsx format
+								and also provides with creating template. In this page you can
+								also refresh names and delete all content from database.</p>
+							<br />
+							<h2 align="center" style="color: aqua;">
+								<a href="M1/M1.jsp ">M1 </a>-- <a href="M1/M2.jsp ">M2 </a>-- <a
+									href="M1/M3.jsp ">M3 </a>
+							</h2>
+							<p align="center">Shows each students factors for calculating
+								coefficients and calculated coefficients..</p>
+							<br />
+							<h2 align="center" style="color: aqua;">
+								<a href="M1/prediction.jsp ">Prediction </a>
+							</h2>
+							<p align="center">Shows each students coefficients and
+								reliability.</p>
+
+
+							</descrip>
 						</div>
 					</div>
 				</div>
