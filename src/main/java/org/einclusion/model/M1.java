@@ -44,9 +44,10 @@ public class M1 {
 			eval.evaluateClusterer(data); 		// data to evaluate the clusterer on 
 
 			clusters = clusterer.numberOfClusters();			// gets the number of clusters
+			//ModelManager.setNumberValue(clusterKey, clusters); 	// writes number of clusters to database
+			//LOG.info("M1-clusters: " + clusters);
 			return clusters;
-//			ModelManager.setNumberValue(clusterKey, clusters); 	// writes number of cluters to database
-//			LOG.info("M1-clusters: " + clusters); 
+			
 		} catch (Exception e) {
 			LOG.error(e.getMessage()+" "+e.getCause());
 			return clusters;

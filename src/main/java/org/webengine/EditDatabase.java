@@ -845,7 +845,8 @@ public class EditDatabase {
 						LOG.error(ex.getMessage() + " " + ex.getCause());
 						ex.printStackTrace();
 					}
-
+//TODO - create new method to calculate models for uploaded data.
+//Models should not be changed at this point - only after DB update.
 					try {
 						ModelManager.initModelManager(PERSISTENCE_SET); // loads
 																		// a
