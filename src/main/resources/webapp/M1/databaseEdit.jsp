@@ -40,9 +40,9 @@
 				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
 				<div class="nav-collapse sidebar-nav">
 					<ul class="nav nav-tabs main-menu">
-						<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
+					<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
 								class="hidden-tablet"> Edit database</span></a></li>
-						<li><a href="M1.jsp"><i class="icon-table"></i><span
+								<li><a href="M1.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M1</span></a></li>
 						<li><a href="M2.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M2</span></a></li>
@@ -50,8 +50,12 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
-						<li><a href="ReadMe.pdf" target="_blank"><i class="icon-table" ></i><span
-								class="hidden-tablet"> Instructions </span></a></li>
+						<li><a href="ReadMe.pdf" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Instructions </span></a></li>
+						<li><a href="coefficients.jsp"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Coefficients </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -71,45 +75,63 @@ jquery.js
 				</div>
 			</noscript>
 
-			<div id="content" class="span10">
+			<div align="center" id="content" class="span10">
 				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a>
 						<i class="icon-angle-right"></i></li>
 					<li><a href="#">Edit database</a></li>
 				</ul>
 				<div>
-					<h1>Edit database</h1>
+					<h1 align="center">Edit database</h1>
 					<div>
-						<div class="box-content">
-							<table class="upload">
+						<div style="text-align: center">
+							<table>
 
-								<h3>Select a file to upload:</h3>
+								<h3 align="center">Select a file to upload:</h3>
 								<form method="post" action="/fileupload"
 									enctype="multipart/form-data">
 									Choose file: <input type="file" name="file"> <input
 										type="submit" value="Upload" name="uploadFile">
 								</form>
+<<<<<<< HEAD
 								<form method="get"
 									action="${pageContext.request.contextPath}/fileupload"
 									enctype="multipart/form-data">
 									<input type="submit" name="button1" value="Open uploaded file" /><br />
 								</form> 
+=======
+
+								<script type="text/javascript">
+								var Msg ='<%=session.getAttribute("Message")%>
+									';
+									if (Msg != "null") {
+										alert("File uploaded!");
+									}
+								</script>
+
+
+>>>>>>> 1688c074326f6e8d2ef9d39a3fbf53009c3d320d
 								</br>
-								<h3>Select file to update database parameters</h3>
+								<h3 align="center">Select file to update database
+									parameters</h3>
 								<form method="post" action="/fileupload"
 									enctype="multipart/form-data">
 									Choose file: <input type="file" name="upload"> <input
 										type="submit" value="Update" name="uploadFile">
 								</form>
+
 								<br>
 								<form method="get"
 									action="${pageContext.request.contextPath}/fileupload"
 									enctype="multipart/form-data">
-									<input type="submit" name="button4" value="Example" /><br />
-									<input type="submit" name="button2" value="Create Template" />
-									<input type="submit" name="button3" value="Open Template" /><br />
-									<input type="submit" name="button5" value="Export all data" />
-									<input type="submit" name="button6" value="Open exported data" /><br />
+									<input type="submit" name="createOPENTemplate"
+										value="Create/OPEN Template" />
+								</form>
+									<form method="get"
+									action="${pageContext.request.contextPath}/fileupload"
+									enctype="multipart/form-data">
+									<input type="submit" name="exportData"
+										value="Export and open all data" />
 								</form>
 								</tr>
 
@@ -149,9 +171,10 @@ jquery.js
 											//response.setIntHeader("topic", 0);
 										%>
 								<tr>
-									<h2>Delete from database</h2>
+									<h2 align="center">Delete from database</h2>
 								</tr>
 								<tr>
+									<br />
 									<form method="get"
 										action="${pageContext.request.contextPath}/fileupload"
 										enctype="multipart/form-data" name="f1">
@@ -163,7 +186,7 @@ jquery.js
 										</select> <input type="submit" name="deleteButton"
 											value="Refresh names" />
 									</form>
-
+									<br />
 									<form method="get"
 										action="${pageContext.request.contextPath}/fileupload"
 										enctype="multipart/form-data">
@@ -181,6 +204,7 @@ jquery.js
 
 							</table>
 
+<<<<<<< HEAD
 							<h3>Coefficients</h3>
 							<%
 								ArrayList<ArrayList<String>> list = WebTable.coef();
@@ -234,5 +258,20 @@ jquery.js
 		});
 	</script>
 	<!-- end: JavaScript-->
+=======
+							<!-- start: JavaScript-->
+							<script
+								src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+								
+							</script>
+							<script type="text/javascript" src="ddtf.js"></script>
+							<script type="text/javascript">
+								jQuery(document).ready(function() {
+									jQuery('.table').ddTableFilter();
+								});
+							</script>
+
+							<!-- end: JavaScript-->
+>>>>>>> 1688c074326f6e8d2ef9d39a3fbf53009c3d320d
 </body>
 </html>

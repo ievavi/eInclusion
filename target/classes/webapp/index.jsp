@@ -12,7 +12,8 @@
 <!-- end: Meta -->
 
 <!-- start: CSS -->
-<link id="bootstrap-style" href="M1/css/bootstrap.min.css" rel="stylesheet">
+<link id="bootstrap-style" href="M1/css/bootstrap.min.css"
+	rel="stylesheet">
 <link id="bootstrap-style" href="M1/css/bootstrap.min.css"
 	rel="stylesheet">
 <link id="base-style" href="M1/css/style.css" rel="stylesheet">
@@ -45,8 +46,11 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="M1/prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
-						<li><a href="M1/ReadMe.pdf" target="_blank"><i class="icon-table"></i><span
-								class="hidden-tablet"> Instructions </span></a></li>
+						<li><a href="M1/ReadMe.pdf" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Instructions </span></a></li>
+						<li><a href="M1/coefficients.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> Coefficients </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -70,8 +74,7 @@
 					<h1>Einclusion</h1>
 					<div>
 						<div class="box-content">
-							<descrip>
-							<br />
+							<descrip> <br />
 							The purpose of this system is predicting behavior of students,
 							studying digital skills, after completing course.<br />
 							<br />
@@ -93,6 +96,7 @@
 	<!-- start: JavaScript-->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+		
 	</script>
 	<script src="M1/src/jquery.table2excel.js"></script>
 	<script type="text/javascript">
