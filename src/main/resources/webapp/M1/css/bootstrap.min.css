@@ -1008,8 +1008,14 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 
 input, textarea, .uneditable-input {
-	width: 206px
+	// TODO shoul check how it looks for empty/radonly/disabled fields 
+	 width: 206px
 }
+
+.hasDatepicker {
+	 width: 165px
+}
+
 
 textarea {
 	height: auto

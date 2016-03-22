@@ -66,6 +66,9 @@
 </style>
 <!-- end: CSS -->
 
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 <!-- start: Favicon -->
 <link rel="shortcut icon" href="img/favicon.ico">
@@ -157,7 +160,7 @@ table
 					<div>
 						<div class="box-header"></div>
 						<div class="box-content">
-							<form class="form-horizontal" action="prediction.jsp"
+							<form id="formXls" class="form-horizontal" action="prediction.jsp"
 								method="post" enctype="multipart/form-data">
 								<fieldset>
 									<div class="control-group">
@@ -173,6 +176,7 @@ table
 
 								</fieldset>
 							</form>
+<<<<<<< Updated upstream
 							
 							<label>From</label><input type="text" id="one" ></input>
 							<label>To</label><input type="text" id="two" ></input>
@@ -181,11 +185,135 @@ table
 							</select>
 							<button type="submit" onclick="search();">Search</button>
 							
+=======
+
+							<form id="formFromToDate" method="get"
+								enctype="multipart/form-data">
+								<table align="center">
+								<tr>
+								<td>
+								<div style="background-color: #f9f9f9; border:1px solid; padding: 5px; border-color: #eee;">
+									<%
+										String fieldFrom = request.getParameter("from");
+										if (fieldFrom == null) {
+											fieldFrom=""; 
+										}
+										
+										String fieldTo = request.getParameter("to");
+										if (fieldTo == null) {
+												fieldTo=""; 
+										}
+									%>
+									<label for="rangeFilter">Filter by particular date
+										interval</label>
+									<div>
+										<label for="from" style="display:inline-block; width:100px;">From* (Clickable)</label> <input type="text"
+											id="from" style="width: 63px" name="from" value=<%=fieldFrom%>>
+									</div>
+
+									<div>
+										<label for="to" style="display:inline-block; width:100px;">To* (Clickable)</label> <input type="text"
+											id="to" style="width: 63px" name="to" value=<%=fieldTo%>>
+									</div>
+									<button type="submit" style="width: 179px"
+										class="btn btn-primary">Submit ranged date filter</button>
+								</div>
+								</td>
+
+
+
+								
+								<td>
+								<div style="background-color: #f9f9f9;border:1px solid; padding: 5px; border-color: #eee;">
+									<label for="rangeFilter">Filter by particular M2
+										interval</label>
+									<div>
+										<%
+											String fieldFromM2 = request.getParameter("fromM2");
+											if (fieldFromM2 == null) {
+												fieldFromM2=""; 
+											}
+											
+											String fieldToM2 = request.getParameter("toM2");
+											if (fieldToM2 == null) {
+												fieldToM2=""; 
+											}
+										%>
+										<label for="fromM2" style="display:inline-block; width:100px;">From* (0-100)%</label> <input type="text"
+											id="fromM2" name="fromM2"
+											onkeypress="return isNumberKey(event)" onchange="correctValueM(this)" maxlength=3
+											style="width: 63px" value=<%=fieldFromM2%>>
+									</div>
+
+									<div>
+										<label for="toM2" style="display:inline-block; width:100px;">To* (0-100)%</label> <input type="text"
+											id="toM2" name="toM2" onkeypress="return isNumberKey(event)" onchange="correctValueM(this)"
+											maxlength=3 style="width: 63px" value=<%=fieldToM2%>>
+									</div>
+									<button type="submit" style="width: 179px"
+										class="btn btn-primary">Submit ranged M2 filter</button>
+								</div>
+								</td>
+
+
+
+								<td>
+								<div style="background-color: #f9f9f9; border:1px solid; padding: 5px; border-color: #eee;">
+									<label for="rangeFilterM3">Filter by particular M3
+										interval</label>
+									<div>
+										<%
+											String fieldFromM3 = request.getParameter("fromM3");
+											if (fieldFromM3 == null) {
+												fieldFromM3=""; 
+											}
+											
+											String fieldToM3 = request.getParameter("toM3");
+											if (fieldToM3 == null) {
+												fieldToM3=""; 
+											}
+										%>
+										<label for="fromM3" style="display:inline-block; width:100px;">From* (0-100)%</label> <input type="text"
+											id="fromM3" name="fromM3" onchange="correctValueM(this)"
+											onkeypress="return isNumberKey(event)" maxlength=3
+											style="width: 63px" value=<%=fieldFromM3%>>
+									</div>
+
+									<div>
+										<label for="toM3" style="display:inline-block; width:100px;">To* (0-100)%</label> <input type="text"
+											id="toM3" name="toM3" onkeypress="return isNumberKey(event)" onchange="correctValueM(this)"
+											maxlength=3 style="width: 63px" value=<%=fieldToM3%>>
+									</div>
+									<button type="submit" style="width: 179px"
+										class="btn btn-primary">Submit ranged M3 filter</button>
+								</div>
+							</td>
+							
+							</tr>
+							</table>
+							</form>
+							<form>
+							<div align="right">
+							<button type="button" onclick="location.href = 'prediction.jsp';" style="width: 120px"
+										 class="btn btn-primary">Remove all filters</button>
+							</div>
+							</form>
+
+
+
+
+>>>>>>> Stashed changes
 							<label><font color='#55cc55'><b>Green</b> </font> -
 								included, <font color='ffdd54'> <b>Yellow</b></font> - partly
 								included, <font color='#ff6654'> <b>Red</b></font> - not
 								included</label>
+<<<<<<< Updated upstream
 								<div class="DefStyle" id="Definition">Click to see results</div>
+=======
+								
+
+								
+>>>>>>> Stashed changes
 							<table class="table table-striped table-bordered">
 								<thead>
 									<tr>
@@ -202,6 +330,7 @@ table
 								</thead>
 								<tbody>
 									<c:forEach items="${list}" var="item">
+<<<<<<< Updated upstream
 										<tr class="toshow">
 											<td id="Nr"><c:out value="${item.get(0)}" /></td>
 											<td><c:out value="${item.get(1)}" /></td>
@@ -271,13 +400,99 @@ table
 												</c:otherwise>
 											</c:choose>
 										</tr>
+=======
+										<c:if
+											test="${(param.from == null || param.to == null || param.from == '' || param.to == '')
+													|| item.get(3) >= param.from &&  item.get(3) <= param.to}">
+											<c:if
+												test="${(param.fromM2 == null || param.toM2 == null || param.fromM2 == '' || param.toM2 == '')
+														|| item.get(5) >= param.fromM2 &&  item.get(5) <= param.toM2}">
+												<c:if
+													test="${(param.fromM3 == null || param.toM3 == null || param.fromM3 == '' || param.toM3 == '')
+															|| item.get(6) >= param.fromM3 &&  item.get(6) <= param.toM3}">
+													<tr>
+														<td id="Nr"><c:out value="${item.get(0)}" /></td>
+														<td><c:out value="${item.get(1)}" /></td>
+														<td><c:out value="${item.get(2)}" /></td>
+														<td><c:out value="${item.get(3)}" /></td>
+														<fmt:parseNumber var="m1" type="number"
+															value="${item.get(4)}" />
+														<c:choose>
+															<c:when test="${m1 == 2}">
+																<td class="green colored"><c:out value="${m1}" /></td>
+															</c:when>
+															<c:when test="${m1 == 1}">
+																<td class="yellow colored"><c:out value="${m1}" /></td>
+															</c:when>
+															<c:when test="${m1 == 0}">
+																<td class="red colored"><c:out value="${m1}" /></td>
+															</c:when>
+															<c:otherwise>
+																<td class="gray colored"><c:out value="${m1}" /></td>
+															</c:otherwise>
+														</c:choose>
+														<fmt:parseNumber var="m2" type="number"
+															value="${item.get(5)}" />
+														<c:choose>
+															<c:when test="${m2 > 60}">
+																<td class="green colored"><c:out value="${m2}" /></td>
+															</c:when>
+															<c:when test="${m2 > 25}">
+																<td class="yellow colored"><c:out value="${m2}" /></td>
+															</c:when>
+															<c:when test="${m2 > 0}">
+																<td class="red colored"><c:out value="${m2}" /></td>
+															</c:when>
+															<c:otherwise>
+																<td class="gray colored"><c:out value="${m2}" /></td>
+															</c:otherwise>
+														</c:choose>
+														<fmt:parseNumber var="m3" type="number"
+															value="${item.get(6)}" />
+														<c:choose>
+															<c:when test="${m3 > 60}">
+																<td class="green colored"><c:out value="${m3}" /></td>
+															</c:when>
+															<c:when test="${m3 > 25}">
+																<td class="yellow colored"><c:out value="${m3}" /></td>
+															</c:when>
+															<c:when test="${m3 > 0}">
+																<td class="red colored"><c:out value="${m3}" /></td>
+															</c:when>
+															<c:otherwise>
+																<td class="gray colored"><c:out value="${m3}" /></td>
+															</c:otherwise>
+														</c:choose>
+														<c:set var="pred" value="${item.get(7)}" />
+														<c:choose>
+															<c:when test="${pred == 'High'}">
+																<td class="green"><c:out value="${pred}" /></td>
+															</c:when>
+															<c:when test="${pred == 'Medium'}">
+																<td class="yellow"><c:out value="${pred}" /></td>
+															</c:when>
+															<c:when test="${pred =='Low'}">
+																<td class="red"><c:out value="${pred}" /></td>
+															</c:when>
+															<c:otherwise>
+																<td class="gray"><c:out value="${pred}" /></td>
+															</c:otherwise>
+														</c:choose>
+													</tr>
+												</c:if>
+											</c:if>
+										</c:if>
+>>>>>>> Stashed changes
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
 					</div>
+<<<<<<< Updated upstream
 
 				
+=======
+>>>>>>> Stashed changes
 				</div>
 			</div>
 		</div>
@@ -294,6 +509,7 @@ table
   </div>
 </div>
 
+<<<<<<< Updated upstream
 	
 	<!-- start: JavaScript-->
 								
@@ -437,10 +653,54 @@ table
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
 		
+=======
+
+	<!-- start: JavaScript DATEPICKERRANGE-->
+	<script type="text/javascript">
+		$(function() {
+			$("#from").datepicker({
+				changeMonth : true,
+				numberOfMonths : 1,
+				dateFormat: "yy-mm-dd",
+				onClose : function(selectedDate) {
+					$("#to").datepicker("option", "minDate", selectedDate);
+				}
+			});
+			$("#to").datepicker({
+				changeMonth : true,
+				numberOfMonths : 1,
+				dateFormat: "yy-mm-dd",
+				onClose : function(selectedDate) {
+					$("#from").datepicker("option", "maxDate", selectedDate);
+				}
+			});
+		});
 	</script>
+	
+	<script type="text/javascript">
+	function isNumberKey(evt){
+	    var charCode = (evt.which) ? evt.which : event.keyCode
+	    if (charCode > 31 && (charCode < 48 || charCode > 57))
+	        return false;
+        if(evt.value<0) evt.value = 0;
+        if(evt.value > 100) evt.value = 100;
+	    return true;
+	}
+	</script>
+
+	<script type="text/javascript">
+	function correctValueM(evt){
+        if(evt.value<0) evt.value = 0;
+        if(evt.value > 100) evt.value = 100;
+	    return true;
+	}
+>>>>>>> Stashed changes
+	</script>
+
+	<!-- start: JavaScript-->
 	<script src="src/jquery.table2excel.js"></script>
 	<script type="text/javascript">
-		$("form").submit(function() {
+		$("#formXls").submit(function() {
 			var n = $("input:first").val()
 			$(".table").table2excel({
 				exclude : ".noExl",
@@ -461,6 +721,8 @@ table
 			jQuery('.table').ddTableFilterColor();
 		});
 	</script>
+
+
 	<!-- end: JavaScript-->
 </body>
 </html>

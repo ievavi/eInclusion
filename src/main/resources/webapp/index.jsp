@@ -26,6 +26,7 @@
 <!-- start: Favicon -->
 <link rel="shortcut icon" href="img/favicon.ico">
 <!-- end: Favicon -->
+
 </head>
 
 <body>
