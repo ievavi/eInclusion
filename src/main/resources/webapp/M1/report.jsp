@@ -74,7 +74,7 @@
 						<li><a href="prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
 						<li><a href="report.jsp"><i class="icon-table"></i><span
-								class="hidden-tablet"> Report</span></a></li>		
+								class="hidden-tablet"> Report</span></a></li>	
 						<li><a href="ReadMe.pdf" target="_blank"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Instructions </span></a></li>
@@ -134,7 +134,7 @@
 									</c:forEach>
 							    </select>
 								    <select name="topic" id="topic" style="width:120px">
-						    		<option selected>All</option>>
+						    		<option selected>All</option>
 		   							<c:forEach items="${topics}" var="topic">
 									<option>${topic}</option>
 									</c:forEach>
