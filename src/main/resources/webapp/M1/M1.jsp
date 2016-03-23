@@ -9,6 +9,7 @@
 <title>General evaluation of student</title>
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- end: Meta -->
 
 <!-- start: CSS -->
@@ -39,29 +40,31 @@
 		request.setAttribute("list", list);
 	%>
 	<!-- start: Header -->
-	<div class="navbar">
-		<div class="navbar-inner">
+	<div style="color: highlighttext;" class="nav-tabs ">
+		<div class="navbar-inner ">
 			<div>
-				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
-				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs main-menu">
-					<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
-								class="hidden-tablet"> Edit database</span></a></li>
-					<li><a href="M1.jsp"><i class="icon-table"></i><span
-								class="hidden-tablet"> M1</span></a></li>
-						<li><a href="M2.jsp"><i class="icon-table"></i><span
-								class="hidden-tablet"> M2</span></a></li>
-						<li><a href="M3.jsp"><i class="icon-table"></i><span
-								class="hidden-tablet"> M3</span></a></li>
-						<li><a href="prediction.jsp"><i class="icon-table"></i><span
-								class="hidden-tablet"> Prediction</span></a></li>
-						<li><a href="ReadMe.pdf" target="_blank"><i
-								class="icon-table"></i><span class="hidden-tablet">
-									Instructions </span></a></li>
-						<li><a href="coefficients.jsp"><i
-								class="icon-table"></i><span class="hidden-tablet">
-									Coefficients </span></a></li>
-					</ul>
+				<a class="img-rounded text-right" href="../index.jsp"> <img
+					src="../logo.png" alt="logo" /></a>
+				<div class="nav-header text-center">
+					<ul class="nav nav-tabs main-menu animate ">					
+										<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
+												class="hidden-tablet"> Edit database</span></a></li>
+										<li><a href="M1.jsp"><i class="icon-table"></i><span
+												class="hidden-tablet"> M1</span></a></li>
+										<li><a href="M2.jsp"><i class="icon-table"></i><span
+												class="hidden-tablet"> M2</span></a></li>
+										<li><a href="M3.jsp"><i class="icon-table"></i><span
+												class="hidden-tablet"> M3</span></a></li>
+										<li><a href="prediction.jsp"><i class="icon-table"></i><span
+												class="hidden-tablet"> Prediction</span></a></li>
+										<li><a href="ReadMe.pdf" target="_blank"><i
+												class="icon-table"></i><span class="hidden-tablet">
+													Instructions </span></a></li>
+										<li><a href="coefficients.jsp"><i class="icon-table"></i><span
+												class="hidden-tablet"> Coefficients </span></a></li>
+									</ul>
+								</div>
+						</div>
 				</div>
 			</div>
 		</div>
@@ -87,7 +90,7 @@
 					<li><a href="#">M1</a></li>
 				</ul>
 				<div>
-					<h1>General evaluation of students</h1>
+					<h1 class="text-success" align="center">General evaluation of students</h1>
 					<div>
 						<div class="box-header"></div>
 						<div class="box-content">

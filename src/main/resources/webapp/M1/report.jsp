@@ -5,7 +5,6 @@
 <!-- start: Meta -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Report page</title>
-<meta charset="utf-8">
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
 <!-- end: Meta -->
@@ -41,7 +40,6 @@
 		topics.add(i.get(1));
 		dates.add(i.get(3));
 	}
-	
 	request.setAttribute("dates", dates);
 	request.setAttribute("topics", topics);
 	
@@ -122,17 +120,17 @@
 				</form>
 				<form action="" method="get">
    					<div style="display:inline;">
-	   					<select name="from" class="from" required>
+	   					<select name="from" class="from">
 	   						<c:forEach items="${dates}" var="from">
 							<option>${from}</option>
 							</c:forEach>
 					    </select>
-					    <select name="from" class="from" required>
+					    <select name="from" class="from">
 	   						<c:forEach items="${dates}" var="to">
 							<option>${to}</option>
 							</c:forEach>
 					    </select>
-					    <select name="from" class="from" required>
+					    <select name="from" class="from">
 	   						<c:forEach items="${topics}" var="topic">
 							<option>${topic}</option>
 							</c:forEach>
@@ -152,7 +150,7 @@
 		</div>
 
 	<script type="text/javascript">
-		function addParameters(field, value) {
+		function addParameters() {
 			
 		}
 	</script>

@@ -108,12 +108,13 @@
 		request.setAttribute("listM3", listM3);
 	%>
 	<!-- start: Header -->
-	<div class="navbar">
-		<div class="navbar-inner">
+	<div style="color: highlighttext;" class="nav-tabs ">
+		<div class="navbar-inner ">
 			<div>
-				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
-				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs main-menu">
+				<a class="img-rounded text-right" href="../index.jsp"> <img
+					src="../logo.png" alt="logo" /></a>
+				<div class="nav-header text-center">
+					<ul class="nav nav-tabs main-menu animate ">
 						<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
 								class="hidden-tablet"> Edit database</span></a></li>
 						<li><a href="M1.jsp"><i class="icon-table"></i><span
@@ -127,9 +128,8 @@
 						<li><a href="ReadMe.pdf" target="_blank"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Instructions </span></a></li>
-						<li><a href="coefficients.jsp"><i
-								class="icon-table"></i><span class="hidden-tablet">
-									Coefficients </span></a></li>
+						<li><a href="coefficients.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> Coefficients </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -149,18 +149,18 @@
 				</div>
 			</noscript>
 
-			<div id="content" class="span10">
+			<div id="content" class="input-xxlarge" style="width: 85%;margin: auto;">
 				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a>
 						<i class="icon-angle-right"></i></li>
 					<li><a href="#">Prediction</a></li>
 				</ul>
 				<div>
-					<h1>Prediction of student E-inclusion</h1>
+					<h1 class="text-success" align="center">Prediction of student E-inclusion</h1>
 					<div>
 						<div class="box-header"></div>
 						<div class="box-content">
-							<form id="formXls" class="form-horizontal" action="prediction.jsp"
+							<form class="form-horizontal" action="prediction.jsp"
 								method="post" enctype="multipart/form-data">
 								<fieldset>
 									<div class="control-group">
@@ -406,6 +406,8 @@
 							</table>
 						</div>
 					</div>
+
+
 				</div>
 			</div>
 		</div>
