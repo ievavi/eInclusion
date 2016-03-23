@@ -320,44 +320,43 @@
 								</thead>
 								<tbody>
 									<c:forEach items="${list}" var="item">
+										<fmt:parseNumber var="m1" type="number" value="${item.get(4)}" />
+										<fmt:parseNumber var="m2" type="number"	value="${item.get(5)}" />
+										<fmt:parseNumber var="m3" type="number"	value="${item.get(6)}" />
 										<c:if
 											test="${(param.from == null || param.to == null || param.from == '' || param.to == '')
 													|| item.get(3) >= param.from &&  item.get(3) <= param.to}">
 											<c:if
 												test="${(param.fromM2 == null || param.toM2 == null || param.fromM2 == '' || param.toM2 == '')
-														|| item.get(5) >= param.fromM2 &&  item.get(5) <= param.toM2}">
+														|| m2 >= param.fromM2 &&  m2 <= param.toM2}">
 												<c:if
 													test="${(param.fromM3 == null || param.toM3 == null || param.fromM3 == '' || param.toM3 == '')
-															|| item.get(6) >= param.fromM3 &&  item.get(6) <= param.toM3}">
+															|| m3 >= param.fromM3 &&  m3 <= param.toM3}">
 													<tr class="toshow">
 														<td id="Nr"><c:out value="${item.get(0)}" /></td>
 														<td><c:out value="${item.get(1)}" /></td>
 														<td><c:out value="${item.get(2)}" /></td>
 														<td><c:out value="${item.get(3)}" /></td>
-														<fmt:parseNumber var="m1" type="number"
-															value="${item.get(4)}" />
 														<c:choose>
 															<c:when test="${m1 == 2}">
-																<td class="green colored" onclick="showM1('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();">><c:out value="${m1}" /></td>
+																<td class="green colored" onclick="showM1('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m1}" /></td>
 															</c:when>
 															<c:when test="${m1 == 1}">
-																<td class="yellow colored" onclick="showM1('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();">><c:out value="${m1}" /></td>
+																<td class="yellow colored" onclick="showM1('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m1}" /></td>
 															</c:when>
 															<c:when test="${m1 == 0}">
-																<td class="red colored" onclick="showM1('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();">><c:out value="${m1}" /></td>
+																<td class="red colored" onclick="showM1('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m1}" /></td>
 															</c:when>
 															<c:otherwise>
 																<td class="gray colored" onclick="showM1('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m1}" /></td>
 															</c:otherwise>
 														</c:choose>
-														<fmt:parseNumber var="m2" type="number"
-															value="${item.get(5)}" />
 														<c:choose>
 															<c:when test="${m2 > 60}">
-																<td class="green colored" onclick="showM2('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();">><c:out value="${m2}" /></td>
+																<td class="green colored" onclick="showM2('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m2}" /></td>
 															</c:when>
 															<c:when test="${m2 > 25}">
-																<td class="yellow colored" onclick="showM2('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();">><c:out value="${m2}" /></td>
+																<td class="yellow colored" onclick="showM2('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m2}" /></td>
 															</c:when>
 															<c:when test="${m2 > 0}">
 																<td class="red colored" onclick="showM2('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m2}" /></td>
@@ -366,8 +365,6 @@
 																<td class="gray colored" onclick="showM2('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m2}" /></td>
 															</c:otherwise>
 														</c:choose>
-														<fmt:parseNumber var="m3" type="number"
-															value="${item.get(6)}" />
 														<c:choose>
 															<c:when test="${m3 > 60}">
 																<td class="green colored" onclick="showM3('<c:out value="${item.get(1)}" />','<c:out value="${item.get(2)}" />')" onmouseout="HideDef();" onmouseover="ShowDef();"><c:out value="${m3}" /></td>
@@ -555,8 +552,6 @@
 	    var charCode = (evt.which) ? evt.which : event.keyCode
 	    if (charCode > 31 && (charCode < 48 || charCode > 57))
 	        return false;
-        if(evt.value<0) evt.value = 0;
-        if(evt.value > 100) evt.value = 100;
 	    return true;
 	}
 	</script>
