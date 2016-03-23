@@ -120,7 +120,7 @@
 								class="close fileinput-exists" data-dismiss="fileinput"
 								style="float: none">&times;</a> <input type="submit"
 								value="Upload" name="uploadFile" 
-								class="btn btn-primary fileinput-exists " onclick="UploadSuccess(this)">
+								class="btn btn-primary fileinput-exists " >
 						</form "> 
 					</div>
 					</br>
@@ -138,8 +138,8 @@
 								class="fileinput-filename"></span> <a href="#"
 								class="close fileinput-exists" data-dismiss="fileinput"
 								style="float: none">&times;</a> <input type="submit"
-								value="Upload" name="uploadFile"
-								class="btn btn-primary fileinput-exists" onclick="UploadSuccess(this)">
+								value="Upload" name="uploadFile2"
+								class="btn btn-primary fileinput-exists" >
 						</form>
 					</div>
 					<br>
