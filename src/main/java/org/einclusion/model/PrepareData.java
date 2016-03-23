@@ -36,7 +36,6 @@ public class PrepareData {
 	static final String PERSISTENCE_SET = "test"; // persistence set for
 	// connecting to database
 
-
 	/**
 	 * Function that reads a given .csv file and writes students to database
 	 * 
@@ -48,19 +47,10 @@ public class PrepareData {
 			// EditDatabasePanel.log.append("Reading from file:
 			// "+file.getName()+"\n");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS); // establsih
-			// connection
-			// to
-			// database
+			// connection to database
 			conn.setAutoCommit(false); // sets autocommit to false
-
-			// Query q;
-			// transaction.begin(); // starts the transaction
-			BufferedReader br = new BufferedReader(new FileReader(file)); // reads
-																			// the
-																			// file
-																			// using
-																			// buffered
-																			// reader
+			// reads the file using buffered reader
+			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line; // a row from the file
 			while ((line = br.readLine()) != null) { // while rows aren't empty
 				String[] value = line.split(","); // splits the line by ,
@@ -93,18 +83,6 @@ public class PrepareData {
 				SAL++; // so SAL max value is 5 and lowest value is 1
 				Double KFA = ((IWS + ELE + ELM) * KLBL) / 3;
 
-				// creates a statement that will add one student with the
-				// selected values into the database
-				// String used with entity manager
-
-				// String sql = "UPDATE STUDENT"
-				// + " SET NAME=:name, IWS=:iws, KLAL=:klal, KLBL=:klbl, PU =
-				// :pu,"
-				// + " SUBMITDATE=:submitdate, SWL=:swl, DS=:ds, ELM=:elm,
-				// ELE=:ele,"
-				// + " SAL=:sal, PUOU=:puou, M1=:m1, M2=:m2, KFA=:kfa, M3=:m3,
-				// RELIABILITY=:reliability"
-				// + " WHERE PHONE=:phone and TOPIC=:topic";
 				String sql = "UPDATE STUDENT" + " SET NAME=?, IWS=?, KLAL=?, KLBL=?, PU =?,"
 						+ " SUBMITDATE=?, SWL=?, DS=?, ELM=?, ELE=?,"
 						+ " SAL=?, PUOU=?, M1=?, M2=?, KFA=?, M3=?, RELIABILITY=?, OU=?" + " WHERE PHONE=? and TOPIC=?";
@@ -132,38 +110,6 @@ public class PrepareData {
 				// LOG.debug(pst.);
 				pst.executeUpdate();
 				conn.commit();
-				// q = entityManager.createNativeQuery(sql);
-				// q.setParameter("name", NAME);
-				// q.setParameter("iws", IWS);
-				// q.setParameter("klal", KLAL);
-				// q.setParameter("klbl", KLBL);
-				// q.setParameter("pu", PU);
-				// q.setParameter("submitdate", submitDate);
-				// q.setParameter("swl", SWL);
-				// q.setParameter("ds", DS);
-				// q.setParameter("elm", ELM);
-				// q.setParameter("ele", ELE);
-				// q.setParameter("sal", SAL);
-				// q.setParameter("puou", 0);
-				// q.setParameter("m1", -1);
-				// q.setParameter("m2", -1);
-				// q.setParameter("kfa", KFA);
-				// q.setParameter("m3", -1);
-				// q.setParameter("reliability", "not available");
-				// q.setParameter("phone", PHONE);
-				// q.setParameter("topic", TOPIC);
-				// q.executeUpdate(); // executes q statement
-
-				// sql = "INSERT INTO STUDENT
-				// (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,"
-				// + "ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY)"
-				// + " SELECT :phone, :name, :topic, :iws, :klal, :klbl, :pu,
-				// :submitdate,"
-				// + " :swl, :ds, :elm, :ele, :sal, :puou, :m1, :m2, :kfa, :m3,
-				// :reliability"
-				// + " WHERE NOT EXISTS "
-				// + " (SELECT PHONE, TOPIC from STUDENT WHERE PHONE=:phone and
-				// TOPIC=:topic)";
 
 				sql = "INSERT INTO STUDENT (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,"
 						+ "ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY)"
@@ -194,44 +140,8 @@ public class PrepareData {
 				pst.executeUpdate();
 				conn.commit();
 
-				// q = entityManager.createNativeQuery(sql);
-				// q.setParameter("name", NAME);
-				// q.setParameter("iws", IWS);
-				// q.setParameter("klal", KLAL);
-				// q.setParameter("klbl", KLBL);
-				// q.setParameter("pu", PU);
-				// q.setParameter("submitdate", submitDate);
-				// q.setParameter("swl", SWL);
-				// q.setParameter("ds", DS);
-				// q.setParameter("elm", ELM);
-				// q.setParameter("ele", ELE);
-				// q.setParameter("sal", SAL);
-				// q.setParameter("puou", 0);
-				// q.setParameter("m1", -1);
-				// q.setParameter("m2", -1);
-				// q.setParameter("kfa", KFA);
-				// q.setParameter("m3", -1);
-				// q.setParameter("reliability", "not available");
-				// q.setParameter("phone", PHONE);
-				// q.setParameter("topic", TOPIC);
-				// q.executeUpdate(); // executes q statement
-
-				// sql = "INSERT INTO STUDENT
-				// (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,ELM,ELE,SAL,PUOU,M1,M2,KFA,
-				// M3, RELIABILITY)"
-				// + " SELECT '" + PHONE + "','" + NAME + "','" + TOPIC + "','"
-				// + IWS + "','" + KLAL + "','"
-				// + KLBL + "','" + PU + "','" + submitDate + "','" + SWL +
-				// "','" + DS + "','" + ELM + "','"
-				// + ELE + "','" + SAL + "', 0,-1,-1,'"+KFA+"', -1, 'not
-				// available' WHERE NOT EXISTS (SELECT PHONE,TOPIC FROM STUDENT
-				// WHERE PHONE='" + PHONE
-				// + "' " + "AND TOPIC=" + " '" + TOPIC + "')";
-				// q = entityManager.createNativeQuery(sql);
-				// q.executeUpdate(); // executes q statement
 			}
 			br.close(); // closes buffered reader
-			// transaction.commit(); // ends the transaction
 			conn.close();
 		} catch (FileNotFoundException fnfe) {
 			LOG.error(fnfe.getMessage() + " " + fnfe.getCause());
@@ -248,9 +158,8 @@ public class PrepareData {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally{
-			
+		} finally {
+
 		}
 	}
 
@@ -263,12 +172,14 @@ public class PrepareData {
 			PreparedStatement pst = conn.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			conn.commit();
-			
+
 			while (rs.next()) { // while table has contents
 
 				String topic = rs.getString("TOPIC");
-				// Prediction should be called for topics which have OU values with NULL.
-				//FIXME : Should update SQL to exclude topics which don't have coefficients
+				// Prediction should be called for topics which have OU values
+				// with NULL.
+				// FIXME : Should update SQL to exclude topics which don't have
+				// coefficients
 				try {
 					Prediction.getPrediction(topic);
 				} catch (Throwable t) {
@@ -279,7 +190,6 @@ public class PrepareData {
 			}
 			conn.close();
 
-
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -289,20 +199,22 @@ public class PrepareData {
 
 	public static void generateModels() {
 		try {
-			
+
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
 			conn.setAutoCommit(false); // sets autocommit to false
 			LOG.info("Generating models\n");
-			
+
 			String sql = "SELECT DISTINCT TOPIC FROM STUDENT where OU IS NOT NULL";
 			PreparedStatement pst = conn.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			conn.commit();
-			
-			//Model manager should be initialised for Instance manager to work properly, necessary for model generation
-			
-			//ModelManager.initModelManager(PERSISTENCE_SET); // loads
+			// TOFIX: There were some memory leaks when testing from virtualbox
+			// if model manager was initialized here.
+			// Model manager should be initialized for Instance manager to work
+			// properly, necessary for model generation
+
+			// ModelManager.initModelManager(PERSISTENCE_SET); // loads
 
 			while (rs.next()) { // while table has contents
 
@@ -327,19 +239,18 @@ public class PrepareData {
 					LOG.error(t.getMessage() + " " + t.getCause());
 					t.printStackTrace();
 				}
-				
+
 			}
-			conn.close();									
-			
+			conn.close();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally {
-			//ModelManager.closeModelManager(); // closes
-												// connection
+		} finally {
+			// ModelManager.closeModelManager(); // closes
+			// connection
 			LOG.info("Finished generating models\n");
-		}//
+		} //
 
 	}
 
