@@ -1104,11 +1104,16 @@ public class EditDatabase {
 	
 	
 	public void actionPerformed2(final File file, String str) {
+		LOG.debug("\nactionPerformed2 called\n");
+		LOG.debug("\n str value is:"+str+"\n");
+		
 		if (str == "updateDatabase") { // if updatedatabase button
 
 			new Thread() { // creates a new thread so processes execute
 							// consecutively
 				public void run() { // creates run method for thread
+					LOG.debug("\nThread started\n");
+					
 					String extension = file.getName().substring(file.getName().indexOf("."), file.getName().length());
 //					System.out.println("extension12 " + extension);
 					if (extension.equals(".xls")) { // if file extension is
@@ -1472,78 +1477,14 @@ public class EditDatabase {
 							try {
 								//Regenerate models and generate prediction in case there are some students not used for training
 								//Model manager should be initialised for Instance manager to work properly, necessary for model generation
+								log.append("Generating models...\n");
+								LOG.info("\n\n  Generating models and updating student info \n");
+										
 								ModelManager.initModelManager(PERSISTENCE_SET); // loads
 								PrepareData.generateModels();
 								PrepareData.updatePrediction();
-								//												// a
-								//												// persistence
-								//												// set
-								//												// (connects
-								//												// to
-								//												// h2
-								//												// database)
-                                //
 								//log.append("Generating models...\n");
 								//LOG.info(
-								//		"\n\n///////////////////////////////////\tM1-Clusters\t////////////////////////////////////\n");
-								//for (String topic : treeSetTopics) { // generates
-								//										// M1
-								//										// model
-								//										// for
-								//										// all
-								//										// topics
-								//	try {
-								//		M1.getCluster(topic, "M1-clusters-" + topic, "M1-centroids-" + topic);
-								//	} catch (Throwable t) {
-								//		LOG.error(t.getMessage() + " " + t.getCause());
-								//		t.printStackTrace();
-								//	}
-								//}
-								//LOG.info(
-								//		"\n\n////////////////////////////////////\tM2-Regression\t////////////////////////////////////\n");
-								//for (String topic : treeSetTopics) { // generates
-								//										// M2
-								//										// model
-								//										// for
-								//										// all
-								//										// topics
-								//	try {
-								//		M2.getRegression(topic, "M2-" + topic);
-								//	} catch (Throwable t) {
-								//		LOG.error(t.getMessage() + " " + t.getCause());
-								//		t.printStackTrace();
-								//	}
-								//}
-								//LOG.info(
-								//		"\n\n////////////////////////////////////\tM3-Regression\t////////////////////////////////////\n");
-								//for (String topic : treeSetTopics) { // generates
-								//										// M3
-								//										// model
-								//										// for
-								//										// all
-								//										// topics
-								//	try {
-								//		M3.getRegression(topic, "M3-" + topic);
-								//	} catch (Throwable t) {
-								//		LOG.error(t.getMessage() + " " + t.getCause());
-								//		t.printStackTrace();
-								//	}
-								//}
-								//LOG.info(
-								//		"\n\n////////////////////////////////////\tPREDICTION\t////////////////////////////////////\n");
-								//for (String topic : treeSetTopics) { // generates
-								//										// Prediction
-								//										// model
-								//										// for
-								//										// all
-								//										// topics
-								//	try {
-								//		Prediction.getPrediction(topic);
-								//	} catch (Throwable t) {
-								//		LOG.error(t.getMessage() + " " + t.getCause());
-								//		t.printStackTrace();
-								//	}
-								//}
 							} catch (Throwable t) {
 								LOG.error(t.getMessage() + " " + t.getCause());
 								t.printStackTrace();
