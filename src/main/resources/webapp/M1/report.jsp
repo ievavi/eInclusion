@@ -11,7 +11,15 @@
 
 <!-- start: CSS -->
 <link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
+<link id="base-style" href="css/jasny-bootstrap.min.css"
+	rel="stylesheet">
 <link id="base-style" href="css/style.css" rel="stylesheet">
+<link id="base-style" href="css/jasny-bootstrap.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.core.css">
+<link rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/alertify.js/0.3.10/alertify.default.css">
+<script src="js/extensions.js"></script>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
@@ -48,12 +56,13 @@
 %>
 	
 	<!-- start: Header -->
-	<div class="navbar">
-		<div class="navbar-inner">
+	<div style="color: highlighttext;" class="nav-tabs ">
+		<div class="navbar-inner ">
 			<div>
-				<a class="brand" href="databaseEdit.jsp"><span>Einclusion</span></a>
-				<div class="nav-collapse sidebar-nav">
-					<ul class="nav nav-tabs main-menu">
+				<a class="img-rounded text-right" href="../index.jsp"> <img
+					src="../logo.png" alt="logo" /></a>
+				<div class="nav-header text-center">
+					<ul class="nav nav-tabs main-menu animate ">
 						<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
 								class="hidden-tablet"> Edit database</span></a></li>
 						<li><a href="M1.jsp"><i class="icon-table"></i><span
@@ -65,9 +74,13 @@
 						<li><a href="prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
 						<li><a href="report.jsp"><i class="icon-table"></i><span
-								class="hidden-tablet"> Report</span></a></li>
-						<li><a href="ReadMe.pdf" target="_blank"><i class="icon-table"></i><span
-								class="hidden-tablet"> Instructions </span></a></li>
+								class="hidden-tablet"> Report</span></a></li>		
+						<li><a href="ReadMe.pdf" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Instructions </span></a></li>
+						<li><a href="coefficients.jsp"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Coefficients </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -86,7 +99,8 @@
 				</div>
 			</noscript>
 
-			<div id="content" class="span10">
+			<div id="content" class="input-xxlarge"
+			style="width: 85%; margin: auto;">
 				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="index.html">Home</a> <i
 						class="icon-angle-right"></i></li>
@@ -94,58 +108,47 @@
 				</ul>
 				
 				<div>
-					<h1>Report charts</h1>
+				<h1 class="text-success" align="center">Report diagrams</h1> <br>
+				<div>
+					<div class="box-header"></div>
+					<div class="box-content" align="center">
 					<div>
-						<div class="box-header"></div>
-						<div class="box-content">
-							<form class="form-horizontal" action="M1.jsp" method="post"
-								enctype="multipart/form-data">
-								<fieldset>
-									<div class="control-group">
-										<label class="control-label" for="focusedInput">Name
-											your file: </label>
-										<div class="controls">
-											<input name="Students" class="input-xlarge focused"
-												id="focusedInput" type="text">
-											<button type="submit" class="btn btn-primary">Export
-												to xls</button>
-										</div>
-									</div>
-								</fieldset>
-							</form>
-						</div>
+					<table>
+						<tr align="left">
+							<td style="width:120px; font-size: 12pt">From:</td>
+							<td style="width:120px; font-size: 12pt">To:</td>
+							<td style="width:120px; font-size: 12pt">Topic:</td>
+						</tr>
+					</table>
+					</div>
+						<form name="form1" method="get">
+   							<div style="display:inline;">
+	   							<select name="from" id="from" style="width:120px">
+	   								<c:forEach items="${dates}" var="from">
+									<option>${from}</option>
+									</c:forEach>
+					    		</select>
+				    			<select name="to" id="to" style="width:120px">
+			   						<c:forEach items="${dates}" var="to">
+									<option>${to}</option>
+									</c:forEach>
+							    </select>
+								    <select name="topic" id="topic" style="width:120px">
+						    		<option selected>All</option>>
+		   							<c:forEach items="${topics}" var="topic">
+									<option>${topic}</option>
+									</c:forEach>
+							    </select>    
+ 				    		</div>
+ 				    		<p><input class="btn btn-primary" type="button" value="Draw diagram" onclick="f1()" style="width:120px"/></p>
+   						</form>
 					</div>
 				</div>
-				<form action="/M1/prediction.jsp" method="get">
-    				<input type="submit" value="< Back">
-				</form>
- 				<form name="form1" method="get">
-   				<div style="display:inline;">
-	   					<select name="from" id="from">
-	   						<c:forEach items="${dates}" var="from">
-							<option>${from}</option>
-							</c:forEach>
-					    </select>
-					    <select name="to" id="to">
-	   						<c:forEach items="${dates}" var="to">
-							<option>${to}</option>
-							</c:forEach>
-					    </select>
-					    <select name="topic" id="topic">
-					    	<option selected>All</option>>
-	   						<c:forEach items="${topics}" var="topic">
-							<option>${topic}</option>
-							</c:forEach>
-					    </select>    
- 				    </div>
- 				    <p>
-   					<input class="submit_button" type="button" value="Submit" onclick="f1()"/>
-   					</p>
-   				</form>
+				</div>
 				
-				<div id="images">
-<!-- 					<img src="/report?type=image1" alt="Chart #1" /> -->
-<!-- 					<img src="/report?type=image2" alt="Chart #2" /> -->
+				<div id="images" align="center">
+					<img src="" id="image1" />
+					<img src="" id="image2" />
 				</div>
 			</div>
 		</div>
@@ -158,21 +161,8 @@ function f1() {
  		var request2 = '/report?type=image2';
  		request1 = request1.concat(from,to,topic);
  		request2 = request2.concat(from,to,topic);
- 		var find1 = document.getElementById("image1");
- 		
- 		var image1 = document.createElement("img");
- 		image1.id = "image1";
- 		image1.style="display:block";
- 		image1.src = request1;
- 		var imgParent = document.getElementById("images");
- 		imgParent.appendChild(image1);
-        
- 		var image2 = document.createElement("img");
- 		image2.id = "image2";
- 		image2.src = request2;
- 		image2.style="display:block";
- 		imgParent.appendChild(image2);
- 		
+ 		document.getElementById("image1").src=request1;
+ 		document.getElementById("image2").src=request2;
 	}
 </script>
 

@@ -1,6 +1,5 @@
 package org.webengine;
 
-
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.TreeSet;
@@ -87,10 +86,10 @@ public class ChartDrawer {
 		}
 		final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		System.out.println("Generating Chart...");
-		dataset.addValue(studentCount[0], "0-25%", "");
-		dataset.addValue(studentCount[1], "26-50%", "");
-		dataset.addValue(studentCount[2], "51-75%", "");
 		dataset.addValue(studentCount[3], "76-100%", "");
+		dataset.addValue(studentCount[2], "51-75%", "");
+		dataset.addValue(studentCount[1], "26-50%", "");
+		dataset.addValue(studentCount[0], "0-25%", "");
 		String description = "Report for dates: " + from + " to " + to + "\nand topic: " + chosenTopic;
 		chart = ChartFactory.createBarChart(description, "e-inclusion %", "Number of students", dataset,
 				PlotOrientation.HORIZONTAL, true, false, false);
@@ -121,18 +120,18 @@ public class ChartDrawer {
 		for (int i = 0; i < topics.length; i++) {
 			dataset.addValue(studentCount[i], topics[i], "");
 		}
-		chart = ChartFactory.createBarChart("*UNFINISHED*", "", "Students", dataset, PlotOrientation.VERTICAL, true,
+		chart = ChartFactory.createBarChart("*THIS IS INCORRECT!*", "", "Students", dataset, PlotOrientation.VERTICAL, true,
 				true, false);
 		System.out.println("Chart generated...");
 	}
 
 	private void customize() {
 		final CategoryPlot plot = chart.getCategoryPlot();
-        plot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_LEFT);
-        BarRenderer br = (BarRenderer) plot.getRenderer();
-        br.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
-        br.setBaseItemLabelsVisible(true);
-        Font font = new Font("Arial", Font.PLAIN, 16);
-        br.setBaseItemLabelFont(font);
+		plot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_LEFT);
+		BarRenderer br = (BarRenderer) plot.getRenderer();
+		br.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+		br.setBaseItemLabelsVisible(true);
+		Font font = new Font("Arial", Font.PLAIN, 16);
+		br.setBaseItemLabelFont(font);
 	}
 }
