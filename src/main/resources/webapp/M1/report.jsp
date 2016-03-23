@@ -20,6 +20,8 @@
 <!-- start: Favicon -->
 <link rel="shortcut icon" href="img/favicon.ico">
 <!-- end: Favicon -->
+
+
 </head>
 
 <body>
@@ -111,48 +113,68 @@
 									</div>
 								</fieldset>
 							</form>
-							
 						</div>
 					</div>
 				</div>
 				<form action="/M1/prediction.jsp" method="get">
     				<input type="submit" value="< Back">
 				</form>
-				<form action="" method="get">
-   					<div style="display:inline;">
-	   					<select name="from" class="from">
+ 				<form name="form1" method="get">
+   				<div style="display:inline;">
+	   					<select name="from" id="from">
 	   						<c:forEach items="${dates}" var="from">
 							<option>${from}</option>
 							</c:forEach>
 					    </select>
-					    <select name="from" class="from">
+					    <select name="to" id="to">
 	   						<c:forEach items="${dates}" var="to">
 							<option>${to}</option>
 							</c:forEach>
 					    </select>
-					    <select name="from" class="from">
+					    <select name="topic" id="topic">
+					    	<option selected>All</option>>
 	   						<c:forEach items="${topics}" var="topic">
 							<option>${topic}</option>
 							</c:forEach>
-					    </select>
-					    
-				    </div>
-   					<p><input type="button" value="Select" onclick="addParameters()"></p>
-  				</form>
+					    </select>    
+ 				    </div>
+ 				    <p>
+   					<input class="submit_button" type="button" value="Submit" onclick="f1()"/>
+   					</p>
+   				</form>
 				
-				<div>
-					<img src="/report?type=image1" alt="Chart #1" />
-				</div>
-				<div>
-					<img src="/report?type=image2" alt="Chart #2" />
+				<div id="images">
+<!-- 					<img src="/report?type=image1" alt="Chart #1" /> -->
+<!-- 					<img src="/report?type=image2" alt="Chart #2" /> -->
 				</div>
 			</div>
 		</div>
+<script type="text/javascript">
+function f1() {
+ 		var from ="&from="+document.getElementById("from").value;
+ 		var to ="&to="+document.getElementById("to").value;
+ 		var topic = "&topic="+document.getElementById("topic").value;
+ 		var request1 = '/report?type=image1';
+ 		var request2 = '/report?type=image2';
+ 		request1 = request1.concat(from,to,topic);
+ 		request2 = request2.concat(from,to,topic);
+ 		var find1 = document.getElementById("image1");
+ 		
+ 		var image1 = document.createElement("img");
+ 		image1.id = "image1";
+ 		image1.style="display:block";
+ 		image1.src = request1;
+ 		var imgParent = document.getElementById("images");
+ 		imgParent.appendChild(image1);
+        
+ 		var image2 = document.createElement("img");
+ 		image2.id = "image2";
+ 		image2.src = request2;
+ 		image2.style="display:block";
+ 		imgParent.appendChild(image2);
+ 		
+	}
+</script>
 
-	<script type="text/javascript">
-		function addParameters() {
-			
-		}
-	</script>
 </body>
 </html>
