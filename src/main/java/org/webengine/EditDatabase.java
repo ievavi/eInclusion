@@ -1033,12 +1033,12 @@ public class EditDatabase {
 		}
 		
 		// str = "deleteFromDB"
-		if (str == "deleteFromDB") {
+		if (str == "deleteButton") {
 			updateSpecifics();
 //			System.out.println("Specifics updated");
 			
 		}
-		if(str == "delete"){
+		if(str == "deleteFromDatabase"){
 			eraseFromDB();
 		}
 		
@@ -1495,8 +1495,8 @@ public class EditDatabase {
 	}
 	
 	public void eraseFromDB(){
-		int confirm = JOptionPane.showConfirmDialog (null, "Are you sure you want to delete entries from database?","Warning",JOptionPane.YES_NO_OPTION);
-		if(confirm == JOptionPane.YES_OPTION){
+		
+		if(true){
 			new Thread() { 				// creates a new thread so processes execute consecutively
 				public void run() {		// creates run method for thread
 					try
