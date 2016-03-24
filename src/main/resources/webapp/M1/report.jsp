@@ -34,7 +34,6 @@
 
 <body>
 <%@ page import="org.webengine.*"%>
-<%@ page import="org.einclusion.GUI.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.TreeSet"%>
 <%@ page import="java.util.Iterator"%>
@@ -104,7 +103,7 @@
 				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="index.html">Home</a> <i
 						class="icon-angle-right"></i></li>
-					<li><a href="#">Report</a></li>
+					<li><a href="#">M1</a></li>
 				</ul>
 				
 				<div>

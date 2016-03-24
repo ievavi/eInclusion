@@ -16,7 +16,6 @@ import java.sql.Statement;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
-import org.einclusion.GUI.EditDatabasePanel;
 
 import static org.einclusion.model.ModelManager.*;
 
@@ -147,14 +146,16 @@ public class PrepareData {
 			LOG.error(fnfe.getMessage() + " " + fnfe.getCause());
 			fnfe.printStackTrace();
 			String errorText = "File not found choose a different path!";
-			EditDatabasePanel.log.append(errorText + "\n");
-			EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
+			LOG.error(errorText + "\n");
+			//EditDatabasePanel.log.append(errorText + "\n");
+			//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 		} catch (IOException ioe) {
 			LOG.error(ioe.getMessage() + " " + ioe.getCause());
 			ioe.printStackTrace();
 			String errorText = "Exception while writing to file!";
-			EditDatabasePanel.log.append(errorText + "\n");
-			EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
+			LOG.error(errorText + "\n");
+			//EditDatabasePanel.log.append(errorText + "\n");
+			//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -210,7 +211,8 @@ public class PrepareData {
 			ResultSet rs = pst.executeQuery();
 			conn.commit();
 			// TOFIX: There were some memory leaks when testing from virtualbox
-			// if model manager was initialized here.
+			// if model manager was initialized here, but there seem to be no
+			// issues working from local pc
 			// Model manager should be initialized for Instance manager to work
 			// properly, necessary for model generation
 

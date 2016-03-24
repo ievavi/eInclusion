@@ -49,7 +49,7 @@
 						<li><a href="M1/prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
 						<li><a href="M1/report.jsp"><i class="icon-table"></i><span
-								class="hidden-tablet"> Report</span></a></li>
+								class="hidden-tablet"> Report</span></a></li>	
 						<li><a href="M1/ReadMe.pdf" target="_blank"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Instructions </span></a></li>
@@ -74,8 +74,7 @@
 					</p>
 				</div>
 			</noscript>
-			<div id="content" class="input-xxlarge"
-				style="width: 85%; margin: auto;">
+			<div id="content" class="input-xxlarge" style="width: 85%;margin: auto;">
 				<div>
 					<h1 align="center" style="color: aqua;">
 						<a href="index.jsp ">Einclusion </a>
@@ -84,17 +83,20 @@
 						<div align="center" class="text-info" style="color: graytext;">
 							<descrip> <br />
 							<p>
-								The purpose of this system is predicting behavior of students,
-								studying digital skills, after completing course.<br /> <br />
-								It gives instructor an opportunity to recognize students who
-								would fail to use the skills taught in course after completion.
-								It helps to determine risk factors for each of the students and
-								allows the instructor to avert them by adjusting the studies to
-								the needs of each student.<br /> <br /> In the scope of this
-								system, an e-included student is such a student that after
-								course completion applies the skills taught in it.
-							</p>
+							The purpose of this system is predicting behavior of students,
+							studying digital skills, after completing course.<br />
 							<br />
+							It gives instructor an opportunity to recognize students who
+							would fail to use the skills taught in course after completion.
+							It helps to determine risk factors for each of the students and
+							allows the instructor to avert them by adjusting the studies to
+							the needs of each student.<br />
+							<br />
+							In the scope of this system, an e-included student is such a
+							student that after course completion applies the skills taught in
+							it.
+							</p>
+							 <br />
 							<h2 align="center" style="color: aqua;">
 								<a href="M1/databaseEdit.jsp ">Edit database </a>
 							</h2>
@@ -115,22 +117,6 @@
 							</h2>
 							<p align="center">Shows each students coefficients and
 								reliability.</p>
-							<br />
-							<h2 align="center" style="color: aqua;">
-								<a href="M1/report.jsp ">Report charts </a>
-							</h2>
-							<p align="center">First diagram shows the number of students
-								for each e-inclusion range for specified date and topic. Second
-								diagram shows the number of students in each topic for specified
-								date period.</p>
-							<br />
-							<h2 align="center" style="color: aqua;">
-								<a href="M1/coefficients.jsp ">Coefficients</a>
-							</h2>
-							<p align="center">Table Coefficients is available in the
-								lower part of the Edit Database page. It contains the list of
-								all the coefficients used to compute predicted values. It can be
-								filtered by field Key.</p>
 
 
 							</descrip>
