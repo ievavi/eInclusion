@@ -43,16 +43,16 @@
 		request.setAttribute("list", list);
 	%>
 	<!-- start: Header -->
-		<div style="color: highlighttext;" class="nav-tabs ">
+	<div style="color: highlighttext;" class="nav-tabs ">
 		<div class="navbar-inner ">
 			<div>
 				<a class="img-rounded text-right" href="../index.jsp"> <img
 					src="../logo.png" alt="logo" /></a>
 				<div class="nav-header text-center">
-					<ul class="nav nav-tabs main-menu animate ">	
-					<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
+					<ul class="nav nav-tabs main-menu animate ">
+						<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
 								class="hidden-tablet"> Edit database</span></a></li>
-							<li><a href="M1.jsp"><i class="icon-table"></i><span
+						<li><a href="M1.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M1</span></a></li>
 						<li><a href="M2.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> M2</span></a></li>
@@ -65,9 +65,8 @@
 						<li><a href="ReadMe.pdf" target="_blank"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Instructions </span></a></li>
-						<li><a href="coefficients.jsp"><i
-								class="icon-table"></i><span class="hidden-tablet">
-									Coefficients </span></a></li>
+						<li><a href="coefficients.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> Coefficients </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -94,7 +93,8 @@
 					<li><a href="#">M3</a></li>
 				</ul>
 				<div>
-					<h1 class="text-success" align="center">Evaluation of knowledge flow</h1>
+					<h1 class="text-success" align="center">Evaluation of
+						knowledge flow</h1>
 					<div>
 						<div class="box-header"></div>
 						<div class="box-content">
@@ -102,15 +102,18 @@
 								enctype="multipart/form-data">
 								<fieldset>
 									<div class="control-group">
-										<label class="control-label" for="focusedInput">Name
-											your file: </label>
-										<div class="controls">
-											<input name="Students" class="input-xlarge focused"
-												id="focusedInput" type="text">
-											<button type="submit" class="btn btn-primary">Export
-												to xls</button>
+										<div class="box-content" align="center">
+											<form class="form-horizontal" action="prediction.jsp"
+												method="post" enctype="multipart/form-data">
+												<fieldset>
+													<label class="text-success ui-icon-disk" for="focusedInput">Name
+														your file: </label> <input name="Students"
+														class="input-xlarge focused" id="focusedInput" type="text">
+													<button type="submit" class="btn btn-primary">Export
+														to xls</button>
 										</div>
 									</div>
+
 
 								</fieldset>
 							</form>

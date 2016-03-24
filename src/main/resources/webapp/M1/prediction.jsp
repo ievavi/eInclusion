@@ -21,9 +21,9 @@
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext'
 	rel='stylesheet' type='text/css'>
-	
-	<style>
-#dialogoverlay{
+
+<style>
+#dialogoverlay {
 	display: none;
 	opacity: .5;
 	position: fixed;
@@ -33,12 +33,13 @@
 	width: 100%;
 	z-index: 100;
 }
-#dialogbox{
+
+#dialogbox {
 	display: none;
 	position: fixed;
 	background: #000;
-	border-radius:8px; 
-	width:500px;
+	border-radius: 8px;
+	width: 500px;
 	z-index: 100;
 }
 #dialogbox > div{ background:#FFF; margin:4px; }
@@ -150,38 +151,37 @@
 				</div>
 			</noscript>
 
-			<div id="content" class="input-xxlarge" style="width: 85%;margin: auto;">
+			<div id="content" class="input-xxlarge"
+				style="width: 85%; margin: auto;">
 				<ul class="breadcrumb">
 					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a>
 						<i class="icon-angle-right"></i></li>
 					<li><a href="#">Prediction</a></li>
 				</ul>
 				<div>
-					<h1 class="text-success" align="center">Prediction of student E-inclusion</h1>
+					<h1 class="text-success" align="center">Prediction of student
+						E-inclusion</h1>
 					<div>
 						<div class="box-header"></div>
-						<div class="box-content">
+						<div class="box-content" align="center">
 							<form class="form-horizontal" action="prediction.jsp"
 								method="post" enctype="multipart/form-data">
 								<fieldset>
-									<div class="control-group">
-										<label class="control-label" for="focusedInput">Name
-											your file: </label>
-										<div class="controls">
-											<input name="Students" class="input-xlarge focused"
-												id="focusedInput" type="text">
-											<button type="submit" class="btn btn-primary">Export
-												to xls</button>
-										</div>
-									</div>
+									<label class="text-success ui-icon-disk" for="focusedInput">Name
+										your file: </label> <input name="Students"
+										class="input-xlarge focused" id="focusedInput" type="text">
+									<button type="submit" class="btn btn-primary">Export
+										to xls</button>
+						</div>
+					</div>
 
-								</fieldset>
-							</form>
+					</fieldset>
+					</form>
 
-							<form id="formFromToDate" method="get"
-								enctype="multipart/form-data">
-								<table align="center">
-								<tr>
+					<form id="formFromToDate" method="get"
+						enctype="multipart/form-data">
+						<table align="center">
+							<tr>
 								<td>
 								<div style="background-color: #f9f9f9; border:1px solid; padding: 5px; border-color: #eee;">
 									<%
@@ -408,23 +408,27 @@
 
 				</div>
 			</div>
+
+
 		</div>
-		<p id="testing"></p>
-		<div class="clearfix"></div>
+	</div>
+	</div>
+	<p id="testing"></p>
+	<div class="clearfix"></div>
 
 	</div>
 	<div id="dialogoverlay"></div>
-<div id="dialogbox">
-  <div>
-    <div id="dialogboxhead"></div>
-    <div id="dialogboxbody"></div>
-    <div id="dialogboxfoot"></div>
-  </div>
-</div>
+	<div id="dialogbox">
+		<div>
+			<div id="dialogboxhead"></div>
+			<div id="dialogboxbody"></div>
+			<div id="dialogboxfoot"></div>
+		</div>
+	</div>
 
 
 	<!-- start: JavaScript-->
-								
+
 	<script>
 	
 	
@@ -547,7 +551,7 @@
 			});
 		});
 	</script>
-	
+
 	<script type="text/javascript">
 	function isNumberKey(evt){
 	    var charCode = (evt.which) ? evt.which : event.keyCode
@@ -568,7 +572,7 @@
 	<!-- start: JavaScript-->
 	<script src="src/jquery.table2excel.js"></script>
 	<script type="text/javascript">
-		$("#formXls").submit(function() {
+		$("form").submit(function() {
 			var n = $("input:first").val()
 			$(".table").table2excel({
 				exclude : ".noExl",
