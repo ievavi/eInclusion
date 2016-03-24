@@ -50,8 +50,8 @@
 .DefStyle
 		    {
 		    	position: fixed;
-		    	top: 40%;
-				left: 50%;
+		    	top: 100px;
+				left: 100px;
 		    	font-family:Verdana;
 		    	color:Gray;
 		    	font-size:12px;
@@ -60,6 +60,7 @@
 		    	border-style:outset;
 				width: 120px;
 		    	padding:5px,5px,5px,5px,5px;
+		    	background-color:white;
 		    	display:none;
 		    }
 </style>
