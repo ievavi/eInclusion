@@ -48,7 +48,7 @@
 								class="hidden-tablet"> M3</span></a></li>
 						<li><a href="M1/prediction.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Prediction</span></a></li>
-						<li><a href="report.jsp"><i class="icon-table"></i><span
+						<li><a href="M1/report.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Report</span></a></li>	
 						<li><a href="M1/ReadMe.pdf" target="_blank"><i
 								class="icon-table"></i><span class="hidden-tablet">
