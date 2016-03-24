@@ -438,8 +438,12 @@
 	var name_of_person;
 	var results;
 	
-	function ShowDef()
+	function ShowDef(e)
 	{
+		var posX = e.clientX + "px";
+		var posY = e.clientY + "px";
+		document.getElementById("Definition").style.left = posX;
+		document.getElementById("Definition").style.top = posY;
 	    document.getElementById("Definition").style.display="block";
 	}
 	function HideDef()
