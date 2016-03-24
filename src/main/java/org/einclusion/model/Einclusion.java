@@ -3,6 +3,8 @@ package org.einclusion.model;
 import java.sql.Connection;
 import java.sql.Statement;
 
+import org.einclusion.GUI.AppFrame;
+import org.einclusion.GUI.EditDatabasePanel;
 import org.springframework.core.io.ClassPathResource;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.DefaultServlet;
@@ -51,9 +53,9 @@ public class Einclusion {
 		// Einclusion.dbManager.cp.getConnection().prepareStatement("CREATE
 		// TABLE " + "asd " + " (PersonID int, LastName
 		// varchar(255))").execute();
-		//EditDatabasePanel.getTopics(conn, stmt);
-		//for (String topic : EditDatabasePanel.treeSetTopics) {
-		//	EditDatabasePanel.boxForTopics.addItem(topic);
-		//}
+		EditDatabasePanel.getTopics(conn, stmt);
+		for (String topic : EditDatabasePanel.treeSetTopics) {
+			EditDatabasePanel.boxForTopics.addItem(topic);
+		}
 	}
 }

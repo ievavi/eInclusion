@@ -47,6 +47,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.einclusion.GUI.M2Table;
 import org.einclusion.model.M1;
 import org.einclusion.model.M2;
 import org.einclusion.model.M3;
@@ -201,20 +202,6 @@ public class EditDatabase {
 		}
 		LOG.info("EditDatabasePanel intialized");
 	}
-	
-	
-	
-	public static double round(double value, int places) {
-		if (places < 0)
-			throw new IllegalArgumentException();
-		long factor = (long) Math.pow(10, places);
-		value = value * factor;
-		long tmp = Math.round(value);
-		return (double) tmp/factor;
-	}
-
-	
-	
 
 	/**
 	 * Funtion that adds all the topics from database to TreeSet
@@ -699,16 +686,16 @@ public class EditDatabase {
 				data.add(pu);
 				data.add(puou);
 				if (m1 != null)
-					data.add(round(Double.parseDouble(m1), 2) + "");
+					data.add(M2Table.round(Double.parseDouble(m1), 2) + "");
 				else
 					data.add(m1);
 				if (m2 != null)
-					data.add(round(Double.parseDouble(m2), 2) + "");
+					data.add(M2Table.round(Double.parseDouble(m2), 2) + "");
 				else
 					data.add(m2);
 				data.add(kfa);
 				if (m3 != null)
-					data.add(round(Double.parseDouble(m3), 2) + "");
+					data.add(M2Table.round(Double.parseDouble(m3), 2) + "");
 				else
 					data.add(m3);
 				data.add(reliability);
@@ -858,6 +845,7 @@ public class EditDatabase {
 						LOG.error(ex.getMessage() + " " + ex.getCause());
 						ex.printStackTrace();
 					}
+//TODO - create new method to calculate models for uploaded data.
 //Models should not be changed at this point - only after DB update.
 					try {
 						ModelManager.initModelManager(PERSISTENCE_SET); // loads
@@ -870,13 +858,80 @@ public class EditDatabase {
 						log.append("Writing to database ...\n");
 						PrepareData.csv2db(currentDirectory); // reads data from
 																// .csv file
-
+//						for (String topic : treeSetTopics) {
+//							boxForTopics.removeItem(topic); // removes all
+//															// boxForTopics
+//															// items except for
+//															// "ALL"
+//						}
+//						getTopics(conn, stmt); // writes topics from database to
+//												// treeset
+//						for (String topic : treeSetTopics) { // adds topics to
+//																// Jcombobox
+//							boxForTopics.addItem(topic);
+//						}
 						
 						//REFACTRORED: After feedback upload only prediction should be called, if models exist
 						// OTHERWISE models get rewritten and prediction does not work anymore
 						PrepareData.updatePrediction();
 						
-
+						//if (!(ous.isEmpty())) { // if there are ous in database
+						//						// calculate models
+						//	log.append("Generating models...\n");
+						//	LOG.info(
+						//			"\n\n///////////////////////////////////\tM1-Clusters\t////////////////////////////////////\n");
+						//	for (String topic : treeSetTopics) { // generates M1
+						//											// model for
+						//											// all
+						//											// topics
+						//		try {
+						//			M1.getCluster(topic, "M1-clusters-" + topic, "M1-centroids-" + topic);
+						//		} catch (Throwable t) {
+						//			LOG.error(t.getMessage() + " " + t.getCause());
+						//			t.printStackTrace();
+						//		}
+						//	}
+						//	LOG.info(
+						//			"\n\n////////////////////////////////////\tM2-Regression\t////////////////////////////////////\n");
+						//	for (String topic : treeSetTopics) { // generates M2
+						//											// model for
+						//											// all
+						//											// topics
+						//		try {
+						//			M2.getRegression(topic, "M2-" + topic);
+						//		} catch (Throwable t) {
+						//			LOG.error(t.getMessage() + " " + t.getCause());
+						//			t.printStackTrace();
+						//		}
+						//	}
+						//	LOG.info(
+						//			"\n\n////////////////////////////////////\tM3-Regression\t////////////////////////////////////\n");
+						//	for (String topic : treeSetTopics) { // generates M3
+						//											// model for
+						//											// all
+						//											// topics
+						//		try {
+						//			M3.getRegression(topic, "M3-" + topic);
+						//		} catch (Throwable t) {
+						//			LOG.error(t.getMessage() + " " + t.getCause());
+						//			t.printStackTrace();
+						//		}
+						//	}
+						//	LOG.info(
+						//			"\n\n////////////////////////////////////\tPREDICTION\t////////////////////////////////////\n");
+						//	for (String topic : treeSetTopics) { // generates
+						//											// Prediction
+						//											// model for
+						//											// all
+						//											// topics
+						//		try {
+						//			Prediction.getPrediction(topic);
+						//		} catch (Throwable t) {
+						//			LOG.error(t.getMessage() + " " + t.getCause());
+						//			t.printStackTrace();
+						//		}
+						//	}
+						//}
 						
 						
 					} catch (Throwable t) {
@@ -901,7 +956,7 @@ public class EditDatabase {
 																			// nanoseconds
 																			// to
 																			// seconds
-					seconds = round(seconds, 3); // rounds seconds to 3
+					seconds = M2Table.round(seconds, 3); // rounds seconds to 3
 															// digits
 					log.append("Execution time: " + seconds + " sec\n");
 				} else { // if not .xlsx file shows warning
@@ -980,7 +1035,7 @@ public class EditDatabase {
 																				// nanoseconds
 																				// to
 																				// seconds
-						seconds = round(seconds, 3); // rounds seconds
+						seconds = M2Table.round(seconds, 3); // rounds seconds
 																// to 3 digits
 						log.append("Execution time: " + seconds + " sec\n");
 						openTemplateXlsx.setVisible(true); // sets open template
@@ -1022,7 +1077,7 @@ public class EditDatabase {
 																			// nanoseconds
 																			// to
 																			// seconds
-					seconds = round(seconds, 3); // rounds to 3 digits
+					seconds = M2Table.round(seconds, 3); // rounds to 3 digits
 					log.append("Execution time: " + seconds + " sec\n");
 				}
 			}.start();
@@ -1033,12 +1088,12 @@ public class EditDatabase {
 		}
 		
 		// str = "deleteFromDB"
-		if (str == "deleteFromDB") {
+		if (str == "deleteButton") {
 			updateSpecifics();
 //			System.out.println("Specifics updated");
 			
 		}
-		if(str == "delete"){
+		if(str == "deleteFromDatabase"){
 			eraseFromDB();
 		}
 		
@@ -1451,7 +1506,7 @@ public class EditDatabase {
 																					// nanoseconds
 																					// to
 																					// seconds
-							seconds = round(seconds, 3); // rounds
+							seconds = M2Table.round(seconds, 3); // rounds
 																	// to 3
 																	// digits
 							log.append("Execution time: " + seconds + " sec\n");
@@ -1495,8 +1550,8 @@ public class EditDatabase {
 	}
 	
 	public void eraseFromDB(){
-		int confirm = JOptionPane.showConfirmDialog (null, "Are you sure you want to delete entries from database?","Warning",JOptionPane.YES_NO_OPTION);
-		if(confirm == JOptionPane.YES_OPTION){
+		//int confirm = JOptionPane.showConfirmDialog (null, "Are you sure you want to delete entries from database?","Warning",JOptionPane.YES_NO_OPTION);
+		if(true){
 			new Thread() { 				// creates a new thread so processes execute consecutively
 				public void run() {		// creates run method for thread
 					try
@@ -1534,7 +1589,7 @@ public class EditDatabase {
 							long end = System.nanoTime(); 				// gets system time
 							long elapsedTime = end - start; 			// gets elapsed time in nanoseconds
 							double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds to seconds
-							seconds = round(seconds, 3);		// rounds to 3 digits
+							seconds = M2Table.round(seconds, 3);		// rounds to 3 digits
 							log.append("Execution time: "+seconds+" sec\n");
 						}
 						else if( EditDatabase.specificParameter != "All" ){
@@ -1556,7 +1611,7 @@ public class EditDatabase {
 							long end = System.nanoTime(); 				// gets system time
 							long elapsedTime = end - start; 			// gets elapsed time in nanoseconds
 							double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds to seconds
-							seconds = round(seconds, 3);		// rounds to 3 digits
+							seconds = M2Table.round(seconds, 3);		// rounds to 3 digits
 							log.append("Execution time: "+seconds+" sec\n");
 						}
 						else{
@@ -1573,7 +1628,7 @@ public class EditDatabase {
 							long end = System.nanoTime(); 				// gets system time
 							long elapsedTime = end - start; 			// gets elapsed time in nanoseconds
 							double seconds = (double)elapsedTime / 1000000000.0; // converts nanoseconds to seconds
-							seconds = round(seconds, 3);		// rounds to 3 digits
+							seconds = M2Table.round(seconds, 3);		// rounds to 3 digits
 							log.append("Execution time: "+seconds+" sec\n");
 						}
 					} catch ( ClassNotFoundException cnfe ){

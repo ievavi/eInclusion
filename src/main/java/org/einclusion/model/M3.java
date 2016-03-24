@@ -10,6 +10,7 @@ import java.util.Random;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
+import org.einclusion.GUI.EditDatabasePanel;
 import org.einclusion.frontend.RegressionModel;
 
 import weka.classifiers.Evaluation;
@@ -114,10 +115,8 @@ public class M3 {
 					transaction.commit();
 					LOG.info("Changes have been commited to the database successfully\n");
 					String errorText = "Couldn't generate valid M3 regression model for "+topic+" there are either too less values or the values aren't different enough";
-					//EditDatabasePanel.log.append(errorText+"\n");
-					//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
-					LOG.warn(errorText+"\n");
-					
+					EditDatabasePanel.log.append(errorText+"\n");
+					EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 				}
 			} else {
 				if( eval.correlationCoefficient() > Double.parseDouble(databaseCoefficient) ){
@@ -159,10 +158,8 @@ public class M3 {
 						transaction.commit();
 						LOG.info("Changes have been commited to the database successfully\n");
 						String errorText = "Couldn't generate valid M3 regression model for "+topic+" there are either too less values or the values aren't different enough";
-						//EditDatabasePanel.log.append(errorText+"\n");
-						//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
-						LOG.warn(errorText+"\n");
-						
+						EditDatabasePanel.log.append(errorText+"\n");
+						EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 					}
 				} else {
 					LOG.info("Don't calculate new model");
@@ -171,10 +168,8 @@ public class M3 {
 		} catch (Exception e) {
 			LOG.error(e.getMessage() + " " + e.getCause());
 			String errorText = "Couldn't build M3:"+topic+" model";
-			LOG.warn(errorText+"\n");
-			
-			//EditDatabasePanel.log.append(errorText+"\n");
-			//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
+			EditDatabasePanel.log.append(errorText+"\n");
+			EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 		}
 	}
 	

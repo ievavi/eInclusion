@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
+import org.einclusion.GUI.EditDatabasePanel;
 import org.einclusion.frontend.Coefficient;
 import org.einclusion.frontend.RegressionModel;
 
@@ -68,9 +69,8 @@ public class Prediction {
 					query.executeUpdate();
 				} else {										// if there aren't valid results
 					String errorText = "Couldnt calculate shortest euclidian distance for student: "+student.getName()+" topic: "+student.getTopic();
-					//EditDatabasePanel.log.append(errorText+"\n");
-					//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
-					LOG.warn(errorText+"\n");
+					EditDatabasePanel.log.append(errorText+"\n");
+					EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 					LOG.warn(centroidDistance);
 				}
 				
@@ -120,9 +120,8 @@ public class Prediction {
 					query.executeUpdate();
 				} else {										// if there aren't valid results
 					String errorText = "Couldnt calculate shortest euclidian distance for student: "+student.getName()+" topic: "+student.getTopic();
-					//EditDatabasePanel.log.append(errorText+"\n");
-					//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
-					LOG.warn(errorText+"\n");
+					EditDatabasePanel.log.append(errorText+"\n");
+					EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 					LOG.warn(centroidDistance);
 				}
 				
@@ -199,9 +198,8 @@ public class Prediction {
 					query.executeUpdate();
 				} else {										// if there aren't valid results
 					String errorText = "Couldnt calculate shortest euclidian distance for student: "+student.getName()+" topic: "+student.getTopic();
-					//EditDatabasePanel.log.append(errorText+"\n");
-					//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
-					LOG.warn(errorText+"\n");
+					EditDatabasePanel.log.append(errorText+"\n");
+					EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 					LOG.warn(centroidDistance);
 				}
 				

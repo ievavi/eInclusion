@@ -28,6 +28,7 @@
 
 <body>
 	<%@ page import="org.webengine.*"%>
+	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -45,30 +46,30 @@
 				<a class="img-rounded text-right" href="../index.jsp"> <img
 					src="../logo.png" alt="logo" /></a>
 				<div class="nav-header text-center">
-					<ul class="nav nav-tabs main-menu animate ">					
-										<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
-												class="hidden-tablet"> Edit database</span></a></li>
-										<li><a href="M1.jsp"><i class="icon-table"></i><span
-												class="hidden-tablet"> M1</span></a></li>
-										<li><a href="M2.jsp"><i class="icon-table"></i><span
-												class="hidden-tablet"> M2</span></a></li>
-										<li><a href="M3.jsp"><i class="icon-table"></i><span
-												class="hidden-tablet"> M3</span></a></li>
-										<li><a href="prediction.jsp"><i class="icon-table"></i><span
-												class="hidden-tablet"> Prediction</span></a></li>
-										<li><a href="report.jsp"><i class="icon-table"></i><span
-												class="hidden-tablet"> Report</span></a></li>
-										<li><a href="ReadMe.pdf" target="_blank"><i
-												class="icon-table"></i><span class="hidden-tablet">
-													Instructions </span></a></li>
-										<li><a href="coefficients.jsp"><i class="icon-table"></i><span
-												class="hidden-tablet"> Coefficients </span></a></li>
-									</ul>
-								</div>
-						</div>
+					<ul class="nav nav-tabs main-menu animate ">
+						<li><a href="databaseEdit.jsp"><i class="icon-edit"></i><span
+								class="hidden-tablet"> Edit database</span></a></li>
+						<li><a href="M1.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> M1</span></a></li>
+						<li><a href="M2.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> M2</span></a></li>
+						<li><a href="M3.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> M3</span></a></li>
+						<li><a href="prediction.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> Prediction</span></a></li>
+						<li><a href="report.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> Report</span></a></li>
+						<li><a href="ReadMe.pdf" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Instructions </span></a></li>
+						<li><a href="coefficients.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> Coefficients </span></a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 	<!-- start: Header -->
 
@@ -91,88 +92,84 @@
 					<li><a href="#">M1</a></li>
 				</ul>
 				<div>
-					<h1 class="text-success" align="center">General evaluation of students</h1>
+					<h1 class="text-success" align="center">General evaluation of
+						students</h1>
 					<div>
 						<div class="box-header"></div>
-						<div class="box-content">
-							<form class="form-horizontal" action="M1.jsp" method="post"
-								enctype="multipart/form-data">
+						<div class="box-content" align="center">
+							<form class="form-horizontal" action="prediction.jsp"
+								method="post" enctype="multipart/form-data">
 								<fieldset>
-									<div class="control-group">
-										<label class="control-label" for="focusedInput">Name
-											your file: </label>
-										<div class="controls">
-											<input name="Students" class="input-xlarge focused"
-												id="focusedInput" type="text">
-											<button type="submit" class="btn btn-primary">Export
-												to xls</button>
-										</div>
-									</div>
-								</fieldset>
-							</form>
-							<label><font color='#55cc55'><b>Green</b> </font> -
-								included, <font color='ffdd54'> <b>Yellow</b></font> - partly
-								included, <font color='#ff6654'> <b>Red</b></font> - not
-								included</label>
-							<table class="table table-striped table-bordered">
-								<thead>
-									<tr>
-										<th>Phone</th>
-										<th>Topic</th>
-										<th>Name</th>
-										<th>Motivation</th>
-										<th>Digital skills</th>
-										<th>Learning ability</th>
-										<th>E-materials</th>
-										<th>Instructor</th>
-										<th>E-environment</th>
-										<th>Predicted usage</th>
-										<th>Submit date</th>
-										<th class="colored">M1</th>
-
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${list}" var="item">
-
-										<tr>
-											<td id="Nr"><c:out value="${item.get(0)}" /></td>
-											<td><c:out value="${item.get(1)}" /></td>
-											<td><c:out value="${item.get(2)}" /></td>
-											<td><c:out value="${item.get(3)}" /></td>
-											<td><c:out value="${item.get(4)}" /></td>
-											<td><c:out value="${item.get(5)}" /></td>
-											<td><c:out value="${item.get(6)}" /></td>
-											<td><c:out value="${item.get(7)}" /></td>
-											<td><c:out value="${item.get(8)}" /></td>
-											<td><c:out value="${item.get(9)}" /></td>
-											<td><c:out value="${item.get(10)}" /></td>
-											<c:choose>
-												<c:when test="${item.get(11) == 2}">
-													<td class="green colored"><c:out
-															value="${item.get(11)}" /></td>
-												</c:when>
-												<c:when test="${item.get(11) == 1}">
-													<td class="yellow colored"><c:out
-															value="${item.get(11)}" /></td>
-												</c:when>
-												<c:when test="${item.get(11) == 0}">
-													<td class="red colored"><c:out value="${item.get(11)}" /></td>
-												</c:when>
-												<c:otherwise>
-													<td class="gray colored"><c:out
-															value="${item.get(11)}" /></td>
-												</c:otherwise>
-											</c:choose>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
+									<label class="text-success ui-icon-disk" for="focusedInput">Name
+										your file: </label> <input name="Students"
+										class="input-xlarge focused" id="focusedInput" type="text">
+									<button type="submit" class="btn btn-primary">Export
+										to xls</button>
 						</div>
 					</div>
+
+					</fieldset>
+					</form>
+					<label><font color='#55cc55'><b>Green</b> </font> -
+						included, <font color='ffdd54'> <b>Yellow</b></font> - partly
+						included, <font color='#ff6654'> <b>Red</b></font> - not included</label>
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Phone</th>
+								<th>Topic</th>
+								<th>Name</th>
+								<th>Motivation</th>
+								<th>Digital skills</th>
+								<th>Learning ability</th>
+								<th>E-materials</th>
+								<th>Instructor</th>
+								<th>E-environment</th>
+								<th>Predicted usage</th>
+								<th>Submit date</th>
+								<th class="colored">M1</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${list}" var="item">
+
+								<tr>
+									<td id="Nr"><c:out value="${item.get(0)}" /></td>
+									<td><c:out value="${item.get(1)}" /></td>
+									<td><c:out value="${item.get(2)}" /></td>
+									<td><c:out value="${item.get(3)}" /></td>
+									<td><c:out value="${item.get(4)}" /></td>
+									<td><c:out value="${item.get(5)}" /></td>
+									<td><c:out value="${item.get(6)}" /></td>
+									<td><c:out value="${item.get(7)}" /></td>
+									<td><c:out value="${item.get(8)}" /></td>
+									<td><c:out value="${item.get(9)}" /></td>
+									<td><c:out value="${item.get(10)}" /></td>
+									<c:choose>
+										<c:when test="${item.get(11) == 2}">
+											<td class="green colored"><c:out value="${item.get(11)}" /></td>
+										</c:when>
+										<c:when test="${item.get(11) == 1}">
+											<td class="yellow colored"><c:out
+													value="${item.get(11)}" /></td>
+										</c:when>
+										<c:when test="${item.get(11) == 0}">
+											<td class="red colored"><c:out value="${item.get(11)}" /></td>
+										</c:when>
+										<c:otherwise>
+											<td class="gray colored"><c:out value="${item.get(11)}" /></td>
+										</c:otherwise>
+									</c:choose>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 
 

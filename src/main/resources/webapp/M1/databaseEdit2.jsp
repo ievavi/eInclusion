@@ -8,11 +8,11 @@
 <meta http-equiv="refresh" content="5;url=/M1/databaseEdit.jsp" />
 <title>Upload</title>
 </head>
-<body>
-    <center>
+<body style="background-color: silver;">
+    <center style="color: green;">
         <h2>${requestScope.Message}</h2>
         <h3>After 5 seconds you will be forwarded to main database windows!</h3>
-
+		<h1 style="background-image: url('loader.gif');"></h1>
     </center>
 </body>
 </html>

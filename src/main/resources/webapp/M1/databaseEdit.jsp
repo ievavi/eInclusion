@@ -37,6 +37,7 @@
 
 <body>
 	<%@ page import="org.webengine.*"%>
+	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -166,7 +167,7 @@
 					</tr>
 
 					<tr>
-						<td>
+						<td><%@ page import="org.einclusion.GUI.EditDatabasePanel"%>
 							<%@ page import="java.util.TreeSet"%> <%@ page
 								import="java.util.ArrayList"%> <%@ taglib
 								prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>

@@ -31,6 +31,7 @@
 
 <body>
 	<%@ page import="org.webengine.*"%>
+	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -96,20 +97,18 @@
 					<h1 class="text-success" align="center">Evaluation of ability to learn and knowledge sharing</h1>
 					<div>
 						<div class="box-header"></div>
-						<div class="box-content">
-							<form class="form-horizontal" action="M2.jsp" method="post"
-								enctype="multipart/form-data">
+						<div class="box-content" align="center">
+							<form class="form-horizontal" action="prediction.jsp"
+								method="post" enctype="multipart/form-data">
 								<fieldset>
-									<div class="control-group">
-										<label class="control-label" for="focusedInput">Name
-											your file: </label>
-										<div class="controls">
-											<input name="Students" class="input-xlarge focused"
-												id="focusedInput" type="text">
-											<button type="submit" class="btn btn-primary">Export
-												to xls</button>
-										</div>
-									</div>
+									<label class="text-success ui-icon-disk" for="focusedInput">Name
+										your file: </label> <input name="Students"
+										class="input-xlarge focused" id="focusedInput" type="text">
+									<button type="submit" class="btn btn-primary">Export
+										to xls</button>
+						</div>
+					</div>
+
 
 								</fieldset>
 							</form>

@@ -25,8 +25,7 @@ public class FileUploadServlet extends HttpServlet {
 	private static final Logger LOG = Logger.getLogger(FileUploadServlet.class);
 	private static File file;
 	String message = null;
-	String eMessage = null;
-	String message2=null;
+
 
 	EditDatabase edDB = new EditDatabase();
 
@@ -98,13 +97,13 @@ public class FileUploadServlet extends HttpServlet {
 				String ex2 = outputFilePath.getName().substring(outputFilePath.getName().indexOf("."),
 						outputFilePath.getName().length());
 				if (!ex2.equals(".xls")) {
-					message2 = "Wrong data type " + ex2 + ", but need .xls!";
+					message = "Wrong data type " + ex2 + ", but need .xls!";
 				} else {
-					message2 = " Update database file " + file.getName() + " uploaded and saved into database";
+					message = " Update database file " + file.getName() + " uploaded and saved into database";
 				}
 				
 			} catch (FileNotFoundException fne) {
-				 message2 = "File upload failed";
+				 message= "File upload failed";
 				fne.printStackTrace();
 
 			} finally {
@@ -118,7 +117,6 @@ public class FileUploadServlet extends HttpServlet {
 		}
 
 		request.setAttribute("Message", message);
-		request.setAttribute("Message2", message2);
 		//request.setAttribute("Emessage", eMessage);
 
 			getServletContext().getRequestDispatcher("/M1/databaseEdit2.jsp").forward(request, response);
@@ -142,14 +140,14 @@ public class FileUploadServlet extends HttpServlet {
 		} else if (request.getParameter("deleteButton") != null) {
 			String parameter = request.getParameter("topic");
 			edDB.topicParameter = parameter;
-			edDB.actionPerformed(FileUploadServlet.file, "deleteFromDB");
+			edDB.actionPerformed(FileUploadServlet.file, "deleteButton");
 			// System.out.println("////////////////////////////"+parameter);
 			response.setHeader("Refresh", "10;url=/fileupload?topic=" + parameter);
 			response.sendRedirect("/M1/databaseEdit.jsp");
 		} else if (request.getParameter("deleteFromDatabase") != null) {
 			String parameter = request.getParameter("specific");
 			edDB.specificParameter = parameter;
-			edDB.actionPerformed(FileUploadServlet.file, "delete");
+			edDB.actionPerformed(FileUploadServlet.file, "deleteFromDatabase");
 			response.sendRedirect("/M1/databaseEdit.jsp");
 
 		}
