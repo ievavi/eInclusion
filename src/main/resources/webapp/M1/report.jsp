@@ -34,7 +34,6 @@
 
 <body>
 <%@ page import="org.webengine.*"%>
-<%@ page import="org.einclusion.GUI.*"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="java.util.TreeSet"%>
 <%@ page import="java.util.Iterator"%>

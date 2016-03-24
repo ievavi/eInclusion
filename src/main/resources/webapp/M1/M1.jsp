@@ -28,7 +28,6 @@
 
 <body>
 	<%@ page import="org.webengine.*"%>
-	<%@ page import="org.einclusion.GUI.*"%>
 	<%@ page import="java.util.ArrayList"%>
 	<%@ page import="java.util.Iterator"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
