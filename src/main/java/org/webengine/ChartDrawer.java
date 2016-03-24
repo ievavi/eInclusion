@@ -97,6 +97,7 @@ public class ChartDrawer {
 
 	private synchronized void drawSecondChart() {
 		TreeSet<String> topicsSet = new TreeSet<String>();
+
 		for (ArrayList<String> i : list) {
 			topicsSet.add(i.get(1));
 		}
@@ -106,22 +107,26 @@ public class ChartDrawer {
 			studentCount[i] = 0;
 		}
 		for (ArrayList<String> row : list) {
-			for (int i = 0; i < topicsSet.size(); i++) {
-				if (row.get(1).equals(topics[i])) {
-					studentCount[i]++;
-				}
+			String date = row.get(3);
+			if (date.compareTo(from) >= 0 && date.compareTo(to) <= 0) {
+				for (int i = 0; i < topicsSet.size(); i++) {
+					if (row.get(1).equals(topics[i])) {
+						studentCount[i]++;
+					}
 
+				}
 			}
 		}
 		final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (int i = 0; i < topics.length; i++) {
 			dataset.addValue(studentCount[i], topics[i], "");
 		}
-		chart = ChartFactory.createBarChart("*THIS IS INCORRECT!*", "", "Students", dataset, PlotOrientation.VERTICAL, true,
-				true, false);
+		chart = ChartFactory.createBarChart("Number of students by topics \nFrom " + from + " to " + to, "", "Students",
+				dataset, PlotOrientation.VERTICAL, true, true, false);
+		customize();
 	}
 
-	private void customize() {
+	private synchronized void customize() {
 		final CategoryPlot plot = chart.getCategoryPlot();
 		plot.setRangeAxisLocation(AxisLocation.BOTTOM_OR_LEFT);
 		BarRenderer br = (BarRenderer) plot.getRenderer();

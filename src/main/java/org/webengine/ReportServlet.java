@@ -31,7 +31,7 @@ public class ReportServlet extends HttpServlet {
 		drawer = new ChartDrawer(list, type, from, to, topic);
 		chart = drawer.getChart();
 		resp.setContentType("image/png");
-		ChartUtilities.writeChartAsPNG(out, chart, 640, 480);
+		ChartUtilities.writeChartAsPNG(out, chart, 720, 540);
 		out.close();
 	}
 
