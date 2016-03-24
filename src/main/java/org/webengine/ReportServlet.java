@@ -39,7 +39,6 @@ public class ReportServlet extends HttpServlet {
 		WebTable table = new PredictionWeb();
 		table.readDBfiltered("All", "All");
 		ArrayList<ArrayList<String>> list = PredictionWeb.list;
-		System.out.println("List created...");
 		return list;
 	}
 

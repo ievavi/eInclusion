@@ -85,7 +85,6 @@ public class ChartDrawer {
 			}
 		}
 		final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		System.out.println("Generating Chart...");
 		dataset.addValue(studentCount[3], "76-100%", "");
 		dataset.addValue(studentCount[2], "51-75%", "");
 		dataset.addValue(studentCount[1], "26-50%", "");
@@ -94,7 +93,6 @@ public class ChartDrawer {
 		chart = ChartFactory.createBarChart(description, "e-inclusion %", "Number of students", dataset,
 				PlotOrientation.HORIZONTAL, true, false, false);
 		customize();
-		System.out.println("Chart generated...");
 	}
 
 	private synchronized void drawSecondChart() {
@@ -116,13 +114,11 @@ public class ChartDrawer {
 			}
 		}
 		final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		System.out.println("Generating Chart...");
 		for (int i = 0; i < topics.length; i++) {
 			dataset.addValue(studentCount[i], topics[i], "");
 		}
 		chart = ChartFactory.createBarChart("*THIS IS INCORRECT!*", "", "Students", dataset, PlotOrientation.VERTICAL, true,
 				true, false);
-		System.out.println("Chart generated...");
 	}
 
 	private void customize() {
