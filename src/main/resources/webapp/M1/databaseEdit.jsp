@@ -61,12 +61,13 @@
 								class="hidden-tablet"> Prediction</span></a></li>
 						<li><a href="report.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Report</span></a></li>
-						<li><a href="ReadMe.pdf" target="_blank"><i
-								class="icon-table"></i><span class="hidden-tablet">
-									Instructions </span></a></li>
+						
 						<li><a href="coefficients.jsp"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Coefficients </span></a></li>
+									<li><a style="visibility:hidden" href="ReadMe.pdf" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Instructions </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -133,7 +134,7 @@
 						<form method="post" action="/fileupload"
 							enctype="multipart/form-data">
 							<span class="btn btn-default btn-file"><span
-								class="fileinput-new">Select file</span><span
+								class="fileinput-new">Select file to train model</span><span
 								class="fileinput-exists">Change</span><input type="file"
 								name="file2" onchange="ValidateSingleInput2(this);""></span> <span
 								class="fileinput-filename"></span> <a href="#"

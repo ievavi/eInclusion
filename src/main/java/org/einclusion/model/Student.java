@@ -45,6 +45,7 @@ public class Student implements Serializable {
 	Double M3;			// m3 value
 	String RELIABILITY;	// reliability of prediction model
 	Date SUBMITDATE; 	// date (when the survey was completed)
+	Integer VOTE;
 	
 	public Long getId(){ return ID; }
 	
@@ -81,7 +82,8 @@ public class Student implements Serializable {
 	public void setKLBL(Double KLBL){ this.KLBL = ( KLBL >= 1 && KLBL <= 5) ? KLBL : -1; }
 	public Double getKLBL(){ return KLBL; }
 	
-	public void setOU(Integer OU){ this.OU = ( OU >= 0 && OU <= 2 ) ? OU : -1; }
+	//public void setOU(Integer OU){ this.OU = ( OU >= 0 && OU <= 2 ) ? OU : -1; }
+	public void setOU(Integer OU){ this.OU = ( OU == 0 && OU == 2 ) ? OU : -1; }
 	public Integer getOU(){ return OU; }
 	
 	public void setPU(Double PU){ this.PU = ( PU >= 1 && PU <= 5) ? PU : -1; }
@@ -111,6 +113,11 @@ public class Student implements Serializable {
 	public void setDate(Date SUBMITDATE){ this.SUBMITDATE = SUBMITDATE;}
 	public Date getDate(){ return SUBMITDATE; }
 	
+	public void setVote(int VOTE){ this.VOTE = 
+			(VOTE >= 0 && VOTE <= 2) ? VOTE : 0; }
+	public int getVote(){ return VOTE; }
+
+	
 	public static List<Student> getStudent() {
 		List<Student> tmp = new LinkedList<Student>();
 		try {
@@ -136,8 +143,9 @@ public class Student implements Serializable {
 		try {
 			TypedQuery<Student> query = entityManager.createQuery(
 					"FROM Student WHERE OU IS NOT null AND Topic IS '"+topic+"'" , Student.class);
-
+			
 			List<Student> students = query.getResultList();
+			LOG.info("<>"+students.size());
 			return students;
 
 		} catch (Exception e) {

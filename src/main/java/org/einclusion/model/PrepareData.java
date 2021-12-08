@@ -81,10 +81,11 @@ public class PrepareData {
 				}
 				SAL++; // so SAL max value is 5 and lowest value is 1
 				Double KFA = ((IWS + ELE + ELM) * KLBL) / 3;
+				Integer VOTE =0;
 
 				String sql = "UPDATE STUDENT" + " SET NAME=?, IWS=?, KLAL=?, KLBL=?, PU =?,"
 						+ " SUBMITDATE=?, SWL=?, DS=?, ELM=?, ELE=?,"
-						+ " SAL=?, PUOU=?, M1=?, M2=?, KFA=?, M3=?, RELIABILITY=?, OU=?" + " WHERE PHONE=? and TOPIC=?";
+						+ " SAL=?, PUOU=?, M1=?, M2=?, KFA=?, M3=?, RELIABILITY=?, OU=?, VOTE=?" + " WHERE PHONE=? and TOPIC=?";
 				PreparedStatement pst = conn.prepareStatement(sql);
 				pst.setString(1, NAME);
 				pst.setDouble(2, IWS);
@@ -104,15 +105,17 @@ public class PrepareData {
 				pst.setDouble(16, -1);
 				pst.setString(17, "not available");
 				pst.setNull(18, java.sql.Types.INTEGER);
-				pst.setString(19, PHONE);
-				pst.setString(20, TOPIC);
+				pst.setInt(19, VOTE);
+				pst.setString(20, PHONE);
+				pst.setString(21, TOPIC);
+				
 				// LOG.debug(pst.);
 				pst.executeUpdate();
 				conn.commit();
 
 				sql = "INSERT INTO STUDENT (Phone,Name,Topic,IWS,KLAL,KLBL,PU,SubmitDate,SWL,DS,"
-						+ "ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY)"
-						+ " SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?"
+						+ "ELM,ELE,SAL,PUOU,M1,M2,KFA, M3, RELIABILITY,VOTE)"
+						+ " SELECT ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? "
 						+ " WHERE NOT EXISTS (SELECT PHONE, TOPIC from STUDENT WHERE PHONE=? and TOPIC=?)";
 				pst = conn.prepareStatement(sql);
 				pst.setString(1, PHONE);
@@ -134,8 +137,9 @@ public class PrepareData {
 				pst.setDouble(17, KFA);
 				pst.setDouble(18, -1);
 				pst.setString(19, "not available");
-				pst.setString(20, PHONE);
-				pst.setString(21, TOPIC);
+				pst.setInt(20, -1);
+				pst.setString(21, PHONE);
+				pst.setString(22, TOPIC);
 				pst.executeUpdate();
 				conn.commit();
 
@@ -182,9 +186,15 @@ public class PrepareData {
 				// FIXME : Should update SQL to exclude topics which don't have
 				// coefficients
 				try {
+					LOG.info("Before prediction");
+				//	Prediction.getAll(topic);
+				//	LOG.info("Before prediction2");
 					Prediction.getPrediction(topic);
+					LOG.info("Before prediction3");
+					
 				} catch (Throwable t) {
 					LOG.error(t.getMessage() + " " + t.getCause());
+					LOG.info("Before prediction3");
 					t.printStackTrace();
 				}
 
@@ -224,19 +234,24 @@ public class PrepareData {
 				// If one type of model generation fails, next one should still
 				// be generated
 				try {
+					LOG.info("All claster1");
 					M1.getCluster(topic, "M1-clusters-" + topic, "M1-centroids-" + topic);
+					LOG.info("All claster2");
 				} catch (Throwable t) {
 					LOG.error(t.getMessage() + " " + t.getCause());
 					t.printStackTrace();
 				}
 				try {
-					M2.getRegression(topic, "M2-" + topic);
+					M2.getRegression(topic, "M2-" + topic);//M2
 				} catch (Throwable t) {
 					LOG.error(t.getMessage() + " " + t.getCause());
 					t.printStackTrace();
 				}
 				try {
-					M3.getRegression(topic, "M3-" + topic);
+			
+					//M0 m0 = new M0();
+					M0.process2();
+				//	M3.calculateVOTE(topic);
 				} catch (Throwable t) {
 					LOG.error(t.getMessage() + " " + t.getCause());
 					t.printStackTrace();

@@ -1,21 +1,33 @@
-package org.einclusion.model;
+ package org.einclusion.model;
 
 import static org.einclusion.model.InstanceManager.retrieveModelInstances;
+
 import static org.einclusion.model.ModelManager.entityManager;
 import static org.einclusion.model.ModelManager.transaction;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
 import org.einclusion.frontend.RegressionModel;
 
+//import com.sun.tools.sjavac.Log;
+
 import weka.classifiers.Evaluation;
 import weka.classifiers.functions.LinearRegression;
 import weka.core.Instances;
 import weka.filters.unsupervised.attribute.Remove;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * 	Calculates the M3 value
@@ -23,7 +35,10 @@ import weka.filters.unsupervised.attribute.Remove;
  */
 public class M3 {
 	static final Logger LOG = Logger.getLogger(M3.class);
-	static final String QUERY_STRING = "SELECT KFA, PUOU from Student where KFA>0 AND PUOU>0 AND OU IS NOT NULL";
+	//LOG.
+	//LOG.Level(Level.ALL);
+	static final String QUERY_STRING = "SELECT KFA, PUOU, VOTE from Student where KFA>0 AND PUOU>0 AND OU IS NOT NULL";
+	//static final String QUERY_STRING = "SELECT  VOTE from Student";
 
 	/**
 	 * 	Function that calculates M3 regression model for students in a specific topic and writes it to database
@@ -34,6 +49,9 @@ public class M3 {
 		System.out.println("\\\\\\\\\\\\\\\\\\\\ "+topic+" : "+regression_key+ " \\\\\\\\\\\\\\\\\\\\\n");
 		
 		calculateKFA(topic);
+		LOG.info("***Calculate VOTE before");
+		calculateVOTE(topic);
+		LOG.info("***Calculate VOTE after");
 		
 		try {
 		String statement = QUERY_STRING + " and Topic is '" + topic + "'";
@@ -203,4 +221,68 @@ public class M3 {
 				transaction.commit();
 		}
 	}
+	
+	public static void calculateVOTE(String topic){
+		try{
+		Query query;
+		transaction.begin();
+		List<?> students = Student.getStudents(topic);
+		//PrintReader pw = new PrintReader(new FileWriter(
+          //      "spambase-L5.txt"));
+		List<String>  a = new ArrayList();
+		//String dir = M3.class.getProtectionDomain().getCodeSource().getLocation().getFile();//System.getProperty("user.dir");
+		File currentDirectory = new File(new File("spambase-L5").getAbsolutePath().replaceAll("\\","//"));
+		 Scanner scanner = new Scanner(currentDirectory);
+
+		    // read until end of file (EOF)
+		    while (scanner.hasNextLine()) {
+		        System.out.println(scanner.nextLine());
+		        a.add(scanner.nextLine().trim());
+		    }
+
+		    // close the scanner
+		    scanner.close();
+		    
+		    LOG.info(a.get(0)+"^^^");
+		
+		/*try(
+				Path path = Paths.get("spambase-L5.txt");
+				
+				BufferedReader br = new BufferedReader(new FileReader("spambase-L5.txt"))) {
+		    for(String line; (line = br.readLine()) != null; ) {
+		        // process the line.
+		    	a.add(br.readLine());
+		    }
+		    // line is not visible here.
+		}
+		*/
+		int i = 0;
+	
+		for (Object o: students) {
+			Student student = (Student)o;
+			//Double KFA = ((student.getIWS() + student.getELE() + student.getELM()) * student.getKLBL()) / 3;
+			//student.setKFA(KFA);
+			int g = Integer.parseInt(a.get(i));
+		student.setVote(g);
+		
+			//String sql = "UPDATE STUDENT SET VOTE='"+student.getVote()+"' WHERE PHONE='"+student.getPhone()+"' AND TOPIC='"+student.getTopic()+"'";
+			//String sql = "UPDATE STUDENT SET VOTE='"+a.get(7)+"' WHERE PHONE='"+student.getPhone()+"' AND TOPIC='"+student.getTopic()+"'";
+			
+		String sql = "UPDATE STUDENT SET VOTE='"+1234+"' WHERE PHONE='"+student.getPhone()+"' AND TOPIC='"+student.getTopic()+"'";
+		
+			LOG.info("-------+++---"+ a.get(i));
+			query = entityManager.createNativeQuery(sql);
+			query.executeUpdate();
+			
+			i++;
+		}
+		}
+		catch ( Exception e ){
+			LOG.error(e.getMessage() + " " + e.getCause());
+		} finally {
+			if( transaction.isActive() )
+				transaction.commit();
+		}
+	}
+	
 }

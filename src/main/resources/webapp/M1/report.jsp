@@ -74,12 +74,13 @@
 								class="hidden-tablet"> Prediction</span></a></li>
 						<li><a href="report.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Report</span></a></li>	
-						<li><a href="ReadMe.pdf" target="_blank"><i
-								class="icon-table"></i><span class="hidden-tablet">
-									Instructions </span></a></li>
+						
 						<li><a href="coefficients.jsp"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Coefficients </span></a></li>
+									<li><a style="visibility:hidden" href="ReadMe.pdf" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Instructions </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -105,6 +106,8 @@
 						class="icon-angle-right"></i></li>
 					<li><a href="#">Report</a></li>
 				</ul>
+				
+				<img src="att.png" alt="Report" width="1500" height="1800">
 				
 				<div>
 				<h1 class="text-success" align="center">Report diagrams</h1> <br>

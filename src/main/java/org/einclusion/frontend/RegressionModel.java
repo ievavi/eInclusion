@@ -44,7 +44,7 @@ public class RegressionModel {
 		}
 		equation += "}}";
 		
-//		System.out.println("equation: "+equation);
+		System.out.println("equation: "+equation);
 		
 		this.key = key;
 		this.value = equation;
@@ -80,6 +80,15 @@ public class RegressionModel {
 				value = c.value;
 		}
 		return !value.equals("");
+	}
+	
+	public String returnCoefficientValue(String coeffName) {
+		String value = "";
+		for (Coefficient c: coefficients) {
+			if (c.name.equals(coeffName))
+				value = c.value;
+		}
+		return value;
 	}
 	/**
 	 *	Calculates risk degree by given values using specified regression models equation.
@@ -117,6 +126,34 @@ public class RegressionModel {
 		}
 		return result;
 	}
+	
+	public static double getM2regressionDegreeMax(RegressionModel rm) {//, double SWL, double SAL, double ELM, double IWS, double ELE) {
+		double result = 0;
+		for (Coefficient c: rm.coefficients) {
+			switch (c.name) {
+				case "SWL":
+					result += Double.parseDouble(c.value)*5;
+					break;
+				case "SAL":
+					result += Double.parseDouble(c.value)*5;
+					break;
+				case "ELM":
+					result += Double.parseDouble(c.value)*5;
+					break;
+				case "IWS":
+					result += Double.parseDouble(c.value)*5;
+					break;
+				case "ELE":
+					result += Double.parseDouble(c.value)*5;
+					break;
+				default: // constant
+					result += Double.parseDouble(c.value);
+					break;
+			}
+		}
+		return result;
+	}
+	
 	
 	/**
 	 * 	Calculates risk degree by given values using specified regression models equation.

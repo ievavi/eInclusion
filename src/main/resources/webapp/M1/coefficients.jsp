@@ -53,11 +53,12 @@
 								class="hidden-tablet"> Prediction</span></a></li>
 						<li><a href="report.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Report</span></a></li>
-						<li><a href="ReadMe.pdf" target="_blank"><i
+								<li><a href="coefficients.jsp"><i class="icon-table"></i><span
+								class="hidden-tablet"> Coefficients </span></a></li>
+						<li><a style="visibility:hidden" href="ReadMe.pdf" target="_blank"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Instructions </span></a></li>
-						<li><a href="coefficients.jsp"><i class="icon-table"></i><span
-								class="hidden-tablet"> Coefficients </span></a></li>
+						
 					</ul>
 				</div>
 			</div>
@@ -112,16 +113,16 @@
 				<table class="table table-striped table-bordered">
 					<thead>
 						<tr>
-							<th>Key</th>
+							
 							<th class=skip-filter>Coefficient</th>
 							<th class=skip-filter>Relative</th>
-							<th class=skip-filter>Value</th>
+							<th class=skip-filter>Values of centroids, clasters and linear regression</th>
 						</tr>
 					</thead>
 					<tbody>
 						<c:forEach var="user" items="${list}">
 							<tr>
-								<td><c:out value="${user.get(0)}" /></td>
+								
 								<td><c:out value="${user.get(1)}" /></td>
 								<td><c:out value="${user.get(2)}" /></td>
 								<td><c:out value="${user.get(3)}" /></td>

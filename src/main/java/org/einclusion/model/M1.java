@@ -79,7 +79,7 @@ public class M1 {
 			SimpleKMeans kMeans = new SimpleKMeans(); 					// new SimpleKMeans instance
 			
 //			clusters = ModelManager.getIntValue(clusterKey); 			// gets amount of clusters from database
-			clusters = amount;
+			clusters = 2;
 			
 			kMeans.setNumClusters(clusters);							// sets number of clusters for kmeans
 			kMeans.buildClusterer(data);
@@ -273,20 +273,56 @@ public class M1 {
 			if( centroidDistance.contains("|") ){			// if there are valid results
 				String [] split = centroidDistance.split("\\|");
 				Double centroidOU = Double.parseDouble(split[0]);
+				LOG.info("centroidOU###: "+centroidOU);
 				Double distance = Double.parseDouble(split[1]);
+				LOG.info("distance###: "+centroidOU);
 				LOG.info(student.getName()+" "+student.getTopic() + " shortest euclidian distance: "+ distance);
 				String sql = "UPDATE STUDENT SET M1='"+(int)Math.round(centroidOU)+"' WHERE PHONE='"+student.getPhone()+"' AND TOPIC='"+student.getTopic()+"'";
 				query = entityManager.createNativeQuery(sql);
 				query.executeUpdate();
 			} else {										// if there aren't valid results
-				String errorText = "Couldnt calculate shortest euclidian distance for student: "+student.getName()+" topic: "+student.getTopic();
+				String errorText = "###Couldnt calculate shortest euclidian distance for student: "+student.getName()+" topic: "+student.getTopic();
 				//EditDatabasePanel.log.append(errorText+"\n");
 				//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 				LOG.warn(errorText+"\n");
 				LOG.warn(centroidDistance);
 			}
+			///////////////
+			/*
+			List<?> result2 = Student.getStudentsforPrediction(topic);			// gets a list of students in a specific topic from database
+			for (Object o2: result2) {
+				Student student2 = (Student)o2;
+				// gets centroidOU (last centroid OU) and shortest euclidian distance for student
+				String centroidDistance2 = calculateEuclidianDistance(student2.getSWL(), student2.getDS(), student2.getSAL(), student2.getELM(),
+																	 student2.getIWS(), student2.getELE(), student2.getPU(), centroidKey );
+				if( centroidDistance2.contains("|") ){			// if there are valid results
+					String [] split = centroidDistance.split("\\|");
+					Double centroidOU = Double.parseDouble(split[0]);
+					LOG.info("centroidOU###: "+centroidOU);
+					Double distance = Double.parseDouble(split[1]);
+					LOG.info("distance###: "+centroidOU);
+					LOG.info(student2.getName()+" "+student2.getTopic() + " shortest euclidian distance: "+ distance);
+					String sql = "UPDATE STUDENT SET M1='"+(int)Math.round(centroidOU)+"' WHERE PHONE='"+student2.getPhone()+"' AND TOPIC='"+student2.getTopic()+"'";
+					query = entityManager.createNativeQuery(sql);
+					query.executeUpdate();
+				} else {										// if there aren't valid results
+					String errorText = "###Couldnt calculate shortest euclidian distance for student: "+student2.getName()+" topic: "+student2.getTopic();
+					//EditDatabasePanel.log.append(errorText+"\n");
+					//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
+					LOG.warn(errorText+"\n");
+					LOG.warn(centroidDistance);
+				}
+			
+			
+			//////////////
+			
+			
+			
 		}
+			*/
+			}
 		LOG.info("Changes have been commited to the database successfully\n");
+		
 		} catch( Exception e ){
 			LOG.error(e.getMessage()+" "+e.getCause());
 		} finally {

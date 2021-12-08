@@ -11,6 +11,8 @@ import org.einclusion.frontend.RegressionModel;
 
 import static org.einclusion.model.InstanceManager.*;
 import static org.einclusion.model.ModelManager.*;
+
+import weka.core.Instance;
 import weka.core.Instances;
 import weka.classifiers.Evaluation;
 import weka.classifiers.functions.LinearRegression;
@@ -22,8 +24,10 @@ import weka.filters.unsupervised.attribute.Remove;
  */
 public class M2 {
 	static final Logger LOG = Logger.getLogger(M2.class);
+//	static final String QUERY_STRING = "SELECT SWL, SAL, ELM, IWS, ELE, PUOU from Student where "
+	//		+ "SWL>0 and SAL>0 and ELM>0 and IWS>0 and ELE>0 and PUOU>0 AND OU IS NOT null";
 	static final String QUERY_STRING = "SELECT SWL, SAL, ELM, IWS, ELE, PUOU from Student where "
-			+ "SWL>0 and SAL>0 and ELM>0 and IWS>0 and ELE>0 and PUOU>0 AND OU IS NOT null";
+			+ "SWL>0 and SAL>0 and ELM>0 and IWS>0 and ELE>0 and PUOU>0";
 
 	/**
 	 * 	Function that calculates M2 regression model for students in a specific topic and writes it to database
@@ -31,7 +35,7 @@ public class M2 {
 	 * 	@param regression_key - key needed for unique field in database
 	 */
 	public static void getRegression(String topic, String regression_key) {
-		System.out.println("\\\\\\\\\\\\\\\\\\\\ "+topic+" : "+regression_key+ " \\\\\\\\\\\\\\\\\\\\\n");
+		System.out.println("\\\\\\\\\\\\\\\\\\\\////////// "+topic+" : "+regression_key+ " \\\\\\\\\\\\\\\\\\\\\n");
 		String statement = QUERY_STRING + " and Topic is '" + topic + "'";
 		Instances data = retrieveModelInstances(statement);					// get instances from database
 		
@@ -55,16 +59,19 @@ public class M2 {
 			eval.crossValidateModel(model, data, instances, new Random(1));		// crossvalidate model
 			double coefficient = eval.correlationCoefficient();				// get correlation coefficient
 			double relative = eval.relativeAbsoluteError();
-			LOG.info( "Relative absolute error: " + eval.relativeAbsoluteError());
-//			System.out.println( "Mean absolute error: " +  eval.meanAbsoluteError());
-//			System.out.println( "Root mean squared error: " +  eval.rootMeanSquaredError());
-//			System.out.println( "Relative absolute error: " +  eval.relativeAbsoluteError());
-//			System.out.println( "Root relative squared error: " +  eval.rootRelativeSquaredError());
-//			System.out.println( "Number of instances: " +  eval.numInstances());
+
+			 LOG.info( "Relative absolute error: " + eval.relativeAbsoluteError());
+				
+			System.out.println( "Mean absolute error: " +  eval.meanAbsoluteError());
+			System.out.println( "Root mean squared error: " +  eval.rootMeanSquaredError());
+			System.out.println( "Relative absolute error: " +  eval.relativeAbsoluteError());
+			System.out.println( "Root relative squared error: " +  eval.rootRelativeSquaredError());
+			System.out.println( "Number of instances: " +  eval.numInstances());
 			
-//			Instance studentb = data.instance(0);
-//			pu = model.classifyInstance(studentb);
-//			System.out.println("\n\n"+studentb+" : "+ pu +"\n\n");
+			Instance studentb = data.instance(0);
+			double pu = model.classifyInstance(studentb);
+			System.out.println("\n\n"+studentb+" : "+ pu +"\n\n");
+			
 			
 			
 			try{
@@ -124,7 +131,9 @@ public class M2 {
 						}
 					}
 
-					Double maxRmValue = RegressionModel.getM2regressionDegree(rm, maxswl, maxsal, maxelm, maxiws, maxele);
+					//Double maxRmValue = RegressionModel.getM2regressionDegree(rm, maxswl, maxsal, maxelm, maxiws, maxele);
+					Double maxRmValue = RegressionModel.getM2regressionDegreeMax(rm);//, maxswl, maxsal, maxelm, maxiws, maxele);
+					
 					for (Object o: result) {
 						Student student = (Student)o;
 						Double m2 = RegressionModel.getM2regressionDegree(rm, student.getSWL(), student.getSAL(), student.getELM(), student.getIWS(), student.getELE());
@@ -137,7 +146,7 @@ public class M2 {
 					}
 					LOG.info("Changes have been commited to the database successfully\n");
 				}
-				else{
+				/*else{
 					Regression regression = new Regression(model, data);
 					ModelManager.setObjectValue(regression_key, regression);
 					Query query;
@@ -155,6 +164,7 @@ public class M2 {
 					//EditDatabasePanel.log.append(errorText+"\n");
 					//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 				}
+				*/
 			} else {
 				if( eval.correlationCoefficient() > Double.parseDouble(databaseCoefficient) ){
 					if( model.toString().contains("SWL") || model.toString().contains("SAL") || model.toString().contains("ELM") || model.toString().contains("IWS") || model.toString().contains("ELE") ){
@@ -202,7 +212,9 @@ public class M2 {
 							}
 						}
 
-						Double maxRmValue = RegressionModel.getM2regressionDegree(rm, maxswl, maxsal, maxelm, maxiws, maxele);
+						//Double maxRmValue = RegressionModel.getM2regressionDegree(rm, maxswl, maxsal, maxelm, maxiws, maxele);
+						Double maxRmValue = RegressionModel.getM2regressionDegreeMax(rm);//, maxswl, maxsal, maxelm, maxiws, maxele);
+						
 						for (Object o: result) {
 							Student student = (Student)o;
 							Double m2 = RegressionModel.getM2regressionDegree(rm, student.getSWL(), student.getSAL(), student.getELM(), student.getIWS(), student.getELE());
@@ -215,7 +227,7 @@ public class M2 {
 						}
 						LOG.info("Changes have been commited to the database successfully\n");
 					}
-					else{
+					/*else{
 						Regression regression = new Regression(model, data);
 						ModelManager.setObjectValue(regression_key, regression);
 						Query query;
@@ -233,6 +245,7 @@ public class M2 {
 						//EditDatabasePanel.log.append(errorText+"\n");
 						//EditDatabasePanel.highlight(EditDatabasePanel.log, errorText);
 					}
+					*/
 				} else {
 					LOG.info("Don't calculate new model");
 				}
@@ -249,4 +262,80 @@ public class M2 {
 		}
 	}
 
+	public static Evaluation getRegression2(String topic) {
+		Evaluation eval =null; 
+		System.out.println("\\\\\\\\\\\\\\\\\\\\ "+topic+" : "+"STEM"+ " \\\\\\\\\\\\\\\\\\\\\n");
+		String statement = QUERY_STRING + " and Topic is '" + topic + "'";
+		Instances data = retrieveModelInstances(statement);					// get instances from database
+		
+		data.setClassIndex(data.numAttributes() - 1);
+		LinearRegression model = new LinearRegression();					// create new linear regression model
+		try {
+			try {
+				model.buildClassifier(data);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}									// build model
+			LOG.debug(model);
+			System.out.println(model);
+			String[] options = new String[2];	// options for remove
+			options[0] = "-R"; 					// "range"
+			options[1] = "1"; 					// first attribute
+			Remove remove = new Remove(); 		// new instance of filter
+			remove.setOptions(options); 		// set options
+			remove.setInputFormat(data);
+			
+			eval= new Evaluation(data);							// new evaluation model for given instances
+			int instances = data.numInstances();
+			if( instances > 10)
+				instances = 10;
+			eval.crossValidateModel(model, data, instances, new Random(1));		// crossvalidate model
+			double coefficient = eval.correlationCoefficient();				// get correlation coefficient
+			double relative = eval.relativeAbsoluteError();
+			//System.out.println("Linear regression: **");
+			//System.out.println(eval.toSummaryString());
+			//System.out.print(" the expression for the input data as per alogorithm is ");
+			//System.out.println(eval.toMatrixString());
+			// System.out.println(eval.toClassDetailsString());
+			 try {
+				LOG.info( "Relative absolute error: " + eval.relativeAbsoluteError());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+			System.out.println( "Mean absolute error: " +  eval.meanAbsoluteError());
+			System.out.println( "Root mean squared error: " +  eval.rootMeanSquaredError());
+			try {
+				System.out.println( "Relative absolute error: " +  eval.relativeAbsoluteError());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println( "Root relative squared error: " +  eval.rootRelativeSquaredError());
+			System.out.println( "Number of instances: " +  eval.numInstances());		
+			Instance studentb = data.instance(0);
+			double pu;
+			try {
+				pu = model.classifyInstance(studentb);
+				System.out.println("\n\n"+studentb+" : "+ pu +"\n\n");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} finally {
+			//if( transaction.isActive() )
+				//transaction.commit();
+		}
+		return eval;
+	}
+	
+	
 }

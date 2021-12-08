@@ -17,7 +17,7 @@ public class M3Web extends WebTable {
 	// Logger for M3Table
 	private static final Logger LOG = Logger.getLogger(M3Web.class);	
 	public static ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
-	static final String[] COLUMNS = {"PHONE","NAME","TOPIC","IWS","ELE","ELM","KLBL","SUBMITDATE","M3"};
+	static final String[] COLUMNS = {"PHONE","NAME","TOPIC","IWS","ELE","ELM","KLBL","SUBMITDATE","M3","VOTE"};
 	static File path;
 	Connection conn = null;
     PreparedStatement pStmt = null;
@@ -77,6 +77,7 @@ public class M3Web extends WebTable {
             	Date dateStamp = new Date(rs.getTimestamp("SUBMITDATE").getTime());
             	String date = dateStamp.toString();
             	String m3 = rs.getString("M3");
+            Integer	 vote = rs.getInt("VOTE");
             	
             	ArrayList<String> row = new ArrayList<String>();
         		row.add(phone); 		
@@ -88,6 +89,7 @@ public class M3Web extends WebTable {
         		row.add(klbl);	
         		row.add(date);
         		row.add(round(Double.parseDouble(m3),2)+"");
+        		row.add(String.valueOf(vote));
         		
         		if( row.size() > 0)
         			list.add(row);
@@ -126,6 +128,7 @@ public class M3Web extends WebTable {
 		labels.add("Before learning");
 		labels.add("Submit date");
 		labels.add("M3");
+		labels.add("Vote");
 		return labels;
 	}
 }

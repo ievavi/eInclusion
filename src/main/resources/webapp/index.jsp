@@ -50,12 +50,13 @@
 								class="hidden-tablet"> Prediction</span></a></li>
 						<li><a href="M1/report.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Report</span></a></li>
-						<li><a href="M1/ReadMe.pdf" target="_blank"><i
-								class="icon-table"></i><span class="hidden-tablet">
-									Instructions </span></a></li>
+						
 						<li><a class="a" href="M1/coefficients.jsp"><i
 								class="icon-table"></i><span class="hidden-tablet">
 									Coefficients </span></a></li>
+									<li><a style="visibility:hidden" href="M1/ReadMe.pdf" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Instructions </span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -108,13 +109,12 @@
 									href="M1/M3.jsp ">M3 </a>
 							</h2>
 							<p align="center">Shows each students factors for calculating
-								coefficients and calculated coefficients..</p>
+								coefficients and calculated coefficients.</p>
 							<br />
 							<h2 align="center" style="color: aqua;">
 								<a href="M1/prediction.jsp ">Prediction </a>
 							</h2>
-							<p align="center">Shows each students coefficients and
-								reliability.</p>
+							<p align="center">Shows e-inclusion level achieved by student.</p>
 							<br />
 							<h2 align="center" style="color: aqua;">
 								<a href="M1/report.jsp ">Report charts </a>

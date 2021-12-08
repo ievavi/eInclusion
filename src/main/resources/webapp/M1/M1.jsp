@@ -6,11 +6,14 @@
 
 <!-- start: Meta -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>General evaluation of student</title>
+<title>Evaluation of knowledge flow</title>
 <meta name="description" content="Bootstrap Metro Dashboard">
 <meta name="author" content="Dennis Ji">
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!-- end: Meta -->
+
+<!-- start: Mobile Specific -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- end: Mobile Specific -->
 
 <!-- start: CSS -->
 <link id="bootstrap-style" href="css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +27,7 @@
 <!-- start: Favicon -->
 <link rel="shortcut icon" href="img/favicon.ico">
 <!-- end: Favicon -->
+
 </head>
 
 <body>
@@ -33,9 +37,9 @@
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 	<%
-		WebTable m1Table = new M1Web();
-		m1Table.readDBfiltered("All", "All");
-		ArrayList<ArrayList<String>> list = M1Web.list;
+		WebTable m3Table = new M3Web();
+		m3Table.readDBfiltered("All", "All");
+		ArrayList<ArrayList<String>> list = M3Web.list;
 		request.setAttribute("list", list);
 	%>
 	<!-- start: Header -->
@@ -58,17 +62,16 @@
 								class="hidden-tablet"> Prediction</span></a></li>
 						<li><a href="report.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Report</span></a></li>
-						<li><a href="ReadMe.pdf" target="_blank"><i
-								class="icon-table"></i><span class="hidden-tablet">
-									Instructions </span></a></li>
+						
 						<li><a href="coefficients.jsp"><i class="icon-table"></i><span
 								class="hidden-tablet"> Coefficients </span></a></li>
+								<li><a style="visibility:hidden" href="ReadMe.pdf" target="_blank"><i
+								class="icon-table"></i><span class="hidden-tablet">
+									Instructions </span></a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
-	</div>
-	</div>
 	</div>
 	<!-- start: Header -->
 
@@ -84,95 +87,106 @@
 				</div>
 			</noscript>
 
-			<div id="content" class="span10">
+			<div id="content" class="input-xxlarge" style="width: 85%;margin: auto;">
 				<ul class="breadcrumb">
-					<li><i class="icon-home"></i> <a href="index.html">Home</a> <i
-						class="icon-angle-right"></i></li>
+					<li><i class="icon-home"></i> <a href="databaseEdit.jsp">Home</a>
+						<i class="icon-angle-right"></i></li>
 					<li><a href="#">M1</a></li>
 				</ul>
 				<div>
-					<h1 class="text-success" align="center">General evaluation of
-						students</h1>
+					<h1 class="text-success" align="center">Base evaluation</h1>
 					<div>
 						<div class="box-header"></div>
-						<div class="box-content" align="center">
-							<form class="form-horizontal" action="prediction.jsp"
-								method="post" enctype="multipart/form-data">
+						<div class="box-content">
+							<form class="form-horizontal" action="M3.jsp" method="post"
+								enctype="multipart/form-data">
 								<fieldset>
-									<label class="text-success ui-icon-disk" for="focusedInput">Name
-										your file: </label> <input name="Students"
-										class="input-xlarge focused" id="focusedInput" type="text">
-									<button type="submit" class="btn btn-primary">Export
-										to xls</button>
+									<div class="control-group">
+										<div class="box-content" align="center">
+											<form class="form-horizontal" action="prediction.jsp"
+												method="post" enctype="multipart/form-data">
+												<fieldset>
+													<label class="text-success ui-icon-disk" for="focusedInput">Name
+														your file: </label> <input name="Students"
+														class="input-xlarge focused" id="focusedInput" type="text">
+													<button type="submit" class="btn btn-primary">Export
+														to xls</button>
+										</div>
+									</div>
+
+
+								</fieldset>
+							</form>
+							<label>Prediction: <font color='#55cc55'><b>Green</b> </font> -
+								included, <font color='#ff6654'> <b>Red</b></font> - not
+								included</label>
+							<table class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>Phone</th>
+										<th>Topic</th>
+										<th>Name</th>
+										<th>Instructor</th>
+										<th>E-environment</th>
+										<th>E-materials</th>
+										<th>Before learning</th>
+										<th>Submit date</th>
+										<th class="colored">M1</th>
+										
+
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${list}" var="item">
+									
+								
+										<tr>
+											<td id="Nr"><c:out value="${item.get(0)}" /></td>
+											<td><c:out value="${item.get(1)}" /></td>
+											<td><c:out value="${item.get(2)}" /></td>
+											<td><c:out value="${item.get(3)}" /></td>
+											<td><c:out value="${item.get(4)}" /></td>
+											<td><c:out value="${item.get(5)}" /></td>
+											<td><c:out value="${item.get(6)}" /></td>
+											<td><c:out value="${item.get(7)}" /></td>
+											
+											
+											<fmt:parseNumber var="i" type="number" value="${item.get(9)}" />
+														
+											<c:choose>
+												<c:when test="${i == 2}">
+													<td class="green colored"><c:out
+															value="" /></td>
+															<!--td class="green colored"><c:out
+															value="${item.get(9)}" /></td-->
+												</c:when>
+												<c:when test="${i == 0}">
+													<!-- td class="red colored"><c:out value="${item.get(9)}" /></td>  -->
+													<td class="red colored"><c:out value="" /></td> 
+													 
+													  
+												</c:when>
+												<c:otherwise>
+													<!--<td class="gray colored"><c:out value="${item.get(9)}" /></td> -->
+												<td class="gray colored"><c:out value="" /></td>
+												
+												</c:otherwise>
+											</c:choose>
+											
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
-
-					</fieldset>
-					</form>
-					<label><font color='#55cc55'><b>Green</b> </font> -
-						included, <font color='ffdd54'> <b>Yellow</b></font> - partly
-						included, <font color='#ff6654'> <b>Red</b></font> - not included</label>
-					<table class="table table-striped table-bordered">
-						<thead>
-							<tr>
-								<th>Phone</th>
-								<th>Topic</th>
-								<th>Name</th>
-								<th>Motivation</th>
-								<th>Digital skills</th>
-								<th>Learning ability</th>
-								<th>E-materials</th>
-								<th>Instructor</th>
-								<th>E-environment</th>
-								<th>Predicted usage</th>
-								<th>Submit date</th>
-								<th class="colored">M1</th>
-
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${list}" var="item">
-
-								<tr>
-									<td id="Nr"><c:out value="${item.get(0)}" /></td>
-									<td><c:out value="${item.get(1)}" /></td>
-									<td><c:out value="${item.get(2)}" /></td>
-									<td><c:out value="${item.get(3)}" /></td>
-									<td><c:out value="${item.get(4)}" /></td>
-									<td><c:out value="${item.get(5)}" /></td>
-									<td><c:out value="${item.get(6)}" /></td>
-									<td><c:out value="${item.get(7)}" /></td>
-									<td><c:out value="${item.get(8)}" /></td>
-									<td><c:out value="${item.get(9)}" /></td>
-									<td><c:out value="${item.get(10)}" /></td>
-									<c:choose>
-										<c:when test="${item.get(11) == 2}">
-											<td class="green colored"><c:out value="${item.get(11)}" /></td>
-										</c:when>
-										<c:when test="${item.get(11) == 1}">
-											<td class="yellow colored"><c:out
-													value="${item.get(11)}" /></td>
-										</c:when>
-										<c:when test="${item.get(11) == 0}">
-											<td class="red colored"><c:out value="${item.get(11)}" /></td>
-										</c:when>
-										<c:otherwise>
-											<td class="gray colored"><c:out value="${item.get(11)}" /></td>
-										</c:otherwise>
-									</c:choose>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
 
 
 	<!-- start: JavaScript-->
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
 		
